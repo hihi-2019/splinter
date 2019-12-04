@@ -1,5 +1,7 @@
 import React from 'react'
+import {HashRouter as Router, Route, Link, Redirect} from 'react-router-dom'
 
+import LandingPage from '../components/LandingPage'
 
 
 
@@ -8,7 +10,11 @@ class App extends React.Component{
 
   render() {
   return (
-    <h1>React development has begun!</h1>
+    <Router>
+      <div className="content">
+        <Route exact path="/" component={LandingPage}/>
+      </div>
+    </Router>
   )
 }}
 
