@@ -29,6 +29,7 @@
     ]
   },
   "dependencies": {
+    "bcrypt": "^3.0.7",
     "express": "^4.16.4",
     "knex": "^0.20.3",
     "nodemon": "^2.0.1",
