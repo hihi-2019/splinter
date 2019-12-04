@@ -1,6 +1,6 @@
 import React from 'react'
-// import { registerUserRequest } from '../actions/register'
-// import { loginError } from '../actions/login'
+import { registerUserRequest } from '../actions/signUp'
+import { loginError } from '../actions/login'
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -13,21 +13,22 @@ class SignUp extends React.Component {
       confirm_password: '',
     }
   }
+  
   // componentDidMount() {
   //   this.props.dispatch(loginError(''))
   // }
+  
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
   }
-  // submit(e) {
-  //   e.preventDefault()
-  //   e.target.reset()
-  //   let { user_name, password, confirm_password, first_name, last_name, hourly_rate } = this.state
-  //   if (confirm_password != password) return this.props.dispatch(loginError("Passwords don't match"))
-  //   if (isNaN(hourly_rate)) return this.props.dispatch(loginError("Hourly rate is not a number"))
-  //   this.state.hourly_rate = Number(hourly_rate) * 100
-  //   this.props.dispatch(registerUserRequest(this.state))
-  // }
+  
+  submit = (e) => {
+    e.preventDefault()
+    e.target.reset()
+    if (this.state.confirm_password != this.state.password) return this.props.dispatch(loginError("Passwords don't match"))
+    // this.props.dispatch(registerUserRequest(this.state))
+  }
+  
   render() {
     const { auth } = this.props
     return (
