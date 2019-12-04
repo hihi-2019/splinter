@@ -1,5 +1,6 @@
 import React from 'react'
 import {loginUser} from '../actions/login'
+import {connect} from 'react-redux'
 
 class Login extends React.Component {
   constructor(props) {
@@ -8,15 +9,16 @@ class Login extends React.Component {
       email: "",
       password: ""
     }
-
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.updateDetails = this.updateDetails.bind(this)
   }
 
 
-  updateDetails = (e) => {
+  updateDetails (e){
     this.setState({[e.target.name]: e.target.value})
   }
 
-  handleSubmit = (e) => {
+  handleSubmit(e){
     e.preventDefault()
     let { email, password } = this.state
     this.props.dispatch(loginUser({email, password}))
@@ -67,4 +69,10 @@ class Login extends React.Component {
   }
 }
 
-export default Login
+const mapStateToProps = ({auth}) => {
+  return {
+    auth
+  }
+}
+
+export default connect(mapStateToProps)(Login)
