@@ -35,10 +35,10 @@ export function loginUser (creds) {
       .then((token) => {
         const userInfo = saveUserToken(token)
         dispatch(receiveLogin(userInfo))
-        getMeetingsByUser(userInfo.user_id)
+        // getMeetingsByUser(userInfo.user_id)
      .then(attendeeData => {
        dispatch(
-         saveMeetingByUser(attendeeData)
+        //  saveMeetingByUser(attendeeData)
        )
      })
         document.location = '/'

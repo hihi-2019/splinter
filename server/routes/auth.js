@@ -1,13 +1,12 @@
 const router = require('express').Router()
 const token = require('../auth/token')
+
 const { userExists, createUser } = require('../db/dbFunctions')
+
 
 router.post('/login', token.issue)
 
 
-// router.post('/login', (req, res) => {
-// console.log("I got here")
-// })
 
 router.post('/register', register, token.issue)
 
@@ -29,6 +28,7 @@ function register (req, res, next) {
       res.status(500).send({message: "Server Error"})
     })
 }
+
 
 
 module.exports = router

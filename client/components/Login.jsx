@@ -1,5 +1,7 @@
 import React from 'react'
-import {loginUser} from '../actions/login'
+
+import {loginUser, loginError} from '../actions/login'
+
 import {connect} from 'react-redux'
 
 class Login extends React.Component {
@@ -13,6 +15,9 @@ class Login extends React.Component {
     this.updateDetails = this.updateDetails.bind(this)
   }
 
+  componentDidMount() {
+    this.props.dispatch(loginError(''))
+  }
 
   updateDetails (e){
     this.setState({[e.target.name]: e.target.value})
@@ -28,11 +33,22 @@ class Login extends React.Component {
   }
 
   render() {
+    const { auth } = this.props
     return (
       <div className="loginContainer">
       <div className="col-6 col-md-4">
       <form onSubmit={this.handleSubmit}>
         <h1 className='loginTitle'>Login</h1>
+        {auth.errorMessage && (
+          <>
+            <h1>
+              <span className='badge badge-danger badge-lg'>
+                {auth.errorMessage}
+              </span>
+            </h1>
+            <br></br>
+          </>
+        )}
         <div className='form-inline'>
           <label htmlFor='email'>
             <input

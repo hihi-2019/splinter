@@ -1,4 +1,5 @@
 
+
 const knex = require('knex')
 const config = require('../../knexfile')
 const env = process.env.NODE_ENV || 'development'
@@ -16,6 +17,10 @@ function createUser (email, first_name, last_name, password,testDb) {
     })
 }
 
+function getUserByEmail(email, db = database){
+  return db('users').where('email', email).first()
+}
+
 function userExists (email, testDb) {
   const db = testDb || database
 
@@ -26,5 +31,7 @@ function userExists (email, testDb) {
 
 module.exports = {
   userExists,
-  createUser
+  createUser,
+    getUserByEmail
 }
+

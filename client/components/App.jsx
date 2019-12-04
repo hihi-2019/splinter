@@ -1,6 +1,8 @@
 import React from 'react'
+import Login from './Login'
 import SignUp from './SignUp'
 import {HashRouter as Router, Route, Link, Redirect} from 'react-router-dom'
+
 
 
 import LandingPage from '../components/LandingPage'
@@ -13,15 +15,18 @@ class App extends React.Component{
   render() {
   return (
 
+
     <Router>
       <Nav/>
       <div className="content">
         <Route exact path="/" component={LandingPage}/>
         <Route exact path="/group" component={ActiveGroup}/>
         <Route exact path="/sign-up" component={SignUp}/>
+         <Route exact path="/login" component={Login}/>
       </div>
       <Footer/>
     </Router>
+
   )
 }}
 
