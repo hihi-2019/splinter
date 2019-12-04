@@ -1,5 +1,8 @@
 import React from 'react'
 
+import AddTransaction from '../components/AddTransaction'
+
+
 
 class ActiveGroup extends React.Component {
   constructor(props) {
@@ -17,8 +20,10 @@ class ActiveGroup extends React.Component {
               MemberName MemberBalance $00.00 
             </li>
           </ul>
+          
+        < AddTransaction />
 
-      </>
+        </>
     )
   }
 }
