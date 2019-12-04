@@ -9,7 +9,7 @@ class AddTransaction extends React.Component {
   render() {
     return (
       <>
-        <h3>Add a New Transaction</h3>
+        <h3>Add new transaction</h3>
         
         <form>
 
