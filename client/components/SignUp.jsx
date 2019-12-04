@@ -74,7 +74,6 @@ class SignUp extends React.Component {
             </label>
               </div>
               <div className='col-6 reg'>
-                <input required className="form-controlexport default SignUp" placeholder="Password" type="password" name="password" onChange={this.handleChange} />
                 <input required className="form-control" placeholder="Password" type="password" name="password" onChange={this.handleChange} />
               </div>
             </div>
