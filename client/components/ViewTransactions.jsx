@@ -1,6 +1,6 @@
 import React from 'react'
 
-class AddTransaction extends React.Component {
+class ViewTransactions extends React.Component {
   constructor(props) {
     super(props)
     this.state = {}
@@ -13,3 +13,5 @@ class AddTransaction extends React.Component {
     )
   }
 }
+
+export default ViewTransactions

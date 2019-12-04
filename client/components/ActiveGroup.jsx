@@ -1,6 +1,8 @@
 import React from 'react'
 
 import AddTransaction from '../components/AddTransaction'
+import ViewTransactions from '../components/ViewTransactions'
+
 
 
 
@@ -22,6 +24,8 @@ class ActiveGroup extends React.Component {
           </ul>
           
         < AddTransaction />
+
+        <ViewTransactions />
 
         </>
     )
