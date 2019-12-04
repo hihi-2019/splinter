@@ -11,12 +11,13 @@ class ActiveGroup extends React.Component {
     return (
       <>
         <h1>Name of Group</h1>
-        <h3>Group Members</h3>
+        <h3>List of Group Members</h3>
           <ul>
             <li>
               MemberName MemberBalance $00.00 
             </li>
           </ul>
+
       </>
     )
   }
