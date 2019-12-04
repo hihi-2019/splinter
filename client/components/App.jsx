@@ -5,6 +5,7 @@ import SignUp from './SignUp'
 
 
 
+
 class App extends React.Component{
 
   render() {
@@ -12,7 +13,7 @@ class App extends React.Component{
     <>
     <SignUp/>
     </>
-  )
+    )
 }}
 
 export default App
