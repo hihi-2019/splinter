@@ -14,16 +14,22 @@ class AddTransaction extends React.Component {
         <form>
 
           <label>Description</label>
-          <input type='text'></input>
+          <input type='text' name='description' placeholder='eg. dinner'></input>
 
           <label>Paid by</label>
-          <input type='text'></input>
+          <select name='payer'>
+            <option></option>
+            <option>Member Names</option>
+          </select>
 
           <label>Amount $</label>
-          <input type='number'></input>
+          <input type='number' name='amount' placeholder='0.00'></input>
 
           <label>Split by all members?</label>
-          <input type='radio' checked></input>
+          <input type='checkbox' name='membersOwing' checked></input>
+
+          <label>Split cost evenly?</label>
+          <input type='checkbox' name='membersOwing' checked></input>
 
           <button type="submit">
             Add Transaction
