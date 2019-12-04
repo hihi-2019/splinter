@@ -1,14 +1,12 @@
 import React from 'react'
 import SignUp from './SignUp'
 import {HashRouter as Router, Route, Link, Redirect} from 'react-router-dom'
+
+
 import LandingPage from '../components/LandingPage'
 import ActiveGroup from '../components/ActiveGroup'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
-
-
-
-
 
 class App extends React.Component{
 
@@ -26,5 +24,6 @@ class App extends React.Component{
     </Router>
   )
 }}
+
 
 export default App
