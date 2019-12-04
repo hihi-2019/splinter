@@ -131,7 +131,8 @@ As a user:
   | --- | --- |
   | user_id | Integer |
   | email| String |
-  | full_name | String |
+  | first_name | String |
+  | last_name | String |
   | hash | text |
 
 ### Groups
