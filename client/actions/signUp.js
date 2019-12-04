@@ -8,8 +8,10 @@ export function registerUserRequest (creds) {
       .then(token => {
         const userInfo = saveUserToken(token)
         dispatch(receiveLogin(userInfo))
-        document.location = '/#/meeting'
+        document.location = '/#/'
       })
-      .catch(err => dispatch(loginError(err.response.body.message)))
+      .catch(err => {
+        dispatch(loginError(err.response.body.message))
+      })
   }
 }

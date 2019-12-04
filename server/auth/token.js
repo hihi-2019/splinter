@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
 const verifyJwt = require('express-jwt')
+
 const { comparePasswordToHash } = require('./hash')
 const { getUserByEmail } = require('../db/dbFunctions')
 
@@ -34,6 +35,7 @@ function createToken(user, secret) {
   const payload = {
     user_id: user.user_id,
     user_email: user.email
+
   }
 
   const options = {
