@@ -1,12 +1,12 @@
 import React from 'react'
-import Login from './Login'
-import SignUp from './SignUp'
+import { connect } from 'react-redux'
 import {HashRouter as Router, Route, Link, Redirect} from 'react-router-dom'
 
 
 
+import Login from './Login'
+import SignUp from './SignUp'
 import LandingPage from '../components/LandingPage'
-import ActiveGroup from '../components/ActiveGroup'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import Dashboard from '../components/Dashboard'
@@ -20,11 +20,10 @@ class App extends React.Component{
     <Router>
       <Nav/>
       <div className="content">
-        <Dashboard/>
-        <Route exact path="/" component={LandingPage}/>
-        <Route exact path="/group" component={ActiveGroup}/>
-        <Route exact path="/sign-up" component={SignUp}/>
-         <Route exact path="/login" component={Login}/>
+        {this.props.auth.isAuthenticated && <Route path='/' component={Dashboard} />}
+        {!this.props.auth.isAuthenticated && <Route exact path="/" component={LandingPage}/>}
+        {!this.props.auth.isAuthenticated && <Route exact path='/login' component={Login} />}
+        {!this.props.auth.isAuthenticated && <Route path='/signup' component={SignUp} />}
       </div>
       <Footer/>
     </Router>
@@ -33,4 +32,10 @@ class App extends React.Component{
 }}
 
 
-export default App
+const mapStateToProps = ({ auth }) => {
+  return {
+    auth
+  } 
+}
+
+export default connect(mapStateToProps)(App)
