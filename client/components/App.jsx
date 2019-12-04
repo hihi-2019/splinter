@@ -9,6 +9,7 @@ import LandingPage from '../components/LandingPage'
 import ActiveGroup from '../components/ActiveGroup'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import Dashboard from '../components/Dashboard'
 
 class App extends React.Component{
 
@@ -19,6 +20,7 @@ class App extends React.Component{
     <Router>
       <Nav/>
       <div className="content">
+        <Dashboard/>
         <Route exact path="/" component={LandingPage}/>
         <Route exact path="/group" component={ActiveGroup}/>
         <Route exact path="/sign-up" component={SignUp}/>
