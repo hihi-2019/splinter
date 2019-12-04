@@ -138,7 +138,8 @@ As a user:
   | Column Name | Data Type |
   | --- | --- |
   | group_id | Integer |
-  | description | String |
+  | group_name | String |
+  | group_description | String |
   | user_id | Integer |
   | settled | Boolean |
 
@@ -163,10 +164,10 @@ As a user:
 
 nb: cost recorded in cents
 
- ### TransactionsDetails (Join Table One2M)
+ ### TransactionDetails (Join Table One2M)
   | Column Name | Data Type |
   | --- | --- |
-  | transactionsDetails_id | Integer |
+  | transactionDetails_id | Integer |
   | transaction_id | Integer |
   | groupMember_id | Integer |
   | total_contribution | Integer |

@@ -8,36 +8,32 @@ exports.seed = function (knex) {
       // Inserts seed entries
       return knex('users').insert([
         {
-          id: 1,
-          user_name: 'AliceRulz',
-          hash: hashSync('123', saltRounds),
+          user_id: 1,
+          email: 'aliceiscool@yahoo.com',
           first_name: 'Alice',
           last_name: 'Alsford',
-          hourly_rate: 29000
+          hash: hashSync('123', saltRounds),
         },
         {
-          id: 2,
-          user_name: 'Basm8',
+          user_id: 2,
+          email: 'toscaiscool@hotmail.com',
+          first_name: 'Tosca',
+          last_name: 'Wilson',
           hash: hashSync('123', saltRounds),
+        },
+        {
+          user_id: 3,
+          email: 'robiscool@aliexpress.com',
+          first_name: 'Rob',
+          last_name: 'Cummins',
+          hash: hashSync('123', saltRounds),
+        },
+        {
+          user_id: 4,
+          email: 'basiscool@msn.com',
           first_name: 'Bas',
           last_name: 'Suckling',
-          hourly_rate: 26000
-        },
-        {
-          id: 3,
-          user_name: 'RockclimberGurl89',
           hash: hashSync('123', saltRounds),
-          first_name: 'Cass',
-          last_name: 'Guinut',
-          hourly_rate: 40000
-        },
-        {
-          id: 4,
-          user_name: 'TinyDancer',
-          hash: hashSync('123', saltRounds),
-          first_name: 'Cherise',
-          last_name: 'Tan',
-          hourly_rate: 70000
         }
       ])
     })
