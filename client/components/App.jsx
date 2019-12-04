@@ -8,11 +8,11 @@ import ActiveGroup from '../components/ActiveGroup'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 
-
 class App extends React.Component{
 
   render() {
   return (
+
     <Router>
       <Nav/>
       <div className="content">

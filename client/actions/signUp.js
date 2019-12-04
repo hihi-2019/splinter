@@ -11,8 +11,6 @@ export function registerUserRequest (creds) {
         document.location = '/#/'
       })
       .catch(err => {
-        console.log('hello')
-       console.log(err.response.body.message)
         dispatch(loginError(err.response.body.message))
       })
   }

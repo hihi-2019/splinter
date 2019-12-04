@@ -3,6 +3,7 @@ import { registerUserRequest } from '../actions/signUp'
 import { loginError } from '../actions/login'
 import { connect } from 'react-redux'
 
+
 class SignUp extends React.Component {
   constructor(props) {
     super(props)
@@ -15,9 +16,11 @@ class SignUp extends React.Component {
     }
   }
   
+
   componentDidMount() {
     this.props.dispatch(loginError(''))
   }
+
   
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
@@ -72,6 +75,7 @@ class SignUp extends React.Component {
               </div>
               <div className='col-6 reg'>
                 <input required className="form-controlexport default SignUp" placeholder="Password" type="password" name="password" onChange={this.handleChange} />
+                <input required className="form-control" placeholder="Password" type="password" name="password" onChange={this.handleChange} />
               </div>
             </div>
             <div className="row justify-content-start">
@@ -95,6 +99,7 @@ class SignUp extends React.Component {
 }
 
 
+
 const mapStateToProps = ({ auth }) => {
   return {
     auth
@@ -102,3 +107,4 @@ const mapStateToProps = ({ auth }) => {
 }
 
 export default connect(mapStateToProps)(SignUp)
+
