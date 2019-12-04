@@ -1,5 +1,5 @@
 import { saveUserToken } from '../utils/auth'
-import { login } from '../apis/auth'
+import { login } from '../api/auth'
 
 
 export function requestLogin () {
