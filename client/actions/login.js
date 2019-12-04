@@ -3,7 +3,6 @@ import { login } from '../api/auth'
 
 
 export function requestLogin () {
-  console.log("in here")
   return {
     type: 'LOGIN_REQUEST',
     isFetching: true,
