@@ -1,6 +1,7 @@
 import React from 'react'
 import { registerUserRequest } from '../actions/signUp'
 import { loginError } from '../actions/login'
+import { connect } from 'react-redux'
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -14,9 +15,9 @@ class SignUp extends React.Component {
     }
   }
   
-  // componentDidMount() {
-  //   this.props.dispatch(loginError(''))
-  // }
+  componentDidMount() {
+    this.props.dispatch(loginError(''))
+  }
   
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
@@ -26,7 +27,7 @@ class SignUp extends React.Component {
     e.preventDefault()
     e.target.reset()
     if (this.state.confirm_password != this.state.password) return this.props.dispatch(loginError("Passwords don't match"))
-    // this.props.dispatch(registerUserRequest(this.state))
+    this.props.dispatch(registerUserRequest(this.state))
   }
   
   render() {
@@ -36,7 +37,7 @@ class SignUp extends React.Component {
         <div className="col-6 col-md-4">
           <form className="login-register-form" onSubmit={this.submit}>
             <h1 className='registerTitle'>Register</h1>
-            {/* {auth.errorMessage && <><h1><span className="badge badge-danger badge-lg">{auth.errorMessage}</span></h1><br></br></>} */}
+            {auth.errorMessage && <><h1><span className="badge badge-danger badge-lg">{auth.errorMessage}</span></h1><br></br></>}
             <div className="row justify-content-start">
               <div className='col-6 reg-text'>
                 <label htmlFor="first_name">First Name:
@@ -70,7 +71,7 @@ class SignUp extends React.Component {
             </label>
               </div>
               <div className='col-6 reg'>
-                <input required className="form-control" placeholder="Password" type="password" name="password" onChange={this.handleChange} />
+                <input required className="form-controlexport default SignUp" placeholder="Password" type="password" name="password" onChange={this.handleChange} />
               </div>
             </div>
             <div className="row justify-content-start">
@@ -94,4 +95,10 @@ class SignUp extends React.Component {
 }
 
 
-export default SignUp
+const mapStateToProps = ({ auth }) => {
+  return {
+    auth
+  }
+}
+
+export default connect(mapStateToProps)(SignUp)
