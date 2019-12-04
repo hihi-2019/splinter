@@ -147,7 +147,7 @@ As a user:
   | Column Name | Data Type |
   | --- | --- |
   | groupMember_id | Integer |
-  | name | String |
+  | member_name | String |
   | group_id | Integer |
 
    ### Transactions
