@@ -22,8 +22,8 @@ class AddTransaction extends React.Component {
           <label>Amount $</label>
           <input type='number'></input>
 
-          <label>To be split by all members?</label>
-          {/* <input type='radio' name='yes' value='yes' checked>Yes</input> */}
+          <label>Split by all members?</label>
+          <input type='radio' checked></input>
 
           <button type="submit">
             Add Transaction
