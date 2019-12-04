@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Login from './Login'
 
 
 
@@ -8,7 +8,11 @@ class App extends React.Component{
 
   render() {
   return (
-    <h1>React development has begun!</h1>
+    <div>
+      <h1>React development has begun!</h1>
+      <Login/>
+      
+    </div>
   )
 }}
 
