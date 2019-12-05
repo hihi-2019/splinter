@@ -4,8 +4,6 @@ import AddTransaction from '../components/AddTransaction'
 import ViewTransactions from '../components/ViewTransactions'
 
 
-
-
 class ActiveGroup extends React.Component {
   constructor(props) {
     super(props) 
@@ -25,7 +23,7 @@ class ActiveGroup extends React.Component {
           
         < AddTransaction />
 
-        <ViewTransactions />
+        < ViewTransactions />
 
         </>
     )

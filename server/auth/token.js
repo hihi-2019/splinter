@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 const verifyJwt = require('express-jwt')
 
 const { comparePasswordToHash } = require('./hash')
-const { getUserByEmail } = require('../db/dbFunctions')
+const { getUserByEmail } = require('../db/users')
 
 function issue(req, res) {
   getUserByEmail(req.body.email)
