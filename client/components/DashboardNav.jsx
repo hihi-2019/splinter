@@ -7,7 +7,6 @@ class DashboardNav extends React.Component {
         super(props)
     }
     render() {
-        console.log(this.props.groups)
         return (
             <>
                 <div className="DashboardNav">

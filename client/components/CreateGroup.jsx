@@ -20,14 +20,10 @@ class CreateGroup extends React.Component {
       [e.target.name]: e.target.value,
       user_id: this.props.groups[0].user_id
     })
-    // console.log(this.state)
   }
 
   submit = (e) => {
     e.preventDefault()
-    console.log(this.state)
-    // console.log('userid:', this.props.groups[0])
-        console.log('about to send form data')
         this.props.dispatch(createNewGroupThunk(this.state))   
         
   }

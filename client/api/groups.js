@@ -4,7 +4,6 @@ const url = "/api/groups"
 
 
 export function apiGetGroupsByUser(user_id){
-  console.log('inside apiGetGroupsByUser')
   return request
   .get(`api/groups/${user_id}`)
   .then(res=> res.body
@@ -12,7 +11,6 @@ export function apiGetGroupsByUser(user_id){
 }
 
 export function apiCreateNewGroup(groupData){
-  console.log('inside apiCreateNewGroup')
   return request 
   .post(url)
   .send(groupData)
