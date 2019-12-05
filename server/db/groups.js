@@ -14,9 +14,7 @@ function getMembersByGroupId(groupId, db = connection) {
 }
 
 function createNewMember(memberDetails, db = connection){
-  console.log(memberDetails)
   return db('groupMembers').insert(memberDetails)
-
 }
 
 module.exports = {

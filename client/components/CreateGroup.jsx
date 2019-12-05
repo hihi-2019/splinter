@@ -43,8 +43,6 @@ class CreateGroup extends React.Component {
 
   deleteMember = (e) => {
     e.preventDefault()
-    console.log(e.target.name)
-    console.log(this.state.members_names)
     this.setState({
       members_names: this.state.members_names.filter(member => member !== e.target.name)})
 

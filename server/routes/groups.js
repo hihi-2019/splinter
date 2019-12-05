@@ -17,13 +17,11 @@ router.post('/', (req,res) => {
   }
   db.createNewGroup(newGroup)
   .then(groupId => {
-    let newMember = {
-      group_id: groupId[0],
-      member_name: req.body.member_name
-    }
-    db.createNewMember(newMember)
-    .then(memberId => {
+    req.body.members_names.map(member => {
+     return db.createNewMember({group_id: groupId[0], member_name: member})
+     .then(memberId => {
       console.log(memberId)
+    })
     })
     res.sendStatus(200)  
   })
