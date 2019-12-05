@@ -8,4 +8,10 @@ router.get('/:id', (req,res) => {
   res.json(data)
 )})
 
+router.get('/members/:id', (req,res) => {
+  db.getMembersByGroupId(req.params.id)
+  .then(data => 
+    res.json(data))
+})
+
 module.exports = router
