@@ -23,7 +23,7 @@ class ActiveGroup extends React.Component {
           
         < AddTransaction />
 
-        <ViewTransactions />
+        < ViewTransactions />
 
         </>
     )
