@@ -49,12 +49,4 @@ const mapStateToProps = ({auth}) => {
 }
 
 
-
-const mapStateToProps = ({ auth }) => {
-  return {
-    auth
-  } 
-}
-
-
 export default connect(mapStateToProps)(App)
