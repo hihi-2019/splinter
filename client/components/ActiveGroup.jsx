@@ -13,7 +13,6 @@ class ActiveGroup extends React.Component {
   }
 
 
-
   render() {
     let groups = this.props.groups.find(({ group_id }) => group_id == this.props.activeGroup)
     let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)

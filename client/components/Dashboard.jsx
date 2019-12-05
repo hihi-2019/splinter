@@ -3,7 +3,7 @@ import DashboardNav from './DashboardNav'
 import ActiveGroup from './ActiveGroup'
 import CreateGroup from './CreateGroup'
 import {connect} from 'react-redux'
-import {getGroupMembers} from '../actions/groups'
+// import {getGroupMembers} from '../actions/groups'
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -15,12 +15,13 @@ class Dashboard extends React.Component {
             <>
                 <div className="content">
                     <div className="row">
-                        <div classname="col-2">
+                        <div className="col-2">
                            <DashboardNav />
                         </div>
                         <div className="col-10 dashContent">
-                            <CreateGroup />
-                            <ActiveGroup />
+                            {this.props.activeGroup.length == 0 && <CreateGroup/>}
+                            {this.props.activeGroup.length > 0 && <ActiveGroup/>}
+                            
                         </div>
                     </div>
                 </div>
@@ -32,7 +33,8 @@ class Dashboard extends React.Component {
 
 function mapStateToProps(reduxState){
     return {
-        groups: reduxState.groups
+        groups: reduxState.groups,
+        activeGroup: reduxState.activeGroup
     }
 }
 

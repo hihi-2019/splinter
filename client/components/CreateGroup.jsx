@@ -69,7 +69,7 @@ class CreateGroup extends React.Component {
           })}
           </ul>
           <button onClick={this.submit}>
-            Add Group
+            Create Group
           </button>
         </form>
       </>
