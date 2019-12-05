@@ -1,6 +1,7 @@
 import { saveUserToken } from '../utils/auth'
 import { login } from '../api/auth'
-import {getGroupsByUser} from '../api/groups'
+import { getGroupsByUser } from '../api/groups'
+import { saveGroupsByUser } from '../actions/groups'
 
 export function requestLogin () {
   return {
@@ -36,9 +37,9 @@ export function loginUser (creds) {
         const userInfo = saveUserToken(token)
           dispatch(receiveLogin(userInfo))
         getGroupsByUser(userInfo.user_id)
-     .then(attendeeData => {
+     .then(userData => {
        dispatch(
-        //  saveMeetingByUser(attendeeData)
+         saveGroupsByUser(userData)
        )
      })
         document.location = '/'

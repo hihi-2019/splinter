@@ -29,9 +29,10 @@ function userExists (email, testDb) {
     .then(users => users.length > 0)
 }
 
+
 module.exports = {
   userExists,
   createUser,
-    getUserByEmail
+    getUserByEmail,
 }
 
