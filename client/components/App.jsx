@@ -7,8 +7,8 @@ import Footer from '../components/Footer'
 import Dashboard from '../components/Dashboard'
 import { saveGroupsByUser } from '../actions/groups'
 import { getGroupsByUser } from '../api/groups'
-import Login from './Login'
-import SignUp from './SignUp'
+import Login from '../components/Login'
+import SignUp from '../components/SignUp'
 
 class App extends React.Component{
   constructor(props){
@@ -21,7 +21,11 @@ class App extends React.Component{
       getGroupsByUser(this.props.auth.user.user_id)
       .then((data) => {
           this.props.dispatch(saveGroupsByUser(data))
+      }).then(() => {
+          console.log(this.props.groups)
+          
       })
+        
     
     }
   }
@@ -44,12 +48,12 @@ class App extends React.Component{
   )
 }}
 
-const mapStateToProps = ({auth}) => {
+const mapStateToProps = (reduxState) => {
   return {
-    auth
+    auth : reduxState.auth,
+    groups: reduxState.groups
   }
 }
-
 
 
 export default connect(mapStateToProps)(App)
