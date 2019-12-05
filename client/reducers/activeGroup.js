@@ -2,15 +2,12 @@ const initialState = []
 
 export default function groups (state = initialState, action) {
   switch (action.type) {
-    case 'SAVE_GROUPS_BY_USER':
-      return  action.groups
-    
-      case 'CREATE_NEW_GROUP':
-        return action.groupDetails
-
-       
+   
+      case 'SET_ACTIVE_GROUP_ID':
+          console.log(action.group_id)
+        return action.group_id
+      
       default:
         return state
   }
 }
-
