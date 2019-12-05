@@ -11,7 +11,7 @@ class Nav extends React.Component {
     render() {
         return (
             <>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light customNavStyles">
+                <nav className="navbar navbar-expand-lg navbar-light bg-light navStyles">
                     <Link to='/'><img className="navbar-brand " style={{ width: 80 + 'px', height: 100 + "%" }} src="./wood-cutting.png" alt="splinter-logo" /></Link>
                     <Link to='/'><h1 className="title is-1">Splinter</h1></Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

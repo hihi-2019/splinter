@@ -18,7 +18,7 @@ class CreateGroup extends React.Component {
   submit(e) {
     e.preventDefault()
     let { group_name, group_description} = this.state
-    this.props.dispatch(createGroup({group_name, group_description}))
+    this.props.dispatch(createNewGroup({group_name, group_description}))
     .then(() => {
       this.props.history.push('/')
     })
