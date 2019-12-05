@@ -9,7 +9,8 @@ class CreateGroup extends React.Component {
       group_name: '',
       group_description: '',
       user_id: '',
-      settled: false
+      settled: false,
+      member_names: []
     }
   }
 
@@ -41,7 +42,8 @@ class CreateGroup extends React.Component {
 
           <label>Add Group Member</label>
           <input className='form-control' required type='text' name='member_name' placeholder='eg. Joe' onChange={this.updateDetails}></input>
-
+          <button onClick={this.addMember}>Add member</button>
+          <br></br>
           <button onClick={this.submit}>
             Add Group
           </button>
