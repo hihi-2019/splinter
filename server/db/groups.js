@@ -13,8 +13,13 @@ function getMembersByGroupId(groupId, db = connection) {
   return db('groupMembers').where('group_id', groupId)
 }
 
+function createNewMember(memberDetails, db = connection){
+  return db('groupMembers').insert(memberDetails)
+}
+
 module.exports = {
   getGroupsByUserId,
   createNewGroup,
-  getMembersByGroupId
+  getMembersByGroupId,
+  createNewMember
 }

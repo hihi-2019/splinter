@@ -9,26 +9,45 @@ class CreateGroup extends React.Component {
       group_name: '',
       group_description: '',
       user_id: '',
-      settled: false
+      settled: false,
+      members_names: [],
+      new_member_name: ''
     }
   }
 
+  updateMembers = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
 
+  addMember = (e) => {
+    e.preventDefault()
+    this.state.members_names.push(this.state.new_member_name)
+    this.setState({
+      new_member_name: ''
+    })
+  }
 
   updateDetails = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
-      user_id: this.props.groups[0].user_id
+      user_id: this.props.auth.user.user_id
     })
   }
 
   submit = (e) => {
     e.preventDefault()
-        this.props.dispatch(createNewGroupThunk(this.state))   
-        
+    this.props.dispatch(createNewGroupThunk(this.state))
   }
 
-  onChange
+  deleteMember = (e) => {
+    e.preventDefault()
+    this.setState({
+      members_names: this.state.members_names.filter(member => member !== e.target.name)})
+
+  }
+
   render() {
     return (
       <>
@@ -39,6 +58,16 @@ class CreateGroup extends React.Component {
 
           <label>Description</label>
           <input className='form-control' required type='text' name='group_description' placeholder='eg. Great Mates Drinking Crates To Celebrate Our Old Mates Birthdate' onChange={this.updateDetails}></input>
+
+
+          <label>Add Group Member</label>
+          <input className='form-control' required type='text' name='new_member_name' placeholder='eg. Joe' onChange={this.updateMembers} value={this.state.new_member_name}></input>
+          <button onClick={this.addMember}>Add member</button>
+          
+          <ul> {this.state.members_names.map(member => {
+          return <li>{member} <button name={member} onClick={this.deleteMember}>x</button></li> 
+          })}
+          </ul>
           <button onClick={this.submit}>
             Add Group
           </button>
@@ -50,8 +79,9 @@ class CreateGroup extends React.Component {
 
 const mapStateToProps = (reduxState) => {
   return {
-    auth : reduxState.auth,
-    groups: reduxState.groups
+    auth: reduxState.auth,
+    groups: reduxState.groups,
+    groupMembers: reduxState.groupMembers
   }
 }
 
