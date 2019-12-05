@@ -1,7 +1,7 @@
 import React from 'react'
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-// import { logoutUser } from '../actions/logout'
+import { logoutUser } from '../actions/logout'
 
 class Nav extends React.Component {
     constructor(props) {
@@ -22,11 +22,11 @@ class Nav extends React.Component {
 
 
                             <li className="nav-item navListItems"><Link to='/about' className="nav-link">About</Link></li>
-                            {/* {auth.isAuthenticated ?
-                                <li className="nav-item navListItems"><Link to='/' className="nav-link" onClick={() => logout()}>Logout</Link></li> :
+                            {this.props.auth.isAuthenticated ?
+                                <li className="nav-item navListItems"><Link to='/' className="nav-link" onClick={() => this.props.logout()}>Logout</Link></li> :
                                 [<li className="nav-item navListItems" ><Link className="nav-link" to='/signup'>Register</Link></li>,
                                 <li className="nav-item navListItems" ><Link className="nav-link" to='/login'>Login</Link></li>]
-                            } */}
+                            }
 
 
                         </ul>
@@ -39,16 +39,15 @@ class Nav extends React.Component {
     }
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//       logout: () => dispatch(logoutUser())
-//     }
-//   }
+const mapDispatchToProps = (dispatch) => {
+    return {
+      logout: () => dispatch(logoutUser())
+    }
+  }
 
-// const mapStateToProps = ({ auth }) => {
-//     return { auth }
-// }
+const mapStateToProps = ({ auth }) => {
+    return { auth }
+}
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Nav)
+export default connect(mapStateToProps, mapDispatchToProps)(Nav)
 
-export default Nav
