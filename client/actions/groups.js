@@ -50,7 +50,6 @@ export function createNewGroupThunk(groupDetails) {
 }
 
 export function setActiveGroupId(group_id) {
-  console.log(group_id)
   return{
     type: 'SET_ACTIVE_GROUP_ID',
     group_id
