@@ -7,6 +7,8 @@ import Footer from '../components/Footer'
 import Dashboard from '../components/Dashboard'
 import { saveGroupsByUser } from '../actions/groups'
 import { getGroupsByUser } from '../api/groups'
+import Login from './Login'
+import SignUp from './SignUp'
 
 class App extends React.Component{
   constructor(props){
@@ -48,13 +50,6 @@ const mapStateToProps = ({auth}) => {
   }
 }
 
-
-
-const mapStateToProps = ({ auth }) => {
-  return {
-    auth
-  } 
-}
 
 
 export default connect(mapStateToProps)(App)
