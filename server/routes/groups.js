@@ -16,6 +16,9 @@ router.post('/', (req,res) => {
     settled: req.body.settled
   }
   db.createNewGroup(newGroup)
+  .then(data => {
+    res.sendStatus(200)  
+  })
 })
 
 router.get('/members/:id', (req,res) => {
