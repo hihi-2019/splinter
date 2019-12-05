@@ -1,4 +1,4 @@
-import { apiGetGroupMembers, apiCreateNewGroup } from '../api/groups'
+import { apiGetGroupMembers, apiCreateNewGroup, getGroupsByUser } from '../api/groups'
 
 export function saveGroupsByUser(userDetails) {
   return {
@@ -35,9 +35,9 @@ export function createNewGroupThunk(groupDetails) {
   return dispatch => {
     console.log('dispatching to apiCreateNewGroup')
     apiCreateNewGroup(groupDetails)
-    .then((newGroup) => {
-      console.log('dispatching to createNewGroup')
-      dispatch(createNewGroup(newGroup))
+    .then(() => {
+     
+      dispatch(getGroupsByUser(groupDetails.user_id))
     })
   }
 }

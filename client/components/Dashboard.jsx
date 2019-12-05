@@ -14,7 +14,7 @@ class Dashboard extends React.Component {
                 <div className="content">
                     <div className="row">
                         <div classname="col-2">
-                            <DashboardNav />
+                           <DashboardNav />
                         </div>
                         <div className="col-10 dashContent">
                             <CreateGroup />
