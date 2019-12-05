@@ -20,14 +20,12 @@ class App extends React.Component {
     if (this.props.auth.isAuthenticated) {
       this.props.dispatch(getGroupsByUser(this.props.auth.user.user_id))
     }
-    
-    this.props.groups.map(group => {
-      return this.props.dispatch(getGroupMembers(group.group_id))
-    })
   }
 
   componentDidUpdate() {
-    
+    this.props.groups.map(group => {
+      return this.props.dispatch(getGroupMembers(group.group_id))
+    })
   }
 
   render() {
