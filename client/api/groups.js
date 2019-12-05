@@ -3,9 +3,10 @@ import request from 'superagent'
 const url = "/api/groups"
 
 
-export function getGroupsByUser(id){
+export function apiGetGroupsByUser(user_id){
+  console.log('inside apiGetGroupsByUser')
   return request
-  .get(`api/groups/${id}`)
+  .get(`api/groups/${user_id}`)
   .then(res=> res.body
   )
 }

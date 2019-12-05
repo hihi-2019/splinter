@@ -2,12 +2,23 @@ import React from 'react'
 import DashboardNav from './DashboardNav'
 import ActiveGroup from './ActiveGroup'
 import CreateGroup from './CreateGroup'
+import {connect} from 'react-redux'
+import {getGroupMembers} from '../actions/groups'
 
 class Dashboard extends React.Component {
     constructor(props) {
         super(props)
 
     }
+
+    // componentDidMount() {
+    //     if(this.props.group){
+    //         this.props.groups.map(group => {
+    //          return this.props.dispatch(getGroupMembers(group.group_id))  
+    //        })
+    //     }
+    // }
+    
     render() {
         return (
             <>
@@ -28,4 +39,10 @@ class Dashboard extends React.Component {
     }
 }
 
-export default Dashboard
+function mapStateToProps(reduxState){
+    return {
+        groups: reduxState.groups
+    }
+}
+
+export default connect(mapStateToProps)(Dashboard)

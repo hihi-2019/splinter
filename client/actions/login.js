@@ -1,9 +1,9 @@
 import { saveUserToken } from '../utils/auth'
 import { login } from '../api/auth'
-import { getGroupsByUser } from '../api/groups'
+import { apiGetGroupsByUser } from '../api/groups'
 import { saveGroupsByUser } from '../actions/groups'
 
-export function requestLogin () {
+export function requestLogin() {
   return {
     type: 'LOGIN_REQUEST',
     isFetching: true,
@@ -11,7 +11,7 @@ export function requestLogin () {
   }
 }
 
-export function receiveLogin (user) {
+export function receiveLogin(user) {
   return {
     type: 'LOGIN_SUCCESS',
     isFetching: false,
@@ -20,7 +20,7 @@ export function receiveLogin (user) {
   }
 }
 
-export function loginError (message) {
+export function loginError(message) {
   return {
     type: 'LOGIN_FAILURE',
     isFetching: false,
@@ -29,19 +29,19 @@ export function loginError (message) {
   }
 }
 
-export function loginUser (creds) {
+export function loginUser(creds) {
   return dispatch => {
     dispatch(requestLogin(creds))
     return login(creds)
       .then((token) => {
         const userInfo = saveUserToken(token)
-          dispatch(receiveLogin(userInfo))
-        getGroupsByUser(userInfo.user_id)
-     .then(userData => {
-       dispatch(
-         saveGroupsByUser(userData)
-       )
-     })
+        dispatch(receiveLogin(userInfo))
+        apiGetGroupsByUser(userInfo.user_id)
+          .then(userData => {
+            dispatch(
+              saveGroupsByUser(userData)
+            )
+          })
         document.location = '/'
       })
       .catch(err => {
