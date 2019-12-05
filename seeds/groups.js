@@ -16,7 +16,7 @@ exports.seed = function (knex) {
             group_name: 'Brunch Club',
             group_description: 'Weekly ladies brunch club in Whitby',
             user_id: 1,
-            settled: false
+            settled: true
         },
         {
             group_id: 3,
