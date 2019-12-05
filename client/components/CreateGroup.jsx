@@ -41,8 +41,16 @@ class CreateGroup extends React.Component {
     this.props.dispatch(createNewGroupThunk(this.state))
   }
 
-  render() {
+  deleteMember = (e) => {
+    e.preventDefault()
+    console.log(e.target.name)
     console.log(this.state.members_names)
+    this.setState({
+      members_names: this.state.members_names.filter(member => member !== e.target.name)})
+
+  }
+
+  render() {
     return (
       <>
         <h3>Create a New Group</h3>
@@ -59,7 +67,7 @@ class CreateGroup extends React.Component {
           <button onClick={this.addMember}>Add member</button>
           
           <ul> {this.state.members_names.map(member => {
-          return <li>{member}</li> 
+          return <li>{member} <button name={member} onClick={this.deleteMember}>x</button></li> 
           })}
           </ul>
           <button onClick={this.submit}>
