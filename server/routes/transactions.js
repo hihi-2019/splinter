@@ -1,13 +1,14 @@
 const router = require('express').Router()
 const db = require('../db/transactions')
 
-<<<<<<< HEAD
-router.get('/', (req, res) => {
-  console.log('hello')
+router.get('/:id', (req, res) => {
+  db.getTransactions(req.params.id)
+  .then(transactions => {
+    res.json(transactions)
+  })
 })
 
 module.exports = router
-=======
 router.post('/', (req, res) => {
   let transaction = {
     new_transaction: {
@@ -29,4 +30,3 @@ router.post('/', (req, res) => {
 
 module.exports = router
 
->>>>>>> 2acf91e930363974de0c192ffc2059949e1b88a0

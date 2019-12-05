@@ -1,8 +1,11 @@
 const database = require('./connection')
-const db = testDb || database
 
-function getTransaction(groupId, transactionId) {
-  db('transactio')
+function getTransactions(groupId, db = database) {
+  db('transactions').where('group_id', groupId)
+  .join('transactionDetails', 'transactions.transaction_id', 'transactionDetails.transaction_id')
+  .select()
+}
+
 
 function addTransaction(transaction, db = database) {
   return db('transactions')
@@ -16,5 +19,6 @@ function addTransaction(transaction, db = database) {
 
 
 module.exports = {
-  addTransaction
+  addTransaction,
+  getTransactions
 }
