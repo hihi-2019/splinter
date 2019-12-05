@@ -1,11 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
+import {setActiveGroupId} from '../actions/groups'
 
 class DashboardNav extends React.Component {
     constructor(props) {
         super(props)
+      
     }
+
+    changeGroup = (event) => {
+        this.props.dispatch(setActiveGroupId(event.target.id))
+    }
+
     render() {
         return (
             <>
@@ -15,7 +21,7 @@ class DashboardNav extends React.Component {
                     <ul>
                         {this.props.groups.map((group, i) => {
                             if (!group.settled) {
-                                return <li key={i}>{group.group_name}</li>
+                                return <li key={i} id={group.group_id} onClick={this.changeGroup}>{group.group_name}</li>
                             }
                         })}
                     </ul>
@@ -36,7 +42,8 @@ class DashboardNav extends React.Component {
 const mapStateToProps = (reduxState) => {
     return {
 
-        groups: reduxState.groups
+        groups: reduxState.groups,
+        activeGroup: reduxState.group_id
     }
 }
 
