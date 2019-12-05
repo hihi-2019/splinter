@@ -10,3 +10,8 @@ export function getGroupsByUser(id){
   )
 }
 
+export function apiGetGroupMembers(groupId){
+  return request
+  .get(`api/groups/members/${groupId}`)
+  .then(res => res.body)
+}

@@ -6,6 +6,11 @@ function getGroupsByUserId(id, db = connection){
 
 }
 
+function getMembersByGroupId(groupId, db = connection) {
+  return db('groupMembers').where('group_id', groupId)
+}
+
 module.exports = {
-  getGroupsByUserId
+  getGroupsByUserId,
+  getMembersByGroupId
 }

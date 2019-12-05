@@ -7,6 +7,7 @@ import Footer from '../components/Footer'
 import Dashboard from '../components/Dashboard'
 import { saveGroupsByUser } from '../actions/groups'
 import { getGroupsByUser } from '../api/groups'
+import {getGroupMembers} from '../actions/groups'
 import Login from '../components/Login'
 import SignUp from '../components/SignUp'
 
@@ -22,8 +23,10 @@ class App extends React.Component{
       .then((data) => {
           this.props.dispatch(saveGroupsByUser(data))
       }).then(() => {
-          console.log(this.props.groups)
-          
+           this.props.groups.map(group => {
+            return this.props.dispatch(getGroupMembers(group.group_id))  
+          })
+           
       })
         
     
