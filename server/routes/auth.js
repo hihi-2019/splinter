@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const token = require('../auth/token')
 
-const { userExists, createUser } = require('../db/dbFunctions')
+const { userExists, createUser } = require('../db/users')
 
 
 router.post('/login', token.issue)
