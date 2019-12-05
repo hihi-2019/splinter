@@ -10,10 +10,12 @@ export function getGroupsByUser(id){
   )
 }
 
-export function createNewGroup(groupData){
-  return request
+export function apiCreateNewGroup(groupData){
+  console.log('inside apiCreateNewGroup')
+  return request 
   .post(url)
-  .then (res => res.text)
+  .send(groupData)
+  .then (res => res.body)
 }
 
 export function apiGetGroupMembers(groupId){
