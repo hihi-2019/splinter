@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 class AddTransaction extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class AddTransaction extends React.Component {
     return (
       <>
         <h3>Add new transaction</h3>
-        
+
         <form>
 
           <label>Description</label>
@@ -19,7 +20,11 @@ class AddTransaction extends React.Component {
           <label>Paid by</label>
           <select name='payer'>
             <option></option>
-            <option>Member Names</option>
+            
+              {this.props.groupMembers.map((groupMember, i) => {
+                return <option key={i}>{groupMember.member_name}</option>
+              })}
+            
           </select>
 
           <label>Amount $</label>
@@ -41,4 +46,11 @@ class AddTransaction extends React.Component {
   }
 }
 
-export default AddTransaction
+const mapStateToProps = (reduxState) => {
+  return {
+
+    groupMembers: reduxState.groupMembers
+  }
+}
+
+export default connect(mapStateToProps)(AddTransaction)
