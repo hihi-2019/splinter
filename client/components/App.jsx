@@ -7,6 +7,8 @@ import Footer from '../components/Footer'
 import Dashboard from '../components/Dashboard'
 import { saveGroupsByUser } from '../actions/groups'
 import { getGroupsByUser } from '../api/groups'
+import Login from '../components/Login'
+import SignUp from '../components/SignUp'
 
 class App extends React.Component{
   constructor(props){
