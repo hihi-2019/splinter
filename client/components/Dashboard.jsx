@@ -1,5 +1,7 @@
 import React from 'react'
 import DashboardNav from './DashboardNav'
+import ActiveGroup from './ActiveGroup'
+import CreateGroup from './CreateGroup'
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -10,6 +12,8 @@ class Dashboard extends React.Component {
         return (
             <>
             <DashboardNav/>
+            <CreateGroup/>
+            <ActiveGroup/>
             </>
         )
     }
