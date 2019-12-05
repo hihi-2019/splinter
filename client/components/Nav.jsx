@@ -11,7 +11,7 @@ class Nav extends React.Component {
     render() {
         return (
             <>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light customNavStyles">
+                <nav className="navbar navbar-expand-lg navbar-light bg-light navStyles">
                     <Link to='/'><img className="navbar-brand " style={{ width: 80 + 'px', height: 100 + "%" }} src="./wood-cutting.png" alt="splinter-logo" /></Link>
                     <Link to='/'><h1 className="title is-1">Splinter</h1></Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,14 +20,12 @@ class Nav extends React.Component {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ml-auto" style={{ 'paddingRight': 50 + 'px' }}>
 
-
                             <li className="nav-item navListItems"><Link to='/about' className="nav-link">About</Link></li>
                             {this.props.auth.isAuthenticated ?
                                 <li className="nav-item navListItems"><Link to='/' className="nav-link" onClick={() => this.props.logout()}>Logout</Link></li> :
                                 [<li className="nav-item navListItems" ><Link className="nav-link" to='/signup'>Register</Link></li>,
                                 <li className="nav-item navListItems" ><Link className="nav-link" to='/login'>Login</Link></li>]
                             }
-
 
                         </ul>
                     </div>

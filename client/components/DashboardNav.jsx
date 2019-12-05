@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
 
 class DashboardNav extends React.Component {
     constructor(props) {
@@ -11,27 +13,19 @@ class DashboardNav extends React.Component {
                     <h5>Create New Group</h5>
                     <h5>Active Groups</h5>
                     <ul>
-                        <li>
-                            Group1
-                        </li>
-                        <li>
-                            Group2
-                        </li>
-                        <li>
-                            Group3
-                        </li>
+                        {this.props.groups.map((group, i) => {
+                            if (!group.settled) {
+                                return <li key={i}>{group.group_name}</li>
+                            }
+                        })}
                     </ul>
                     <h5>Settled Groups</h5>
                     <ul>
-                        <li>
-                            Group1
-                        </li>
-                        <li>
-                            Group2
-                        </li>
-                        <li>
-                            Group3
-                        </li>
+                        {this.props.groups.map((group, i) => {
+                            if (group.settled) {
+                                return <li key={i}>{group.group_name}</li>
+                            }
+                        })}
                     </ul>
                 </div>
             </>
@@ -39,4 +33,11 @@ class DashboardNav extends React.Component {
     }
 }
 
-export default DashboardNav
+const mapStateToProps = (reduxState) => {
+    return {
+
+        groups: reduxState.groups
+    }
+}
+
+export default connect(mapStateToProps)(DashboardNav)
