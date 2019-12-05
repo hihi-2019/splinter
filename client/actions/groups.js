@@ -4,3 +4,10 @@ export function saveGroupsByUser(userDetails){
     userDetails
   }
 }
+
+export function createNewGroup(groupDetails){
+  return {
+    type: 'CREATE_NEW_GROUP',
+    groupDetails
+  }
+}

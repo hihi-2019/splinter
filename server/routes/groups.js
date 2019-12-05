@@ -8,4 +8,14 @@ router.get('/:id', (req,res) => {
   res.json(data)
 )})
 
+router.post('/', (req,res) => {
+  let newGroup = {
+    user_id: req.body.user_id,
+    group_name: req.body.group_name,
+    group_description: req.body.group_description,
+    settled: req.body.settled
+  }
+  db.createNewGroup(newGroup)
+})
+
 module.exports = router

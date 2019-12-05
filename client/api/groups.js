@@ -10,3 +10,8 @@ export function getGroupsByUser(id){
   )
 }
 
+export function createNewGroup(groupData){
+  return request
+  .post(url)
+  .then (res => res.text)
+}
