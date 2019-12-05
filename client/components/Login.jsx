@@ -85,9 +85,10 @@ class Login extends React.Component {
   }
 }
 
-const mapStateToProps = ({auth}) => {
+const mapStateToProps = (reduxState) => {
   return {
-    auth
+    auth : reduxState.auth,
+    userGroups:  reduxState.userDetails
   }
 }
 

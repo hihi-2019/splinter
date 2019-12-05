@@ -11,9 +11,18 @@ class Dashboard extends React.Component {
     render() {
         return (
             <>
-            <DashboardNav/>
-            <CreateGroup/>
-            <ActiveGroup/>
+                <div className="content">
+                    <div className="row">
+                        <div classname="col-2">
+                            <DashboardNav />
+                        </div>
+                        <div className="col-10 dashContent">
+                            <CreateGroup />
+                            <ActiveGroup />
+                        </div>
+                    </div>
+                </div>
+                
             </>
         )
     }

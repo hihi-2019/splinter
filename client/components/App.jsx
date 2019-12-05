@@ -1,17 +1,37 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {HashRouter as Router, Route, Link, Redirect} from 'react-router-dom'
-
-
-
-import Login from './Login'
-import SignUp from './SignUp'
 import LandingPage from '../components/LandingPage'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import Dashboard from '../components/Dashboard'
+import { saveGroupsByUser } from '../actions/groups'
+import { getGroupsByUser } from '../api/groups'
+import {getGroupMembers} from '../actions/groups'
+import Login from '../components/Login'
+import SignUp from '../components/SignUp'
 
 class App extends React.Component{
+  constructor(props){
+    super(props)
+  }
+
+  componentDidMount(){
+   
+    if(this.props.auth.isAuthenticated){
+      getGroupsByUser(this.props.auth.user.user_id)
+      .then((data) => {
+          this.props.dispatch(saveGroupsByUser(data))
+      }).then(() => {
+           this.props.groups.map(group => {
+            return this.props.dispatch(getGroupMembers(group.group_id))  
+          })
+           
+      })
+        
+    
+    }
+  }
 
   render() {
   return (
@@ -31,11 +51,12 @@ class App extends React.Component{
   )
 }}
 
-
-const mapStateToProps = ({ auth }) => {
+const mapStateToProps = (reduxState) => {
   return {
-    auth
-  } 
+    auth : reduxState.auth,
+    groups: reduxState.groups
+  }
 }
+
 
 export default connect(mapStateToProps)(App)
