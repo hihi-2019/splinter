@@ -20,11 +20,9 @@ class AddTransaction extends React.Component {
           <label>Paid by</label>
           <select name='payer'>
             <option></option>
-            
-              {this.props.groupMembers.map((groupMember, i) => {
-                return <option key={i}>{groupMember.member_name}</option>
-              })}
-            
+            {this.props.groupMembers.map((groupMember, i) => {
+              return <option key={i}>{groupMember.member_name}</option>
+            })}
           </select>
 
           <label>Amount $</label>
@@ -48,7 +46,6 @@ class AddTransaction extends React.Component {
 
 const mapStateToProps = (reduxState) => {
   return {
-
     groupMembers: reduxState.groupMembers
   }
 }
