@@ -16,6 +16,18 @@ router.post('/', (req,res) => {
     settled: req.body.settled
   }
   db.createNewGroup(newGroup)
+  .then(groupId => {
+    let newMember = {
+      group_id: groupId[0],
+      member_name: req.body.member_name
+    }
+    db.createNewMember(newMember)
+    .then(memberId => {
+      console.log(memberId)
+    })
+    res.sendStatus(200)  
+  })
+
 })
 
 router.get('/members/:id', (req,res) => {

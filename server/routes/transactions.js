@@ -16,7 +16,6 @@ router.post('/', (req, res) => {
     }
   }
   db.addTransaction(transaction).then(data => {
-    console.log(data)
     res.send(200)
   })
 })

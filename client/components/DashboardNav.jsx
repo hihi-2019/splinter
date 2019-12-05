@@ -7,7 +7,6 @@ class DashboardNav extends React.Component {
         super(props)
     }
     render() {
-        console.log(this.props.groups)
         return (
             <>
                 <div className="DashboardNav">
@@ -22,7 +21,7 @@ class DashboardNav extends React.Component {
                     </ul>
                     <h5>Settled Groups</h5>
                     <ul>
-                    {this.props.groups.map((group, i) => {
+                        {this.props.groups.map((group, i) => {
                             if (group.settled) {
                                 return <li key={i}>{group.group_name}</li>
                             }

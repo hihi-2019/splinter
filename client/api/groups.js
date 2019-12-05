@@ -3,17 +3,18 @@ import request from 'superagent'
 const url = "/api/groups"
 
 
-export function getGroupsByUser(id){
+export function apiGetGroupsByUser(user_id){
   return request
-  .get(`api/groups/${id}`)
+  .get(`api/groups/${user_id}`)
   .then(res=> res.body
   )
 }
 
-export function createNewGroup(groupData){
-  return request
+export function apiCreateNewGroup(groupData){
+  return request 
   .post(url)
-  .then (res => res.text)
+  .send(groupData)
+  .then (res => res.body)
 }
 
 export function apiGetGroupMembers(groupId){
