@@ -7,36 +7,28 @@ class AddTransaction extends React.Component {
     super(props)
     this.state = {
       transaction: {},
-      // description: '',
-      // payer: '',
-      // amount: '',
-      // membersOwing: '',
-      // amountMembersOwing: ''
     }
-  }
-
-  componentDidMount() {
-    console.log('did mount')
   }
 
   updateDetails = (e) => {
     this.setState({
       transaction: {
         ...this.state.transaction,
-        [e.target.name]: e.target.value
+        [e.target.name]: e.target.value,
+        group_id: this.props.activeGroup
       } 
-
     })
-    console.log(this.state)
   }
 
-  submit(e) {
+  submit = (e) => {
     e.preventDefault()
-    //get group_id and groupmemberid from redux state and add it to transaction
     this.props.dispatch(newTransaction(this.state.transaction))
   }
 
   render() {
+
+    let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
+
     return (
       <>
         <h3>Add new transaction</h3>
@@ -49,8 +41,8 @@ class AddTransaction extends React.Component {
           <label>Paid by</label>
           <select name='groupMemberId' onChange={this.updateDetails}>
             <option></option>
-            {this.props.groupMembers.map((groupMember, i) => {
-              return <option key={i}>{groupMember.member_name}</option>
+            {members.map((member, i) => {
+              return <option value={member.groupMember_id} key={i}>{member.member_name}</option>
             })}
           </select>
 
