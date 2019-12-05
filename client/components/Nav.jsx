@@ -19,18 +19,16 @@ class Nav extends React.Component {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ml-auto" style={{ 'paddingRight': 50 + 'px' }}>
-                            <li className="nav-item navListItems"><Link to='/about' className="nav-link">About</Link></li>
-                            <li className="nav-item navListItems" ><Link className="nav-link" to='/register'>Register</Link></li>
-                            <li className="nav-item navListItems" ><Link className="nav-link" to='/login'>Login</Link></li>
-                            {/* {auth.isAuthenticated
-                                ?
-                                <li className="nav-item navListItems"><Link to='/' className="nav-link" onClick={() => logout()}>Logout</Link></li>
 
-                            : [
-                                    <li className="nav-item navListItems" ><Link onClick={this.toggleBurger} className="nav-link" to='/login'>Login</Link></li>,
-                                    <li className="nav-item navListItems" ><Link onClick={this.toggleBurger} className="nav-link" to='/register'>Register</Link></li>
-                            ]
-                        } */}
+
+                            <li className="nav-item navListItems"><Link to='/about' className="nav-link">About</Link></li>
+                            {/* {auth.isAuthenticated ?
+                                <li className="nav-item navListItems"><Link to='/' className="nav-link" onClick={() => logout()}>Logout</Link></li> :
+                                [<li className="nav-item navListItems" ><Link className="nav-link" to='/signup'>Register</Link></li>,
+                                <li className="nav-item navListItems" ><Link className="nav-link" to='/login'>Login</Link></li>]
+                            } */}
+
+
                         </ul>
                     </div>
                 </nav>
@@ -41,4 +39,16 @@ class Nav extends React.Component {
     }
 }
 
-    export default Nav
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//       logout: () => dispatch(logoutUser())
+//     }
+//   }
+
+// const mapStateToProps = ({ auth }) => {
+//     return { auth }
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Nav)
+
+export default Nav
