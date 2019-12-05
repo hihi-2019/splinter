@@ -5,14 +5,14 @@ router.post('/', (req, res) => {
   let transaction = {
     new_transaction: {
       group_id: req.body.group_id,
-      groupMember_id: req.body.groupMember_id,
-      transaction_total: req.body.transaction_total,
-      transaction_name: req.body.transaction_name,
+      groupMember_id: req.body.groupMemberId,
+      transaction_total: req.body.transactionTotal,
+      transaction_name: req.body.transactionName,
       date: Date.now()
     },
     transaction_details: {
-      groupMember_id: req.body.groupMember_id,
-      total_contribution: req.body.total_contribution
+      groupMember_id: req.body.membersOwing,
+      total_contribution: req.body.amountMembersOwing
     }
   }
   db.addTransaction(transaction).then(data => {

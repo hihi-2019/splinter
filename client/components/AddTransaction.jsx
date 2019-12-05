@@ -6,30 +6,29 @@ class AddTransaction extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      description: '',
-      payer: '',
-      amount: '',
-      // membersOwing: '',
-      // amountMembersOwing: ''
+      transaction: {},
     }
-  }
-
-  componentDidMount() {
-    console.log('did mount')
   }
 
   updateDetails = (e) => {
     this.setState({
-      [e.target.name]: e.target.value,
+      transaction: {
+        ...this.state.transaction,
+        [e.target.name]: e.target.value,
+        group_id: this.props.activeGroup
+      } 
     })
-    console.log(this.state)
   }
 
-  submit(e) {
+  submit = (e) => {
     e.preventDefault()
+    this.props.dispatch(newTransaction(this.state.transaction))
   }
 
   render() {
+
+    let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
+
     return (
       <>
         <h3>Add new transaction</h3>
@@ -37,18 +36,18 @@ class AddTransaction extends React.Component {
         <form onSubmit={this.submit}>
 
           <label>Description</label>
-          <input type='text' name='description' placeholder='eg. dinner' onChange={this.updateDetails}></input>
+          <input type='text' name='transactionName' placeholder='eg. dinner' onChange={this.updateDetails}></input>
 
           <label>Paid by</label>
-          <select name='payer' onChange={this.updateDetails}>
+          <select name='groupMemberId' onChange={this.updateDetails}>
             <option></option>
-            {this.props.groupMembers.map((groupMember, i) => {
-              return <option key={i}>{groupMember.member_name}</option>
+            {members.map((member, i) => {
+              return <option value={member.groupMember_id} key={i}>{member.member_name}</option>
             })}
           </select>
 
           <label>Amount $</label>
-          <input type='number' name='amount' placeholder='0.00' onChange={this.updateDetails}></input>
+          <input type='number' name='transactionTotal' placeholder='0.00' onChange={this.updateDetails}></input>
 
           <label>Split by all members?</label>
           <input type='checkbox' name='membersOwing' defaultChecked></input>
@@ -56,7 +55,7 @@ class AddTransaction extends React.Component {
           <label>Split cost evenly?</label>
           <input type='checkbox' name='amountMembersOwing' defaultChecked></input>
 
-          <button type="submit" onClick={() => this.props.dispatch(newTransaction(this.state))}>
+          <button type="submit" onClick={this.submit}>
             Add Transaction
           </button>
 
@@ -68,7 +67,8 @@ class AddTransaction extends React.Component {
 
 const mapStateToProps = (reduxState) => {
   return {
-    groupMembers: reduxState.groupMembers
+    groupMembers: reduxState.groupMembers,
+    activeGroup: reduxState.activeGroup
   }
 }
 
