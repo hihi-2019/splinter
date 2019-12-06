@@ -34,4 +34,10 @@ router.get('/members/:id', (req,res) => {
     res.json(data))
 })
 
+router.delete('/:id', (req, res) => {
+  db.deleteGroup(req.params.id)
+  .then(data => 
+    console.log(data))
+})
+
 module.exports = router

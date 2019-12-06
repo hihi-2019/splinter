@@ -17,9 +17,14 @@ function createNewMember(memberDetails, db = connection) {
   return db('groupMembers').insert(memberDetails)
 }
 
+function deleteGroup(groupId, db = connection){
+  return db('groups').where('group_id', groupId).del().then(res=>(res))
+}
+
 module.exports = {
   getGroupsByUserId,
   createNewGroup,
   getMembersByGroupId,
-  createNewMember
+  createNewMember,
+  deleteGroup
 }
