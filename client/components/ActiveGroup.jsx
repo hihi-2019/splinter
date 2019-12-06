@@ -27,7 +27,7 @@ class ActiveGroup extends React.Component {
 
 
 
-              <h3>List of Group Members</h3>
+              <h3>Group Members</h3>
               <ul>
 
                 {members.map(member => {
