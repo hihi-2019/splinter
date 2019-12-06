@@ -15,7 +15,7 @@ function addTransaction(transaction, db = database) {
 
 function addTransactionDetails(details, db = database) {
   return db('transactionDetails')
-    .insert(details)
+    .insert(details).then(res => {})
 }
 
 module.exports = {
