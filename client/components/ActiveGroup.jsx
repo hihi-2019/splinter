@@ -25,19 +25,22 @@ class ActiveGroup extends React.Component {
               <h1>{groups.group_name}</h1>
               <p>{groups.group_description}</p>
 
+
+
+              <h3>List of Group Members</h3>
+              <ul>
+
+                {members.map(member => {
+                  return (
+                    <li>{member.member_name}</li>
+                  )
+                })}
+
+              </ul>
+
+              {!groups.settled ? <div>< AddTransaction /></div> : <div><h4>Not possible to add transactions to settled groups</h4></div>}
+              < ViewTransactions />
             </>}
-
-            <h3>List of Group Members</h3>
-            <ul>
-
-            {members.map(member => { return (
-              <li>{member.member_name}</li>
-             ) })}
-
-            </ul>
-            
-            < AddTransaction />
-            < ViewTransactions />
           </div>
           : <h1>Data Loading</h1>}
 
