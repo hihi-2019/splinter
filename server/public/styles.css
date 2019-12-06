@@ -14,12 +14,35 @@ a{
 a:hover {
     color:white;
     text-decoration: none;
-    transform:scale(1.2)
+    transform:scale(1.05)
 }
 .navbar {
    background-color: #37517E ;
    color:white;
+   padding: 1% 2% 1% 10%
 }
+
+.nav-item{
+    padding-right:3rem;
+    font-size: 1.3rem;
+}
+
+.landingButtons{
+    margin-top:1%;
+    margin-right:1%;
+}
+
+.loginContainer {
+    align-content: center;
+    margin-top:5rem;
+    text-align: -webkit-center;
+}
+
+.registerContainer {
+    margin-top:5rem;
+    text-align: -webkit-center;
+}
+
 .content {
     padding: 1%;
 }
@@ -36,6 +59,16 @@ a:hover {
     transform:rotate(-90deg)
 }
 
+img {
+    border-radius: 50%;
+    -webkit-transition: -webkit-transform .8s ease-in-out;
+            transition:         transform .8s ease-in-out;
+  }
+  img:hover {
+    -webkit-transform: rotate(270deg);
+            transform: rotate(270deg);
+  }
+  
 .dashNavGroups {
     list-style-type:none;
     margin: 0;
@@ -45,7 +78,7 @@ a:hover {
 
 .dashLink:hover {
     color: white;
-    transform: scale(1.2);
+    transform: scale(1.05);
 }
 
 .dashboardNav{
@@ -63,4 +96,12 @@ a:hover {
 .custom-button:hover{
     color:white;
     background-color: #37517E ;
+}
+
+.form-control {
+    margin-bottom: 2rem;
+}
+
+.landingPage {
+    padding: 5% 15%
 }

@@ -23,7 +23,7 @@ class ActiveGroup extends React.Component {
           <div>
             {groups && <>
               <h1>{groups.group_name}</h1>
-              <p>{groups.group_description}</p>
+              <p style={{fontStyle:"italic"}}>{groups.group_description}</p>
 
 
 

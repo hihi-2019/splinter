@@ -61,13 +61,14 @@ class CreateGroup extends React.Component {
 
           <label>Add Group Member</label>
           <input className='form-control' required type='text' name='new_member_name' placeholder='eg. Joe' onChange={this.updateMembers} value={this.state.new_member_name}></input>
-          <button onClick={this.addMember}>Add member</button>
-          
+          <div>
+          <button className="btn custom-button btn-sm" onClick={this.addMember}>Add member</button>
+          </div>
           <ul> {this.state.members_names.map(member => {
           return <li>{member} <button name={member} onClick={this.deleteMember}>x</button></li> 
           })}
           </ul>
-          <button onClick={this.submit}>
+          <button className="btn custom-button btn-lg" onClick={this.submit}>
             Create Group
           </button>
         </form>

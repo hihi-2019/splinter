@@ -39,7 +39,7 @@ class SignUp extends React.Component {
       <div className="registerContainer">
         <div className="col-6 col-md-4">
           <form className="login-register-form" onSubmit={this.submit}>
-            <h1 className='registerTitle'>Register</h1>
+            <h1 className='registerTitle'>Signup</h1>
             {auth.errorMessage && <><h1><span className="badge badge-danger badge-lg">{auth.errorMessage}</span></h1><br></br></>}
             <div className="row justify-content-start">
               <div className='col-6 reg-text'>
