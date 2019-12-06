@@ -1,12 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getTransactions } from '../actions/transactions'
+import TransactionDetails from './TransactionDetails'
 
 class ViewTransactions extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      showDetails: false
+      showDetails: false,
+      name:''
     }
   }
   componentDidMount() {
@@ -22,10 +24,10 @@ class ViewTransactions extends React.Component {
   }
 
   handleClick = (e) => {
-    console.log(e.target)
     if(this.state.showDetails === false){
       this.setState({
-        showDetails: true,       
+        showDetails: true,
+        name: e.target.name       
       })
     } else{
       this.setState({
@@ -55,27 +57,22 @@ class ViewTransactions extends React.Component {
               let name = this.getGroupMember(payers.groupMember_id)
               return (
                 <>
-                <tr onClick={this.handleClick}>
-                  <td><h4 name={payers.transaction_name}>{payers.transaction_name}</h4></td>
+                <tr>
+                  <td><button className='btn custom-button' onClick={this.handleClick} name={payers.transaction_name}>{payers.transaction_name}</button></td>
                   <td>{dateString}</td>
                   <td>$ {payers.total_contribution / 100}</td>
                   <td>{name}</td>
                 </tr>
                 {this.state.showDetails &&
-                  this.props.transactions.filter(transaction => transaction.transaction_name == payers.transaction_name).map(debtors => {
-                    if(debtors.total_contribution < 0){
-                      return(
-                        <ul>
-                          <li>{this.getGroupMember(debtors.groupMember_id)} owes {name}  $ {(debtors.total_contribution / 100) * -1}</li>
-                        </ul>
-                      )
-                    }
-                  })
+                this.state.name == payers.transaction_name &&
+                  <TransactionDetails name={this.state.name}/>
                 }
                 </>
                 )
               })
             }
+            
+            
           </tbody>
         </table>
 
