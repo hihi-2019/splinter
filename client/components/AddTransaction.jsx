@@ -37,35 +37,37 @@ class AddTransaction extends React.Component {
 
     return (
       <>
-        <h3>Add new transaction</h3>
+        <div className="form-content">
 
-        <form onSubmit={this.submit}>
+          <h3>Add new transaction</h3>
 
-          <label>Description</label>
-          <input type='text' name='transactionName' placeholder='eg. dinner' onChange={this.updateDetails}></input>
-
-          <label>Paid by</label>
-          <select name='groupMemberId' onChange={this.updateDetails}>
-            <option></option>
-            {members.map((member, i) => {
-              return <option value={member.groupMember_id} key={i}>{member.member_name}</option>
-            })}
-          </select>
-
-          <label>Amount $</label>
-          <input type='number' name='transactionTotal' placeholder='0.00' onChange={this.updateDetails}></input>
-
-          <label>Split by all members?</label>
-          <input type='checkbox' name='membersOwing' defaultChecked></input>
-
-          <label>Split cost evenly?</label>
-          <input type='checkbox' name='amountMembersOwing' defaultChecked></input>
-
-          <button className="btn custom-button"type="submit" onClick={this.submit}>
-            Add Transaction
-          </button>
-
-        </form>
+          <form onSubmit={this.submit}>
+            <label>Description</label>
+            <input className='form-control' type='text' name='transactionName' placeholder='eg. dinner' onChange={this.updateDetails}></input>
+            <label>Paid by</label>
+            <select className='form-control' name='groupMemberId' onChange={this.updateDetails}>
+              <option></option>
+              {members.map((member, i) => {
+                return <option value={member.groupMember_id} key={i}>{member.member_name}</option>
+              })}
+            </select>
+            <label>Amount $</label>
+            <input className='form-control' type='number' name='transactionTotal' placeholder='0.00' onChange={this.updateDetails}></input>
+            <div>
+              <label>Split by all members?</label>
+              <input type='checkbox' name='membersOwing' defaultChecked></input>
+            </div>
+            <div>
+              <label>Split cost evenly?</label>
+              <input type='checkbox' name='amountMembersOwing' defaultChecked></input>
+            </div>
+            <div>
+              <button className="btn custom-button btn-lg" type="submit" onClick={this.submit}>
+                Add Transaction
+              </button>
+            </div>
+          </form>
+        </div>
       </>
     )
   }
