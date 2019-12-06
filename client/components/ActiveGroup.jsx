@@ -52,6 +52,8 @@ class ActiveGroup extends React.Component {
                 </ul>
                 {!groups.settled ? <div>< AddTransaction /></div> : <div><h4>Not possible to add transactions to settled groups</h4></div>}
                 < ViewTransactions />
+                <button id={groups.group_id} className="btn custom-button btn-lge" onClick={this.settleDebt}>Settle Group</button>
+                <button id={groups.group_id} className="btn btn-warning" onClick={this.editGroup}>Edit Group</button>
                 <button id={groups.group_id} className="btn btn-danger" onClick={this.deleteGroup}>Delete Group</button>
               </>}
             </div>
