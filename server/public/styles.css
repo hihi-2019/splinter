@@ -13,3 +13,8 @@ body {
 .logo {
     transform:rotate(-90deg)
 }
+
+.dashNavGroups {
+    list-style:none;
+    align-items: left;
+}
