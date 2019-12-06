@@ -2,10 +2,10 @@ import { createNewTransaction } from '../api/transactions'
 
 export function newTransaction(transactionData) {
   return dispatch => {
-     createNewTransaction(transactionData)
-     .then(() => {
+    createNewTransaction(transactionData)
+      .then(() => {
 
-     })
+      })
   }
 }
 
