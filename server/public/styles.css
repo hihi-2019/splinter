@@ -3,6 +3,12 @@
 body {
    
     background-color: #7486A9;
+    /* background-image: url('backgroundImg.jpg'); */
+    /* -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; */
+
     
     /* background: linear-gradient(to bottom, #739bb3 -1%, #6E8287 100%); */
     color: white;
@@ -22,7 +28,10 @@ a:hover {
 .navbar {
    background-color: #37517E ;
    color:white;
-   padding: 1% 2% 1% 10%
+   padding: 1% 2% 1% 10%;
+   -webkit-box-shadow: 9px 9px 3px 3px rgba(0,0,0,0.13);
+    -moz-box-shadow: 9px 9px 3px 0px rgba(0,0,0,0.13);
+    box-shadow: 9px 9px 3px 3px rgba(0,0,0,0.13);
 }
 
 .nav-item{
@@ -64,7 +73,7 @@ a:hover {
 }
 
 .dashContent {
-    /* padding: 2% 7%; */
+    padding: 2% 7%;
     /* background-color: #37517E; */
     border-radius: 2rem;
     min-height:80vh
@@ -95,13 +104,19 @@ a:hover {
 .dashLink:hover {
     color: white;
     transform: scale(1.05);
+    filter: brightness(80%)
 }
 
 .dashboardNav{
     text-align: center;
     background-color: #37517E;
-    height:100%;
+    height:90vh;
     padding-top: 1rem;
+       padding: 2%; 
+    /* border: 1px solid #37517E; */
+     -webkit-box-shadow: 9px 9px 3px 3px rgba(0,0,0,0.13);
+    -moz-box-shadow: 9px 9px 3px 0px rgba(0,0,0,0.13);
+    box-shadow: 9px 9px 3px 3px rgba(0,0,0,0.13);
     
 }
 
