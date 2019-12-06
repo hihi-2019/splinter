@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Swal from 'sweetalert2'
 import { apiDeleteGroup } from '../api/groups'
-import {getGroupsByUser} from '../actions/groups'
+import {getGroupsByUser, setActiveGroupId} from '../actions/groups'
 
 import {deleteAlertMessage, deleteConfirmMessage} from '../utils/alertMessages'
 
@@ -23,6 +23,8 @@ class ActiveGroup extends React.Component {
           .then(
             Swal.fire(deleteConfirmMessage))
           this.props.dispatch(getGroupsByUser(this.props.auth.user.user_id))
+          .then(this.props.dispatch(setActiveGroupId()))
+
         }
       })
     

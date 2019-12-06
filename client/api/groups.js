@@ -26,5 +26,6 @@ export function apiGetGroupMembers(group_Id){
 export function apiDeleteGroup(group_Id){
   return request
   .del(`api/groups/${group_Id}`)
+  .del(`api/groups/members/${group_Id}`)
   .then(res => res.body)
 }
