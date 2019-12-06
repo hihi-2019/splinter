@@ -18,32 +18,33 @@ class ActiveGroup extends React.Component {
     let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
     return (
       <>
-        {this.props.activeGroup ?
+        <div className="form-content">
+          {this.props.activeGroup ?
 
-          <div>
-            {groups && <>
-              <h1>{groups.group_name}</h1>
-              <p>{groups.group_description}</p>
+            <div>
+              {groups && <>
+                <h1>{groups.group_name}</h1>
+                <p style={{ fontStyle: "italic" }}>{groups.group_description}</p>
 
 
 
-              <h3>Group Members</h3>
-              <ul>
+                <h3>Group Members</h3>
+                <ul>
 
-                {members.map(member => {
-                  return (
-                    <li>{member.member_name}</li>
-                  )
-                })}
+                  {members.map(member => {
+                    return (
+                      <li>{member.member_name}</li>
+                    )
+                  })}
 
-              </ul>
+                </ul>
 
-              {!groups.settled ? <div>< AddTransaction /></div> : <div><h4>Not possible to add transactions to settled groups</h4></div>}
-              < ViewTransactions />
-            </>}
-          </div>
-          : <h1>Data Loading</h1>}
-
+                {!groups.settled ? <div>< AddTransaction /></div> : <div><h4>Not possible to add transactions to settled groups</h4></div>}
+                < ViewTransactions />
+              </>}
+            </div>
+            : <h1>Data Loading</h1>}
+        </div>
       </>
     )
   }

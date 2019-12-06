@@ -23,7 +23,7 @@ class Nav extends React.Component {
                             <li className="nav-item navListItems"><Link to='/about' className="nav-link">About</Link></li>
                             {this.props.auth.isAuthenticated ?
                                 <li className="nav-item navListItems"><Link to='/' className="nav-link" onClick={() => this.props.logout()}>Logout</Link></li> :
-                                [<li className="nav-item navListItems" ><Link className="nav-link" to='/signup'>Register</Link></li>,
+                                [<li className="nav-item navListItems" ><Link className="nav-link" to='/signup'>Signup</Link></li>,
                                 <li className="nav-item navListItems" ><Link className="nav-link" to='/login'>Login</Link></li>]
                             }
 
@@ -39,9 +39,9 @@ class Nav extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      logout: () => dispatch(logoutUser())
+        logout: () => dispatch(logoutUser())
     }
-  }
+}
 
 const mapStateToProps = ({ auth }) => {
     return { auth }

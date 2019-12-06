@@ -61,7 +61,7 @@ class AddTransaction extends React.Component {
           <label>Split cost evenly?</label>
           <input type='checkbox' name='amountMembersOwing' defaultChecked></input>
 
-          <button type="submit" onClick={this.submit}>
+          <button className="btn custom-button"type="submit" onClick={this.submit}>
             Add Transaction
           </button>
 
