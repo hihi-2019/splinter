@@ -16,7 +16,7 @@ class DashboardNav extends React.Component {
         return (
             <>
                 <div className="DashboardNav">
-                    <h5>Create New Group</h5>
+                    <h5 id='' onClick={this.changeGroup}>Create New Group</h5>
                     <h5>Active Groups</h5>
                     <ul>
                         {this.props.groups.map((group, i) => {
@@ -29,7 +29,7 @@ class DashboardNav extends React.Component {
                     <ul>
                         {this.props.groups.map((group, i) => {
                             if (group.settled) {
-                                return <li key={i}>{group.group_name}</li>
+                                return <li key={i} id={group.group_id} onClick={this.changeGroup}>{group.group_name}</li>
                             }
                         })}
                     </ul>
@@ -43,7 +43,7 @@ const mapStateToProps = (reduxState) => {
     return {
 
         groups: reduxState.groups,
-        activeGroup: reduxState.group_id
+        activeGroup: reduxState.activeGroup
     }
 }
 

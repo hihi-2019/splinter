@@ -23,7 +23,7 @@ router.post('/', (req,res) => {
       console.log(memberId)
     })
     })
-    res.sendStatus(200)  
+    res.json(groupId) 
   })
 
 })

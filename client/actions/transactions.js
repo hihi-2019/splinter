@@ -1,9 +1,11 @@
 import { createNewTransaction, ApiGetTransactions } from '../api/transactions'
 
 export function newTransaction(transactionData) {
-  return (dispatch) => {
-    type: 'CREATE_NEW_TRANSACTION',
-    transactionData
+  return dispatch => {
+     createNewTransaction(transactionData)
+     .then(() => {
+
+     })
   }
 }
 
@@ -23,3 +25,4 @@ export function getTransactions(group_id){
     })
   }
 }
+
