@@ -10,22 +10,30 @@ router.get('/:id', (req, res) => {
 
 module.exports = router
 router.post('/', (req, res) => {
+  let t = req.body.transaction
   let transaction = {
-    new_transaction: {
-      group_id: req.body.group_id,
-      groupMember_id: req.body.groupMemberId,
-      transaction_total: req.body.transactionTotal,
-      transaction_name: req.body.transactionName,
-      date: Date.now()
-    },
-    transaction_details: {
-      groupMember_id: req.body.membersOwing,
-      total_contribution: req.body.amountMembersOwing
-    }
+    group_id: t.group_id,
+    groupMember_id: t.groupMemberId,
+    transaction_total: t.transactionTotal,
+    transaction_name: t.transactionName,
+    date: Date.now()
   }
-  db.addTransaction(transaction).then(data => {
-    res.send(200)
-  })
+
+  db.addTransaction(transaction)
+    .then(id => {
+      let groupMembers = req.body.group_members.map(member => {
+        return {
+          transaction_id: id,
+          groupMember_id: member.groupMember_id,
+          total_contribution: 2000
+        }
+      })
+
+      return db.addTransactionDetails(groupMembers) 
+    })
+    .then(() => {
+      res.send(200)
+    })
 })
 
 module.exports = router

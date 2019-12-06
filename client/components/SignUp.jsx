@@ -88,7 +88,7 @@ class SignUp extends React.Component {
             </div>
             <div className="registerButton">
 
-              <input className="btn btn-primary" value="Register" type="submit" />
+              <input className="btn custom-button" value="Register" type="submit" />
             </div>
           </form>
         </div>

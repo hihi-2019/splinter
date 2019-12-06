@@ -7,22 +7,28 @@ class AddTransaction extends React.Component {
     super(props)
     this.state = {
       transaction: {},
+      group_members: []
     }
   }
 
   updateDetails = (e) => {
     this.setState({
+      group_members: this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
+    })
+
+    this.setState({
       transaction: {
         ...this.state.transaction,
         [e.target.name]: e.target.value,
-        group_id: this.props.activeGroup
-      } 
+        group_id: this.props.activeGroup,
+
+      }
     })
   }
 
   submit = (e) => {
     e.preventDefault()
-    this.props.dispatch(newTransaction(this.state.transaction))
+    this.props.dispatch(newTransaction(this.state))
   }
 
   render() {

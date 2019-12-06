@@ -1,15 +1,37 @@
+/* http://colormind.io/bootstrap/# #37517E main colour*/
+
 body {
-    background-color: lightsteelblue
+    background-color: #739bb3;
+    /* background: linear-gradient(to bottom, #739bb3 -1%, #6E8287 100%); */
+    color: white;
+    font-family: 'Noto Sans', sans-serif;
 }
 
+a{
+    color:white
+}
+
+a:hover {
+    color:white;
+    text-decoration: none;
+    transform:scale(1.2)
+}
+.navbar {
+   background-color: #37517E ;
+   color:white;
+}
 .content {
     padding: 1%;
 }
 
 .dashContent {
     padding-left: 2%;
+    /* background-color: #37517E; */
+    border-radius: 2rem;
+    padding-top: 1rem;
+    min-height:80vh
+   
 }
-
 .logo {
     transform:rotate(-90deg)
 }
@@ -17,4 +39,30 @@ body {
 .dashNavGroups {
     list-style:none;
     align-items: left;
+    list-style-type:none;
+    margin: 0;
+    padding: 0 0 2% 0;
+    
+}
+
+.dashLink:hover {
+    color: white;
+    transform: scale(1.2);
+}
+
+.dashboardNav{
+    text-align: center;
+    background-color: #37517E;
+    height:100%;
+    padding-top: 1rem;
+    
+}
+
+.custom-button{
+    color:white;
+    border: 1px solid #37517E
+}
+.custom-button:hover{
+    color:white;
+    background-color: #37517E ;
 }

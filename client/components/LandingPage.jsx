@@ -11,8 +11,8 @@ class LandingPage extends React.Component {
         <>
             <h1>Sick of not getting paid back?</h1>
             <h3>Signup for Splinter to keep track of who spent what</h3>
-            <Link to="/register"><button type="button" className="btn btn-outline-dark btn-lg ">Register</button></Link>
-            <Link to="/login"><button type="button" className="btn btn-outline-dark btn-lg ">Login</button></Link>
+            <Link to="/register"><button type="button" className="btn btn-lg custom-button">Register</button></Link>
+            <Link to="/login"><button type="button" className="btn btn-lg custom-button">Login</button></Link>
         </>
       )
   }
