@@ -60,10 +60,9 @@ a:hover {
 }
 
 .dashContent {
-    padding-left: 2%;
+    padding: 2% 7%;
     /* background-color: #37517E; */
     border-radius: 2rem;
-    padding-top: 1rem;
     min-height:80vh
    
 }
@@ -113,3 +112,11 @@ a:hover {
     margin-bottom: 2rem;
 }
 
+.form-content {
+    padding: 2%;
+    border: 1px solid #37517E;
+    border-radius: 2rem;
+    /* -webkit-box-shadow: 9px 9px 3px 0px rgba(0,0,0,0.13);
+    -moz-box-shadow: 9px 9px 3px 0px rgba(0,0,0,0.13);
+    box-shadow: 9px 9px 3px 0px rgba(0,0,0,0.13); */
+}
