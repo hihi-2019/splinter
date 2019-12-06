@@ -1,12 +1,12 @@
 import React from 'react'
 
-import {loginUser, loginError} from '../actions/login'
+import { loginUser, loginError } from '../actions/login'
 
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
 class Login extends React.Component {
   constructor(props) {
-    super(props) 
+    super(props)
     this.state = {
       email: "",
       password: ""
@@ -19,67 +19,66 @@ class Login extends React.Component {
     this.props.dispatch(loginError(''))
   }
 
-  updateDetails (e){
-    this.setState({[e.target.name]: e.target.value})
+  updateDetails(e) {
+    this.setState({ [e.target.name]: e.target.value })
   }
 
-  handleSubmit(e){
+  handleSubmit(e) {
     e.preventDefault()
     let { email, password } = this.state
-    this.props.dispatch(loginUser({email, password}))
-    .then(() => {
+    this.props.dispatch(loginUser({ email, password }))
+      .then(() => {
 
-    })
+      })
   }
 
   render() {
     const { auth } = this.props
     return (
       <div className="loginContainer">
-      <div className="col-6 col-md-4">
-      <form onSubmit={this.handleSubmit}>
-        <h1 className='loginTitle'>Login</h1>
-        {auth.errorMessage && (
-          <>
-            <h1>
-              <span className='badge badge-danger badge-lg'>
-                {auth.errorMessage}
-              </span>
-            </h1>
+        <div className="col-6 col-md-4">
+          <form onSubmit={this.handleSubmit}>
+            <h1 className='loginTitle'>Login</h1>
+            {auth.errorMessage && (
+              <>
+                <h1>
+                  <span className='badge badge-danger badge-lg'>
+                    {auth.errorMessage}
+                  </span>
+                </h1>
+                <br></br>
+              </>
+            )}
+            <div className='form-inline'>
+              <label htmlFor='email'>
+                <input
+                  required
+                  className='form-control'
+                  placeholder='example@email.com'
+                  type='text'
+                  name='email'
+                  onChange={this.updateDetails}
+                />
+              </label>
+            </div>
             <br></br>
-          </>
-        )}
-        <div className='form-inline'>
-          <label htmlFor='email'>
-            <input
-              required
-              className='form-control'
-              placeholder='example@email.com'
-              type='text'
-              name='email'
-              onChange={this.updateDetails}
-            />
-          </label>
+            <div className='form-inline'>
+              <label htmlFor='password'>
+                <input
+                  required
+                  className='form-control'
+                  placeholder='Password'
+                  type='password'
+                  name='password'
+                  onChange={this.updateDetails}
+                />
+              </label>
+            </div>
+            <div className="loginButton">
+              <input className='btn custom-button' value='Login' type='submit' />
+            </div>
+          </form>
         </div>
-        <br></br>
-        <div className='form-inline'>
-          <label htmlFor='password'>
-            <input
-              required
-              className='form-control'
-              placeholder='Password'
-              type='password'
-              name='password'
-              onChange={this.updateDetails}
-            />
-          </label>
-          <div className="loginButton">
-        <input className='btn btn-primary' value='Login' type='submit' />
-        </div>
-        </div>
-    
-      </form>
-      </div>
       </div>
     )
   }
@@ -87,8 +86,8 @@ class Login extends React.Component {
 
 const mapStateToProps = (reduxState) => {
   return {
-    auth : reduxState.auth,
-    userGroups:  reduxState.userDetails
+    auth: reduxState.auth,
+    userGroups: reduxState.userDetails
   }
 }
 
