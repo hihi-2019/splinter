@@ -1,11 +1,13 @@
 /* http://colormind.io/bootstrap/# #37517E main colour*/
 
 body {
-    background-color: #739bb3;
+    /* background-color: #739bb3; */
+    
     /* background: linear-gradient(to bottom, #739bb3 -1%, #6E8287 100%); */
     color: white;
     font-family: 'Noto Sans', sans-serif;
 }
+
 
 a{
     color:white
@@ -57,6 +59,7 @@ a:hover {
 
 .content {
     padding: 1%;
+    background-image: url('waves.png')
 }
 
 .dashContent {
