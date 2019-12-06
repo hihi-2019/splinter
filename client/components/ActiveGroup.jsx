@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Swal from 'sweetalert2'
 import { apiDeleteGroup } from '../api/groups'
-import {getGroupsByUser, setActiveGroupId} from '../actions/groups'
+import { getGroupsByUser, setActiveGroupId } from '../actions/groups'
 
-import {deleteAlertMessage, deleteConfirmMessage} from '../utils/alertMessages'
+import { deleteAlertMessage, deleteConfirmMessage } from '../utils/alertMessages'
 
 import AddTransaction from '../components/AddTransaction'
 import ViewTransactions from '../components/ViewTransactions'
@@ -14,7 +14,7 @@ class ActiveGroup extends React.Component {
   constructor(props) {
     super(props)
   }
-  
+
   deleteGroup = (event) => {
     let group_id = event.target.id
     Swal.fire(deleteAlertMessage).then((result) => {
@@ -22,12 +22,15 @@ class ActiveGroup extends React.Component {
         apiDeleteGroup(group_id)
           .then(
             Swal.fire(deleteConfirmMessage))
-          this.props.dispatch(getGroupsByUser(this.props.auth.user.user_id))
+        this.props.dispatch(getGroupsByUser(this.props.auth.user.user_id))
           .then(this.props.dispatch(setActiveGroupId()))
 
-        }
-      })
-    
+      }
+    })
+  }
+
+  settleDebt = (event) => {
+    let group_id = event.target.name
   }
 
 
@@ -40,8 +43,15 @@ class ActiveGroup extends React.Component {
           {this.props.activeGroup ?
             <div>
               {groups && <>
-                <h1>{groups.group_name}</h1>
-                <p style={{ fontStyle: "italic" }}>{groups.group_description}</p>
+                <div className="row">
+                  <div className="col-9">
+                    <h1>{groups.group_name}</h1>
+                    <p style={{ fontStyle: "italic" }}>{groups.group_description}</p>
+                  </div>
+                  <div className="col-3">
+                    <button id={groups.group_id} name={groups.group_name} className="btn btn-danger" onClick={this.deleteGroup}>Delete {groups.group_name}</button>
+                  </div>
+                </div>
                 <h3>Group Members</h3>
                 <ul>
                   {members.map(member => {
@@ -50,11 +60,10 @@ class ActiveGroup extends React.Component {
                     )
                   })}
                 </ul>
+
                 {!groups.settled ? <div>< AddTransaction /></div> : <div><h4>Not possible to add transactions to settled groups</h4></div>}
                 < ViewTransactions />
-                <button id={groups.group_id} className="btn custom-button btn-lge" onClick={this.settleDebt}>Settle Group</button>
-                <button id={groups.group_id} className="btn btn-warning" onClick={this.editGroup}>Edit Group</button>
-                <button id={groups.group_id} className="btn btn-danger" onClick={this.deleteGroup}>Delete Group</button>
+
               </>}
             </div>
             : <h1>Error, group data not found</h1>}
