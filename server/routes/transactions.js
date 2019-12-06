@@ -1,6 +1,14 @@
 const router = require('express').Router()
 const db = require('../db/transactions')
 
+router.get('/:id', (req, res) => {
+  db.getTransactions(req.params.id)
+  .then(transactions => {
+    res.json(transactions)
+  })
+})
+
+module.exports = router
 router.post('/', (req, res) => {
   let t = req.body.transaction
   let transaction = {
@@ -10,18 +18,29 @@ router.post('/', (req, res) => {
     transaction_name: t.transactionName,
     date: Date.now()
   }
-
+  
   db.addTransaction(transaction)
     .then(id => {
-      let groupMembers = req.body.group_members.map(member => {
-        return {
-          transaction_id: id,
-          groupMember_id: member.groupMember_id,
-          total_contribution: 2000
+      req.body.group_members.map(member => {
+        if(member.groupMember_id == transaction.groupMember_id){
+          let payer = {
+            transaction_id: id,
+            groupMember_id: member.groupMember_id,
+            total_contribution: transaction.transaction_total * 100
+          }
+          return db.addTransactionDetails(payer)
+        } else{
+          let payee = {
+            transaction_id: id,
+            groupMember_id: member.groupMember_id,
+            total_contribution: ((transaction.transaction_total * 100) / req.body.group_members.length) * -1
+          }
+          return db.addTransactionDetails(payee)
         }
+        
       })
 
-      return db.addTransactionDetails(groupMembers) 
+      
     })
     .then(() => {
       res.send(200)
