@@ -9,3 +9,7 @@ body {
 .dashContent {
     padding-left: 2%;
 }
+
+.logo {
+    transform:rotate(-90deg)
+}

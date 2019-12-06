@@ -45,7 +45,6 @@ class CreateGroup extends React.Component {
     e.preventDefault()
     this.setState({
       members_names: this.state.members_names.filter(member => member !== e.target.name)})
-
   }
 
   render() {
