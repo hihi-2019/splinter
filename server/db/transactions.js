@@ -20,9 +20,6 @@ function addTransactionDetails(details, db = database) {
 
 module.exports = {
   addTransaction,
-<<<<<<< HEAD
-  getTransactions
-=======
+  getTransactions,
   addTransactionDetails
->>>>>>> da959b07074802b8d59f307997f24a59c5abab6b
 }
