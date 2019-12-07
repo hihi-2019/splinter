@@ -49,7 +49,7 @@ class AddTransaction extends React.Component {
           <h3 onClick={this.toggleTransaction}>Add New Transaction <i className="dashHeader fas fa-chevron-circle-down"></i></h3>
           {this.state.showTransactionForm && 
           <div className="animated fadeIn">
-            <form onSubmit={this.submit}>
+            <form className="form" onSubmit={this.submit}>
               <label>Description</label>
               <input className='form-control' type='text' name='transactionName' placeholder='eg. Breakfast at Tiffanys' onChange={this.updateDetails}></input>
               <label>Paid by</label>
