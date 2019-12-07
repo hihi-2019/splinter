@@ -37,8 +37,8 @@ class Login extends React.Component {
     return (
       <div className="loginContainer">
         <div className="col-6 col-md-4">
-          <form onSubmit={this.handleSubmit}>
-            <h1 className='loginTitle'>Login</h1>
+          <form className="form" onSubmit={this.handleSubmit}>
+            <h1 className='formTitle'>Login</h1>
             {auth.errorMessage && (
               <>
                 <h1>
@@ -49,20 +49,19 @@ class Login extends React.Component {
                 <br></br>
               </>
             )}
-            <div className='form-inline'>
+            <div className=''>
               <label htmlFor='email'>
                 <input
                   required
                   className='form-control'
-                  placeholder='example@email.com'
+                  placeholder='Email'
                   type='text'
                   name='email'
                   onChange={this.updateDetails}
                 />
               </label>
             </div>
-            <br></br>
-            <div className='form-inline'>
+            <div className=''>
               <label htmlFor='password'>
                 <input
                   required
