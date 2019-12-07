@@ -45,7 +45,7 @@ class AddTransaction extends React.Component {
     return (
       <>
         <div className="form-content">
-          <h3 onClick={this.toggleTransaction} >Add new transaction</h3>
+          <h3 onClick={this.toggleTransaction}  className="dashHeader" >Add New Transaction</h3>
           {this.state.showTransactionForm && <div>
             <form onSubmit={this.submit}>
               <label>Description</label>
