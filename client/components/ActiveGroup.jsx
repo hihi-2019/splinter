@@ -23,7 +23,7 @@ class ActiveGroup extends React.Component {
           .then(
             Swal.fire(deleteConfirmMessage))
         this.props.dispatch(getGroupsByUser(this.props.auth.user.user_id))
-          .then(this.props.dispatch(setActiveGroupId()))
+          .then(this.props.dispatch(setActiveGroupId("")))
 
       }
     })

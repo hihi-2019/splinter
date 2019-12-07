@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getTransactions, deleteTransactions } from '../actions/transactions'
 import TransactionDetails from './TransactionDetails'
+import Swal from 'sweetalert2';
+import { deleteTransactionMessage, deleteTransactionConfirmMessage } from '../utils/alertMessages';
 
 class ViewTransactions extends React.Component {
   constructor(props) {
@@ -46,7 +48,13 @@ class ViewTransactions extends React.Component {
   }
 
   handleDelete = (e) => {
-    this.props.dispatch(deleteTransactions(e.target.id, this.props.activeGroup))
+    let id = e.target.id
+    Swal.fire(deleteTransactionMessage).then((result) =>{
+      if(result.value){
+        this.props.dispatch(deleteTransactions(id, this.props.activeGroup))
+      }
+    })
+    
   }
 
 
