@@ -7,34 +7,46 @@ class ViewTransactions extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      showDetails: false,
-      name:''
+      // showDetails: false,
+      name: "",
     }
   }
   componentDidMount() {
     this.props.dispatch(getTransactions(Number(this.props.activeGroup[0])))
+    console.log('trans')
+
   }
 
   getGroupMember = (id) => {
     return this.props.groupMembers.map(person => {
-      if(person.groupMember_id == id){
+      if (person.groupMember_id == id) {
         return person.member_name
       }
     })
   }
 
   handleClick = (e) => {
-    if(this.state.showDetails === false){
+    e.preventDefault()
+    if (this.state[e.target.name] === undefined) {
+      console.log('undefined')
       this.setState({
-        showDetails: true,
-        name: e.target.name       
+        name: e.target.name,
+        [e.target.name]: true
       })
-    } else{
+    } else if (this.state[e.target.name] === true) {
+      console.log('true')
       this.setState({
-        showDetails: false
+        [e.target.name]: false,
+        name: e.target.name,
+      })
+    } else {
+      console.log("false")
+      this.setState({
+        [e.target.name]: true,
+        name: e.target.name,
       })
     }
-    
+    console.log(this.state)
   }
 
   render() {
@@ -57,22 +69,22 @@ class ViewTransactions extends React.Component {
               let name = this.getGroupMember(payers.groupMember_id)
               return (
                 <>
-                <tr>
-                  <td><button className='btn custom-button' onClick={this.handleClick} name={payers.transaction_name}>{payers.transaction_name}</button></td>
-                  <td>{dateString}</td>
-                  <td>$ {payers.total_contribution / 100}</td>
-                  <td>{name}</td>
-                </tr>
-                {this.state.showDetails &&
-                this.state.name == payers.transaction_name &&
-                  <TransactionDetails name={this.state.name}/>
-                }
+                  <tr>
+                    <td><button className='btn custom-button' onClick={this.handleClick} name={payers.transaction_name}>{payers.transaction_name}</button></td>
+                    <td>{dateString}</td>
+                    <td>$ {payers.total_contribution / 100}</td>
+                    <td>{name}</td>
+                  </tr>
+                  {this.state[payers.transaction_name] &&
+                    this.state.name == payers.transaction_name &&
+                    <TransactionDetails name={this.state.name} />
+                  }
                 </>
-                )
-              })
+              )
+            })
             }
-            
-            
+
+
           </tbody>
         </table>
 
