@@ -7,7 +7,8 @@ class AddTransaction extends React.Component {
     super(props)
     this.state = {
       transaction: {},
-      group_members: []
+      group_members: [],
+      showTransactionForm: false
     }
   }
 
@@ -26,6 +27,12 @@ class AddTransaction extends React.Component {
     })
   }
 
+  toggleTransaction = (e) => {
+    this.setState({
+      showTransactionForm: !this.state.showTransactionForm
+    })
+  }
+
   submit = (e) => {
     e.preventDefault()
     this.props.dispatch(newTransaction(this.state))
@@ -38,35 +45,36 @@ class AddTransaction extends React.Component {
     return (
       <>
         <div className="form-content">
-
-          <h3>Add new transaction</h3>
-
-          <form onSubmit={this.submit}>
-            <label>Description</label>
-            <input className='form-control' type='text' name='transactionName' placeholder='eg. dinner' onChange={this.updateDetails}></input>
-            <label>Paid by</label>
-            <select className='form-control' name='groupMemberId' onChange={this.updateDetails}>
-              <option></option>
-              {members.map((member, i) => {
-                return <option value={member.groupMember_id} key={i}>{member.member_name}</option>
-              })}
-            </select>
-            <label>Amount $</label>
-            <input className='form-control' type='number' name='transactionTotal' placeholder='0.00' onChange={this.updateDetails}></input>
-            <div>
-              <label>Split by all members?</label>
-              <input type='checkbox' name='membersOwing' defaultChecked></input>
-            </div>
-            <div>
-              <label>Split cost evenly?</label>
-              <input type='checkbox' name='amountMembersOwing' defaultChecked></input>
-            </div>
-            <div>
-              <button className="btn custom-button btn-lg" type="submit" onClick={this.submit}>
-                Add Transaction
+          <h3 onClick={this.toggleTransaction} >Add new transaction</h3>
+          {this.state.showTransactionForm && <div>
+            <form onSubmit={this.submit}>
+              <label>Description</label>
+              <input className='form-control' type='text' name='transactionName' placeholder='eg. dinner' onChange={this.updateDetails}></input>
+              <label>Paid by</label>
+              <select className='form-control' name='groupMemberId' onChange={this.updateDetails}>
+                <option></option>
+                {members.map((member, i) => {
+                  return <option value={member.groupMember_id} key={i}>{member.member_name}</option>
+                })}
+              </select>
+              <label>Amount $</label>
+              <input className='form-control' type='number' name='transactionTotal' placeholder='0.00' onChange={this.updateDetails}></input>
+              <div>
+                <label>Split by all members?</label>
+                <input type='checkbox' name='membersOwing' defaultChecked></input>
+              </div>
+              <div>
+                <label>Split cost evenly?</label>
+                <input type='checkbox' name='amountMembersOwing' defaultChecked></input>
+              </div>
+              <div>
+                <button className="btn custom-button btn-lg" type="submit" onClick={this.submit}>
+                  Add Transaction
               </button>
-            </div>
-          </form>
+              </div>
+            </form>
+          </div>}
+
         </div>
       </>
     )

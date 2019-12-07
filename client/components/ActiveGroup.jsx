@@ -9,7 +9,7 @@ import ViewTransactions from '../components/ViewTransactions'
 class ActiveGroup extends React.Component {
   constructor(props) {
     super(props)
-
+    
   }
 
 
@@ -40,7 +40,9 @@ class ActiveGroup extends React.Component {
                 </ul>
 
                 {!groups.settled ? <div>< AddTransaction /></div> : <div><h4>Not possible to add transactions to settled groups</h4></div>}
+
                 < ViewTransactions />
+
               </>}
             </div>
             : <h1>Data Loading</h1>}
