@@ -18,8 +18,18 @@ function addTransactionDetails(details, db = database) {
     .insert(details).then(res => {})
 }
 
+function deleteTransactions(id, db=database){
+  return db('transactions').where('transaction_id', id).delete()
+}
+
+function deleteTransactionDetails(id, db=database){
+  return db('transactionDetails').where('transaction_id', id).delete()
+}
+
 module.exports = {
   addTransaction,
   getTransactions,
-  addTransactionDetails
+  addTransactionDetails,
+  deleteTransactions,
+  deleteTransactionDetails
 }

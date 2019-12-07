@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { newTransaction } from '../actions/transactions'
+import { newTransaction, deleteTransactions } from '../actions/transactions'
 
 class AddTransaction extends React.Component {
   constructor(props) {
@@ -38,6 +38,7 @@ class AddTransaction extends React.Component {
     this.props.dispatch(newTransaction(this.state))
   }
 
+ 
   render() {
 
     let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
