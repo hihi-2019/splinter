@@ -60,9 +60,11 @@ class ActiveGroup extends React.Component {
                     )
                   })}
                 </ul>
+                <hr></hr>
 
-                {!groups.settled ? <div>< AddTransaction /></div> : <div><h4>Not possible to add transactions to settled groups</h4></div>}
+                {!groups.settled ? <div>< AddTransaction />  <hr></hr></div> : <div><h4>Not possible to add transactions to settled groups</h4></div>}
                 < ViewTransactions />
+                <hr></hr>
 
               </>}
             </div>
