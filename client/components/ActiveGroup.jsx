@@ -46,18 +46,18 @@ class ActiveGroup extends React.Component {
       <>
         <div className="form-content animated fadeIn">
           {this.props.activeGroup ?
-            <div className="animated fadeIn">
+            <div className="">
               {groups && <>
                 <div className="row">
                   <div className="col-9">
-                    <h1>{groups.group_name}</h1>
-                    <p style={{ fontStyle: "italic" }}>{groups.group_description}</p>
+                    <h1 className="activeGroupTitle">{groups.group_name}</h1>
+                    <h3 style={{ fontStyle: "italic" }}>{groups.group_description}</h3>
                   </div>
                   <div className="col-3">
                     <button id={groups.group_id} name={groups.group_name} className="btn btn-danger" onClick={this.deleteGroup}>Delete {groups.group_name}</button>
                   </div>
                 </div>
-                <h3>Group Members</h3>
+                <h2 className="subTitle">Group Members</h2>
                 <ul>
                   {members.map(member => {
                     let total = 0
