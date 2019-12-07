@@ -13,7 +13,12 @@ import ViewTransactions from '../components/ViewTransactions'
 class ActiveGroup extends React.Component {
   constructor(props) {
     super(props)
+    this.State ={
+    
+    }
   }
+
+  
 
   deleteGroup = (event) => {
     let group_id = event.target.id
@@ -55,8 +60,22 @@ class ActiveGroup extends React.Component {
                 <h3>Group Members</h3>
                 <ul>
                   {members.map(member => {
+                    let total = 0
+                    this.props.transactions.filter(transaction => transaction.groupMember_id == member.groupMember_id).map(memberSpent => {
+                      if(member.groupMember_id == memberSpent.groupMember_id){
+                        if(memberSpent.total_contribution > 0){
+                          console.log(member)
+                          let numPeople = members.length
+                          let percentage = (100 / numPeople) / 100
+                          let payerDeduction = (memberSpent.total_contribution * percentage) / 100
+                          return total += (memberSpent.total_contribution/100) - payerDeduction
+                        }
+                        return total += (memberSpent.total_contribution/100)
+                      }
+                    })
+                    
                     return (
-                      <li>{member.member_name}</li>
+                      <li>{member.member_name} ${total}</li>
                     )
                   })}
                 </ul>
@@ -80,7 +99,8 @@ const mapStateToProps = (reduxState) => {
     groups: reduxState.groups,
     activeGroup: reduxState.activeGroup,
     groupMembers: reduxState.groupMembers,
-    auth: reduxState.auth
+    auth: reduxState.auth,
+    transactions: reduxState.transactions
   }
 }
 
