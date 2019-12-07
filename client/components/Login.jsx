@@ -38,7 +38,7 @@ class Login extends React.Component {
       <div className="loginContainer animated fadeIn">
         <div className="col-6 col-md-4">
           <form className="form" onSubmit={this.handleSubmit}>
-            <h1 className='formTitle'>Login</h1>
+            <h1 className='formTitle'>Log In</h1>
             {auth.errorMessage && (
               <>
                 <h1>
@@ -74,7 +74,7 @@ class Login extends React.Component {
               </label>
             </div>
             <div className="loginButton">
-              <input className='btn custom-button' value='Login' type='submit' />
+              <button className='btn custom-button' value='Login' type='submit'>Log In</button>
             </div>
           </form>
         </div>
