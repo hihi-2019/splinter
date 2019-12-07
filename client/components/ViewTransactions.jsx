@@ -66,7 +66,7 @@ class ViewTransactions extends React.Component {
   render() {
     return (
       <>
-        <h3 onClick={this.toggleTransaction}>View All Transactions <i className="dashHeader fas fa-chevron-circle-down"></i></h3>
+        <h2 className="subTitle" onClick={this.toggleTransaction}>View All Transactions <i className="dashHeader fas fa-chevron-circle-down"></i></h2>
         {this.state.showTransactions && <div className="animated fadeIn">
         <table className="table">
           <thead>
