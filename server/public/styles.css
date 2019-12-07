@@ -149,3 +149,7 @@ a:hover {
     -moz-box-shadow: 9px 9px 3px 0px rgba(0,0,0,0.13);
     box-shadow: 9px 9px 3px 0px rgba(0,0,0,0.13); */
 }
+
+.memberList {
+    list-style-image: url('icons/bear.png');
+}

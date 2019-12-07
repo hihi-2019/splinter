@@ -75,13 +75,13 @@ class ActiveGroup extends React.Component {
                     })
                     
                     return (
-                      <li>{member.member_name} ${total}</li>
+                      <li className="memberList">{member.member_name} ${total}</li>
                     )
                   })}
                 </ul>
                 <hr></hr>
 
-                {!groups.settled ? <div>< AddTransaction />  <hr></hr></div> : <div><h4>Not possible to add transactions to settled groups</h4><hr></hr></div>}
+                {!groups.settled ? <div>< AddTransaction />  <hr></hr></div> : <div></div>}
                 < ViewTransactions />
                 <hr></hr>
 
