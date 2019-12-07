@@ -13,3 +13,19 @@ export let deleteConfirmMessage = {
     text:'The group has been deleted.',
     icon:'success'
   }
+
+  export let deleteTransactionMessage = {
+    title: 'Are you sure you want to delete this Transaction?',
+    text: "This will delete your transaction",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }
+
+  export let deleteTransactionConfirmMessage = {
+    title:'Deleted!',
+    text:'The transaction has been deleted.',
+    icon:'success'
+  }
