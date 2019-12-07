@@ -51,7 +51,7 @@ class AddTransaction extends React.Component {
           <div className="animated fadeIn">
             <form onSubmit={this.submit}>
               <label>Description</label>
-              <input className='form-control' type='text' name='transactionName' placeholder='eg. dinner' onChange={this.updateDetails}></input>
+              <input className='form-control' type='text' name='transactionName' placeholder='eg. Breakfast at Tiffanys' onChange={this.updateDetails}></input>
               <label>Paid by</label>
               <select className='form-control' name='groupMemberId' onChange={this.updateDetails}>
                 <option></option>

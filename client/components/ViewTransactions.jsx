@@ -9,14 +9,19 @@ class ViewTransactions extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      // showDetails: false,
+      showTransactions: false,
       name: "",
     }
   }
+
+  toggleTransaction = (e) => {
+    this.setState({
+      showTransactions: !this.state.showTransactions
+    })
+  }
+
   componentDidMount() {
     this.props.dispatch(getTransactions(Number(this.props.activeGroup[0])))
-    console.log('trans')
-
   }
 
   getGroupMember = (id) => {
@@ -61,7 +66,8 @@ class ViewTransactions extends React.Component {
   render() {
     return (
       <>
-        <h3>View all transactions</h3>
+        <h3 onClick={this.toggleTransaction}>View All Transactions <i className="dashHeader fas fa-chevron-circle-down"></i></h3>
+        {this.state.showTransactions && <div className="animated fadeIn">
         <table className="table">
           <thead>
             <tr>
@@ -98,7 +104,7 @@ class ViewTransactions extends React.Component {
             }
           </tbody>
         </table>
-
+        </div>}
       </>
     )
   }
