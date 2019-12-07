@@ -107,6 +107,10 @@ a:hover {
     filter: brightness(80%)
 }
 
+.dashHeader:hover {
+    filter: brightness(80%)
+}
+
 .dashboardNav{
     text-align: center;
     background-color: #37517E;
