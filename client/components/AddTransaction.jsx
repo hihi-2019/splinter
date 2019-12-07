@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { newTransaction } from '../actions/transactions'
+import { newTransaction, deleteTransactions } from '../actions/transactions'
 
 class AddTransaction extends React.Component {
   constructor(props) {
@@ -38,6 +38,7 @@ class AddTransaction extends React.Component {
     this.props.dispatch(newTransaction(this.state))
   }
 
+ 
   render() {
 
     let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
@@ -45,8 +46,9 @@ class AddTransaction extends React.Component {
     return (
       <>
         <div className="form-content">
-          <h3 onClick={this.toggleTransaction} >Add new transaction</h3>
-          {this.state.showTransactionForm && <div>
+          <h3 onClick={this.toggleTransaction}>Add New Transaction <i className="dashHeader fas fa-chevron-circle-down"></i></h3>
+          {this.state.showTransactionForm && 
+          <div className="animated fadeIn">
             <form onSubmit={this.submit}>
               <label>Description</label>
               <input className='form-control' type='text' name='transactionName' placeholder='eg. dinner' onChange={this.updateDetails}></input>

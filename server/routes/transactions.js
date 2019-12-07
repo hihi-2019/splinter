@@ -47,5 +47,12 @@ router.post('/', (req, res) => {
     })
 })
 
+router.delete('/:id', (req, res) => {
+  db.deleteTransactions(req.params.id)
+  db.deleteTransactionDetails(req.params.id).then(() => {
+    res.send(200)
+  })
+})
+
 module.exports = router
 

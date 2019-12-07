@@ -37,7 +37,7 @@ class SignUp extends React.Component {
   render() {
     const { auth } = this.props
     return (
-      <div className="registerContainer">
+      <div className="registerContainer animated fadeIn">
 
         <div className="col-6">
 

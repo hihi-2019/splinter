@@ -51,8 +51,8 @@ class CreateGroup extends React.Component {
   render() {
     return (
       <>
-        <div className="form-content">
-          <h3>Create a New Group</h3>
+        <div className="form-content animated fadeIn">
+          <h3>Create New Group</h3>
           <form>
             <label>Group Name</label>
             <input className='form-control' required type='text' name='group_name' placeholder='eg. Kates Birthday' onChange={this.updateDetails}></input>
@@ -67,7 +67,7 @@ class CreateGroup extends React.Component {
           <button className="btn custom-button btn-sm" onClick={this.addMember}>Add member</button>
           </div>
           <ul> {this.state.members_names.map(member => {
-          return <li>{member} <button className="btn btn-dark btn-sm"name={member} onClick={this.deleteMember}></button></li> 
+          return <li>{member} <button className="btn btn-dark btn-sm"name={member} onClick={this.deleteMember}>x</button></li> 
           })}
           </ul>
           <button className="btn custom-button btn-lg" onClick={this.submit}>

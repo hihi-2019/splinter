@@ -18,7 +18,7 @@ class Dashboard extends React.Component {
                         <div className="col-2">
                            <DashboardNav />
                         </div>
-                        <div className="col-10 dashContent">
+                        <div className="col-10 dashContent animated fadeIn">
                             {this.props.activeGroup.length == 0 && <CreateGroup/>}
                             {this.props.activeGroup.length > 0 && <ActiveGroup/>}
                             

@@ -1,7 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getTransactions } from '../actions/transactions'
+import { getTransactions, deleteTransactions } from '../actions/transactions'
 import TransactionDetails from './TransactionDetails'
+import Swal from 'sweetalert2';
+import { deleteTransactionMessage, deleteTransactionConfirmMessage } from '../utils/alertMessages';
 
 class ViewTransactions extends React.Component {
   constructor(props) {
@@ -28,26 +30,33 @@ class ViewTransactions extends React.Component {
   handleClick = (e) => {
     e.preventDefault()
     if (this.state[e.target.name] === undefined) {
-      console.log('undefined')
       this.setState({
         name: e.target.name,
         [e.target.name]: true
       })
     } else if (this.state[e.target.name] === true) {
-      console.log('true')
       this.setState({
         [e.target.name]: false,
         name: e.target.name,
       })
     } else {
-      console.log("false")
       this.setState({
         [e.target.name]: true,
         name: e.target.name,
       })
     }
-    console.log(this.state)
   }
+
+  handleDelete = (e) => {
+    let id = e.target.id
+    Swal.fire(deleteTransactionMessage).then((result) =>{
+      if(result.value){
+        this.props.dispatch(deleteTransactions(id, this.props.activeGroup))
+      }
+    })
+    
+  }
+
 
   render() {
     return (
@@ -60,6 +69,8 @@ class ViewTransactions extends React.Component {
               <th scope='col'>Date</th>
               <th scope='col'>Transaction Total</th>
               <th scope='col'>Who Paid</th>
+              <th scope='col'>Delete</th>
+              <th scope='col'>Edit</th>
             </tr>
           </thead>
           <tbody>
@@ -74,6 +85,8 @@ class ViewTransactions extends React.Component {
                     <td>{dateString}</td>
                     <td>$ {payers.total_contribution / 100}</td>
                     <td>{name}</td>
+                    <td><button onClick={this.handleDelete} id={payers.transaction_id} className='btn btn-danger'>Delete</button></td>
+                    <td><button className='btn btn-warning'>Edit</button></td>
                   </tr>
                   {this.state[payers.transaction_name] &&
                     this.state.name == payers.transaction_name &&
@@ -83,8 +96,6 @@ class ViewTransactions extends React.Component {
               )
             })
             }
-
-
           </tbody>
         </table>
 
