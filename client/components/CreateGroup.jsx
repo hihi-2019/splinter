@@ -51,7 +51,7 @@ class CreateGroup extends React.Component {
   render() {
     return (
       <>
-        <div className="form-content">
+        <div className="form-content animated fadeIn">
           <h3>Create a New Group</h3>
           <form>
             <label>Group Name</label>

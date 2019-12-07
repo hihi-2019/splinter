@@ -39,9 +39,9 @@ class ActiveGroup extends React.Component {
     let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
     return (
       <>
-        <div className="form-content">
+        <div className="form-content animated fadeIn">
           {this.props.activeGroup ?
-            <div>
+            <div className="animated fadeIn">
               {groups && <>
                 <div className="row">
                   <div className="col-9">
