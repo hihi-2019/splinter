@@ -21,14 +21,14 @@ exports.seed = function (knex) {
         {
             group_id: 3,
             group_name: 'Coachella 2019',
-            group_description: 'Party trip with the old gang to California',
+            group_description: '2 week party trip to California',
             user_id: 1,
             settled: false
         },
         {
             group_id: 4,
             group_name: 'Queenstown Ski Trip',
-            group_description: 'Winterfest 2019 trip with all my old school friends',
+            group_description: 'Winterfest 2019 trip with old school friends',
             user_id: 1,
             settled: false
         },
