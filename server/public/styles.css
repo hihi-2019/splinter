@@ -107,6 +107,10 @@ a:hover {
     filter: brightness(80%)
 }
 
+.dashNavHeader {
+    padding-top: 4%;
+    padding-bottom:8%
+}
 .dashHeader:hover {
     filter: brightness(80%)
 }
