@@ -44,7 +44,7 @@ class SignUp extends React.Component {
           <form className="form" onSubmit={this.submit}>
 
             <h1 className='formTitle'>Sign up to Splinter</h1>
-            <h5>Already signed up to Splinter? <Link to='/login'>Log In</Link></h5>
+            <h5>Already signed up? <Link to='/login'>Log In</Link></h5>
 
             {auth.errorMessage && <><h1><span className="badge badge-danger badge-lg">{auth.errorMessage}</span></h1><br></br></>}
 
