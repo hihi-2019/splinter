@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
   let transaction = {
     group_id: t.group_id,
     groupMember_id: t.groupMemberId,
-    transaction_total: t.transactionTotal,
+    transaction_total: t.transactionTotal*100,
     transaction_name: t.transactionName,
     date: Date.now() / 1000
   }
@@ -35,14 +35,14 @@ router.post('/', (req, res) => {
           let payer = {
             transaction_id: id,
             groupMember_id: member.groupMember_id,
-            total_contribution: transaction.transaction_total * 100
+            total_contribution: transaction.transaction_total
           }
           return db.addTransactionDetails(payer)
         } else {
           let payee = {
             transaction_id: id,
             groupMember_id: member.groupMember_id,
-            total_contribution: ((transaction.transaction_total * 100) / req.body.group_members.length) * -1
+            total_contribution: ((transaction.transaction_total) / req.body.group_members.length) * -1
           }
           return db.addTransactionDetails(payee)
         }
@@ -57,9 +57,10 @@ router.post('/', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-  db.deleteTransactions(req.params.id)
-  db.deleteTransactionDetails(req.params.id).then(() => {
-    res.send(200)
+  db.deleteTransactions(req.params.id).then(() => {
+    db.deleteTransactionDetails(req.params.id).then(() => {
+      res.send(200)
+    })
   })
 })
 
