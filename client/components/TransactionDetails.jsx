@@ -11,25 +11,21 @@ class TransactionDetails extends React.Component {
       }
     })
   }
-  componentDidMount(){
-    console.log('trans detail')
-  }
-  
 
   render() {
-    console.log(this.props.name)
     return (
 
       <>
-        {this.props.transactions.filter(transaction => transaction.transaction_name == this.props.name).map(debtors => {
-          if (debtors.total_contribution < 0) {
-            return (
-              <ul>
-                <li>{this.getGroupMember(debtors.groupMember_id)} owes {name}  $ {(debtors.total_contribution / 100) * -1}</li>
-              </ul>
-            )
-          }
-        })
+        {this.props.transactions.filter(transaction => transaction.transaction_name == this.props.name)
+          .map((debtors, i) => {
+            if (debtors.total_contribution < 0) {
+              return (
+                <ul key={i}>
+                  <li>{this.getGroupMember(debtors.groupMember_id)} owes {name}  $ {(debtors.total_contribution / 100) * -1}</li>
+                </ul>
+              )
+            }
+          })
         }
       </>
     )

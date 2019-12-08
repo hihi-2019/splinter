@@ -57,7 +57,6 @@ class ActiveGroup extends React.Component {
             Swal.fire(deleteConfirmMessage))
         this.props.dispatch(getGroupsByUser(this.props.auth.user.user_id))
         this.props.dispatch(setActiveGroupId(''))
-
       }
     })
   }
@@ -80,6 +79,9 @@ class ActiveGroup extends React.Component {
                   <div className="col-9">
                     <h1 className="activeGroupTitle">{groups.group_name}</h1>
                     <h3 style={{ fontStyle: "italic" }}>{groups.group_description}</h3>
+                    <h3>Total spent to date: $ PLACEHOLDER</h3>
+                    <button className="btn custom-button btn-lg">Settle Debts for {groups.group_name}</button>
+
                     <hr></hr>
                   </div>
                   <div className="col-3">
@@ -91,13 +93,12 @@ class ActiveGroup extends React.Component {
                   <h2 onClick={this.toggleGroupMembers} className="subTitle">Group Members <i className="dashHeader fas fa-chevron-circle-down"></i></h2>
                   {this.state.showGroupMembers &&
                     <ul className="animated fadeIn">
-                      
                       {members.map((member, i )=> {
                         let moneyArr = this.calculateTotals()
                         console.log(moneyArr)
                         return (
                           <li className="memberList">{member.member_name} $ {moneyArr[i]}</li>
-                        )
+                          )
                       })}
                     </ul>}
                   <hr></hr>

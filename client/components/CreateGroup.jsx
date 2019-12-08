@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { createNewGroupThunk } from '../actions/groups'
 import { getTransactions } from '../actions/transactions';
+import { createNewGroupThunk, clearGroupMembers } from '../actions/groups'
 
 class CreateGroup extends React.Component {
   constructor(props) {
@@ -12,7 +12,8 @@ class CreateGroup extends React.Component {
       user_id: '',
       settled: false,
       members_names: [],
-      new_member_name: ''
+      new_member_name: '',
+      error: false
     }
   }
 
@@ -39,9 +40,17 @@ class CreateGroup extends React.Component {
 
   submit = (e) => {
     e.preventDefault()
-    this.props.dispatch(createNewGroupThunk(this.state))
-    // this.props.dispatch(getTransactions(this.props.activeGroup))
-
+    
+    if (this.state.group_name == '' || this.state.group_description == '' || this.state.members_names == []) {
+      this.setState({
+        error: true
+      })
+    } else {
+      this.props.dispatch(createNewGroupThunk(this.state))
+      this.setState({
+        error: false
+      })
+    }
   }
 
   deleteMember = (e) => {
@@ -51,12 +60,14 @@ class CreateGroup extends React.Component {
     })
   }
 
+
+
   render() {
     return (
       <>
         <div className="form-content animated fadeIn">
           <h1 className="activeGroupTitle">Create New Group</h1>
-          <form>
+          <form >
             <label>Group Name</label>
             <input className='form-control' required type='text' name='group_name' placeholder='eg. Kates Birthday' onChange={this.updateDetails}></input>
 
@@ -77,6 +88,7 @@ class CreateGroup extends React.Component {
               Create Group
           </button>
           </form>
+          {this.state.error == true && <p style={{ color: "red" }}>Please fill in all the details in the form</p>}
         </div>
       </>
     )

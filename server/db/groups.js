@@ -22,7 +22,8 @@ function deleteGroup(groupId, db = connection){
 }
 
 function deleteMembers(groupId, db = connection){
-  return db('groupMembers').where('group_id', groupId).del().then(res=>(res))
+  return db('groupMembers').where('group_id', groupId).del()
+  .then(res=>(res))
 }
 
 module.exports = {
