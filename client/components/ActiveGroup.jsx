@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Swal from 'sweetalert2'
 import { apiDeleteGroup } from '../api/groups'
-import { getGroupsByUser, setActiveGroupId } from '../actions/groups'
+import { getGroupsByUser, setActiveGroupId, settleGroupThunk } from '../actions/groups'
 
 import { deleteAlertMessage, deleteConfirmMessage } from '../utils/alertMessages'
 
@@ -40,6 +40,8 @@ class ActiveGroup extends React.Component {
 
   settleDebt = (event) => {
     let group_id = event.target.name
+    console.log(group_id)
+    this.props.dispatch(settleGroupThunk(group_id, this.props.auth.user.user_id))
   }
 
 
@@ -57,7 +59,7 @@ class ActiveGroup extends React.Component {
                     <h1 className="activeGroupTitle">{groups.group_name}</h1>
                     <h3 style={{ fontStyle: "italic" }}>{groups.group_description}</h3>
                     <h3>Total spent to date: $ PLACEHOLDER</h3>
-                    <button className="btn custom-button btn-lg">Settle Debts for {groups.group_name}</button>
+                    <button name={groups.group_id} onClick={this.settleDebt}className="btn custom-button btn-lg">Settle Debts for {groups.group_name}</button>
 
                     <hr></hr>
                   </div>

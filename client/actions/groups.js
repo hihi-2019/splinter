@@ -1,4 +1,4 @@
-import { apiGetGroupMembers, apiCreateNewGroup, apiGetGroupsByUser } from '../api/groups'
+import { apiGetGroupMembers, apiCreateNewGroup, apiGetGroupsByUser, apiSettleGroup } from '../api/groups'
 
 export function saveGroupsByUser(groups) {
   return {
@@ -65,5 +65,18 @@ export function setActiveGroupId(group_id) {
 export function clearGroupMembers(){
   return{
     type: "CLEAR_MEMBERS",
+  }
+}
+
+export function settleGroupThunk (group_id, user_id) {
+  return dispatch => {
+    apiSettleGroup(group_id)
+    .then((res) => {
+      dispatch(getGroupsByUser(user_id))
+      return res
+    })
+    .then(res => {
+      dispatch(setActiveGroupId(group_id))
+    } )
   }
 }

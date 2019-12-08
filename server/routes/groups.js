@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
       req.body.members_names.map(member => {
         return db.createNewMember({ group_id: groupId[0], member_name: member })
           .then(memberId => {
-            console.log(memberId)
+            res.sendStatus(200)
           })
       })
       res.json(groupId)
@@ -37,15 +37,15 @@ router.get('/members/:id', (req, res) => {
 
 router.delete('/members/:id', (req, res) => {
   db.deleteMembers(req.params.id)
-    .then(data => console.log(data))
+    .then(data => res.sendStatus(200))
 })
 
 router.delete('/:id', (req, res) => {
   db.deleteGroup(req.params.id)
     .then(db.deleteMembers(req.params.id))
-    .then(
+    .then
       (data =>
-        console.log(data)))
+        res.sendStatus(200))
 })
 
 router.put('/:id', (req,res) => {
