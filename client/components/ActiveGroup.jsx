@@ -19,7 +19,15 @@ class ActiveGroup extends React.Component {
     }
   }
 
-  
+  calculateTotals = () => {
+    let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
+    let transactions = this.props.transactions.filter(transaction => transaction.group_id == this.props.activeGroup)
+    let arr = []
+    members.map(member => {
+      arr.push(transactions.filter(transaction => transaction.groupMember_id == member.groupMember_id))
+    })
+    console.log(arr)
+  }
 
   toggleGroupMembers = (e) => {
     this.setState({
@@ -72,22 +80,9 @@ class ActiveGroup extends React.Component {
                   {this.state.showGroupMembers &&
                     <ul className="animated fadeIn">
                       {members.map(member => {
-                        let total = 0
-                        this.props.transactions.filter(transaction => transaction.groupMember_id == member.groupMember_id).map(memberSpent => {
-                          if (member.groupMember_id == memberSpent.groupMember_id) {
-                            if (memberSpent.total_contribution > 0) {
-                              console.log(member)
-                              let numPeople = members.length
-                              let percentage = (100 / numPeople) / 100
-                              let payerDeduction = (memberSpent.total_contribution * percentage) / 100
-                              return total += (memberSpent.total_contribution / 100) - payerDeduction
-                            }
-                            return total += (memberSpent.total_contribution / 100)
-                          }
-                        })
-
+                        this.calculateTotals()
                         return (
-                          <li className="memberList">{member.member_name} ${total}</li>
+                          <li className="memberList">{member.member_name}</li>
                         )
                       })}
                     </ul>}
