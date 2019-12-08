@@ -41,7 +41,7 @@ exports.seed = function (knex) {
           },
           {
             groupMember_id: 8,
-            member_name: 'Bas',
+            member_name: 'Alice',
             group_id: 3,
           },
           {
@@ -61,7 +61,7 @@ exports.seed = function (knex) {
           },
           {
             groupMember_id: 12,
-            member_name: 'Tosca',
+            member_name: 'Alice',
             group_id: 4,
           },
           {
@@ -81,12 +81,12 @@ exports.seed = function (knex) {
           },
           {
             groupMember_id: 16,
-            member_name: 'Beth',
+            member_name: 'Phil',
             group_id: 5,
           },
           {
             groupMember_id: 17,
-            member_name: 'Rob',
+            member_name: 'Alice',
             group_id: 5,
           },
 
