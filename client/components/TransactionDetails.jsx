@@ -20,13 +20,17 @@ class TransactionDetails extends React.Component {
       }
     })
   }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 66774ba26a27acca0e85e97f3398a81afe147e73
 
   render() {
     return (
 
       <>
+<<<<<<< HEAD
         {this.props.transactions.filter(transaction => transaction.transaction_name == this.props.name).map((debtors, i) => {
           if (debtors.total_contribution < 0) {
             return (
@@ -36,6 +40,18 @@ class TransactionDetails extends React.Component {
             )
           }
         })
+=======
+        {this.props.transactions.filter(transaction => transaction.transaction_name == this.props.name)
+          .map((debtors, i) => {
+            if (debtors.total_contribution < 0) {
+              return (
+                <ul key={i}>
+                  <li>{this.getGroupMember(debtors.groupMember_id)} owes {name}  $ {(debtors.total_contribution / 100) * -1}</li>
+                </ul>
+              )
+            }
+          })
+>>>>>>> 66774ba26a27acca0e85e97f3398a81afe147e73
         }
       </>
     )
