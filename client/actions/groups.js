@@ -1,5 +1,4 @@
 import { apiGetGroupMembers, apiCreateNewGroup, apiGetGroupsByUser } from '../api/groups'
-import { stringify } from 'querystring'
 
 export function saveGroupsByUser(groups) {
   return {
