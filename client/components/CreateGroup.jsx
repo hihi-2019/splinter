@@ -64,7 +64,7 @@ class CreateGroup extends React.Component {
     return (
       <>
         <div className="form-content animated fadeIn">
-          <form className="form">
+          <form className="groupForm">
           <h3 className="formTitle">Create New Group</h3>
             <label>Group Name</label>
             <input className='form-control' required type='text' name='group_name' placeholder='eg. Kates Birthday' onChange={this.updateDetails}></input>
