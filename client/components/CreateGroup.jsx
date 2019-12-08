@@ -11,7 +11,8 @@ class CreateGroup extends React.Component {
       user_id: '',
       settled: false,
       members_names: [],
-      new_member_name: ''
+      new_member_name: '',
+      error: false
     }
   }
 
@@ -39,9 +40,14 @@ class CreateGroup extends React.Component {
   submit = (e) => {
     e.preventDefault()
     if (this.state.group_name == '' || this.state.group_description == '' || this.state.members_names == []) {
-      console.log("here")
+      this.setState({
+        error: true
+      })
     } else {
       this.props.dispatch(createNewGroupThunk(this.state))
+      this.setState({
+        error: false
+      })
     }
   }
 
@@ -80,6 +86,7 @@ class CreateGroup extends React.Component {
               Create Group
           </button>
           </form>
+          {this.state.error == true && <p style={{ color: "red" }}>Please fill in all the details in the form</p>}
         </div>
       </>
     )
