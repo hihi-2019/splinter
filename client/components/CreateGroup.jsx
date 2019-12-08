@@ -38,7 +38,11 @@ class CreateGroup extends React.Component {
 
   submit = (e) => {
     e.preventDefault()
-    this.props.dispatch(createNewGroupThunk(this.state))
+    if (this.state.group_name == '' || this.state.group_description == '' || this.state.members_names == []) {
+      console.log("here")
+    } else {
+      this.props.dispatch(createNewGroupThunk(this.state))
+    }
   }
 
   deleteMember = (e) => {
@@ -48,12 +52,14 @@ class CreateGroup extends React.Component {
     })
   }
 
+
+
   render() {
     return (
       <>
         <div className="form-content animated fadeIn">
           <h1 className="activeGroupTitle">Create New Group</h1>
-          <form>
+          <form >
             <label>Group Name</label>
             <input className='form-control' required type='text' name='group_name' placeholder='eg. Kates Birthday' onChange={this.updateDetails}></input>
 
@@ -61,17 +67,17 @@ class CreateGroup extends React.Component {
             <input className='form-control' required type='text' name='group_description' placeholder='eg. Great Mates Drinking Crates To Celebrate Our Old Mates Birthdate. Mate.' onChange={this.updateDetails}></input>
 
 
-          <label>Add Group Member</label>
-          <input className='form-control' required type='text' name='new_member_name' placeholder='eg. Joe' onChange={this.updateMembers} value={this.state.new_member_name}></input>
-          <div>
-          <button className="btn custom-button btn-sm" onClick={this.addMember}>Add member</button>
-          </div>
-          <ul> {this.state.members_names.map(member => {
-          return <li>{member} <button className="btn btn-dark btn-sm"name={member} onClick={this.deleteMember}>x</button></li> 
-          })}
-          </ul>
-          <button className="btn custom-button btn-lg" onClick={this.submit}>
-            Create Group
+            <label>Add Group Member</label>
+            <input className='form-control' required type='text' name='new_member_name' placeholder='eg. Joe' onChange={this.updateMembers} value={this.state.new_member_name}></input>
+            <div>
+              <button className="btn custom-button btn-sm" onClick={this.addMember}>Add member</button>
+            </div>
+            <ul> {this.state.members_names.map(member => {
+              return <li>{member} <button className="btn btn-dark btn-sm" name={member} onClick={this.deleteMember}>x</button></li>
+            })}
+            </ul>
+            <button className="btn custom-button btn-lg" onClick={this.submit}>
+              Create Group
           </button>
           </form>
         </div>
