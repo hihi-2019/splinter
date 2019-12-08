@@ -100,6 +100,96 @@ exports.seed = function (knex) {
             groupMember_id: 4,
             total_contribution: 30000,
           },
+          {
+            transactionDetails_id: 17,
+            transaction_id: 5,
+            groupMember_id: 5,
+            total_contribution: 9900,
+          },
+          {
+            transactionDetails_id: 18,
+            transaction_id: 5,
+            groupMember_id: 6,
+            total_contribution: -3300,
+          },
+          {
+            transactionDetails_id: 19,
+            transaction_id: 5,
+            groupMember_id: 7,
+            total_contribution: -3300,
+          },
+          {
+            transactionDetails_id: 20,
+            transaction_id: 6,
+            groupMember_id: 5,
+            total_contribution: 9000,
+          },
+          {
+            transactionDetails_id: 21,
+            transaction_id: 6,
+            groupMember_id: 6,
+            total_contribution: -3000,
+          },
+          {
+            transactionDetails_id: 22,
+            transaction_id: 6,
+            groupMember_id: 7,
+            total_contribution: -3000,
+          },
+          {
+            transactionDetails_id: 23,
+            transaction_id: 7,
+            groupMember_id: 5,
+            total_contribution: -4000,
+          },
+          {
+            transactionDetails_id: 24,
+            transaction_id: 7,
+            groupMember_id: 6,
+            total_contribution: 12000,
+          },
+          {
+            transactionDetails_id: 25,
+            transaction_id: 7,
+            groupMember_id: 7,
+            total_contribution: -4000,
+          },
+          {
+            transactionDetails_id: 26,
+            transaction_id: 8,
+            groupMember_id: 5,
+            total_contribution: -3000,
+          },
+          {
+            transactionDetails_id: 27,
+            transaction_id: 8,
+            groupMember_id: 6,
+            total_contribution: 9000,
+          },
+          {
+            transactionDetails_id: 28,
+            transaction_id: 8,
+            groupMember_id: 7,
+            total_contribution: -3000,
+          },
+          {
+            transactionDetails_id: 29,
+            transaction_id: 9,
+            groupMember_id: 5,
+            total_contribution: -5000,
+          },
+          {
+            transactionDetails_id: 30,
+            transaction_id: 9,
+            groupMember_id: 6,
+            total_contribution: -5000,
+          },
+          {
+            transactionDetails_id: 31,
+            transaction_id: 9,
+            groupMember_id: 7,
+            total_contribution: 15000,
+          },
         ])
       })
   }

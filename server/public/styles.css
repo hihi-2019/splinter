@@ -2,7 +2,7 @@
 
 body {
    
-    background-color: #7486A9;
+    background-color: rgb(244, 248, 255);
     /* background-image: url('backgroundImg.jpg'); */
     /* -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -11,8 +11,8 @@ body {
 
     
     /* background: linear-gradient(to bottom, #739bb3 -1%, #6E8287 100%); */
-    /* color: rgb(49, 49, 49); */
-    color: white;
+    color: rgb(49, 49, 49);
+    /* color: white; */
     font-family: 'Noto Sans', sans-serif;
 }
 .splinterLogo {
@@ -23,8 +23,14 @@ color: white;
 }
 
 a {
-    color: rgb(49, 49, 49);
+    /* color: rgb(49, 49, 49); */
+    color: white;
+
 }
+
+/* .navListItems {
+    color: white;
+} */
 
 a:hover {
     color:white;

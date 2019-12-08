@@ -13,11 +13,16 @@ import ViewTransactions from '../components/ViewTransactions'
 class ActiveGroup extends React.Component {
   constructor(props) {
     super(props)
-    this.State ={
-    
+    this.state = {
+      showGroupMembers:true
     }
   }
 
+  toggleGroupMembers = (e) => {
+    this.setState({
+      showGroupMembers: !this.state.showGroupMembers
+    })
+  }
   
 
   deleteGroup = (event) => {
@@ -52,13 +57,17 @@ class ActiveGroup extends React.Component {
                   <div className="col-9">
                     <h1 className="activeGroupTitle">{groups.group_name}</h1>
                     <h3 style={{ fontStyle: "italic" }}>{groups.group_description}</h3>
+                    <hr></hr>
                   </div>
                   <div className="col-3">
                     <button id={groups.group_id} name={groups.group_name} className="btn btn-danger" onClick={this.deleteGroup}>Delete {groups.group_name}</button>
                   </div>
                 </div>
-                <h2 className="subTitle">Group Members</h2>
-                <ul>
+                <div >
+                  
+                <h2 onClick={this.toggleGroupMembers} className="subTitle">Group Members <i className="dashHeader fas fa-chevron-circle-down"></i></h2>
+                {this.state.showGroupMembers &&
+                <ul className="animated fadeIn">
                   {members.map(member => {
                     let total = 0
                     this.props.transactions.filter(transaction => transaction.groupMember_id == member.groupMember_id).map(memberSpent => {
@@ -78,8 +87,9 @@ class ActiveGroup extends React.Component {
                       <li className="memberList">{member.member_name} ${total}</li>
                     )
                   })}
-                </ul>
+                </ul>}
                 <hr></hr>
+                </div>
 
                 {!groups.settled ? <div>< AddTransaction />  <hr></hr></div> : <div></div>}
                 < ViewTransactions />
