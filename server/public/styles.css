@@ -2,7 +2,7 @@
 
 body {
    
-    background-color: #fafafa;
+    background-color: #7486A9;
     /* background-image: url('backgroundImg.jpg'); */
     /* -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -11,13 +11,19 @@ body {
 
     
     /* background: linear-gradient(to bottom, #739bb3 -1%, #6E8287 100%); */
-    color: rgb(49, 49, 49);
+    /* color: rgb(49, 49, 49); */
+    color: white;
     font-family: 'Noto Sans', sans-serif;
 }
-
+.splinterLogo {
+font-family: 'Ubuntu', sans-serif;
+/* font-family: 'Noto Sans', sans-serif; */
+font-size: 3.8rem;
+color: white;
+}
 
 a {
-    color:white
+    color: rgb(49, 49, 49);
 }
 
 a:hover {
@@ -153,7 +159,7 @@ a:hover {
 }
 
 .custom-button{
-    color:white;
+    color: rgb(49, 49, 49);
     border: 1px solid #37517E
 }
 .custom-button:hover{
