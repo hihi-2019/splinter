@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
     groupMember_id: t.groupMemberId,
     transaction_total: t.transactionTotal,
     transaction_name: t.transactionName,
-    date: Date.now()
+    date: Date.now()/1000
   }
   
   db.addTransaction(transaction)

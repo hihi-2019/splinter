@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { newTransaction, deleteTransactions } from '../actions/transactions'
+import { thisTypeAnnotation } from '@babel/types'
 
 class AddTransaction extends React.Component {
   constructor(props) {
@@ -8,7 +9,8 @@ class AddTransaction extends React.Component {
     this.state = {
       transaction: {},
       group_members: [],
-      showTransactionForm: false
+      showTransactionForm: false,
+      error: false
     }
   }
 
@@ -35,10 +37,24 @@ class AddTransaction extends React.Component {
 
   submit = (e) => {
     e.preventDefault()
-    this.props.dispatch(newTransaction(this.state))
+    console.log(this.state.transaction)
+
+    if (this.state.transaction.transactionName == "") {
+      this.setState({
+        error: true
+      })
+    } else {
+      this.props.dispatch(newTransaction(this.state))
+      this.setState({
+        error: false
+      })
+    }
+
+
+
   }
 
- 
+
   render() {
 
     let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
@@ -73,9 +89,10 @@ class AddTransaction extends React.Component {
                 <button className="btn custom-button btn-lg" type="submit" onClick={this.submit}>
                   Add Transaction
               </button>
-              </div>
-            </form>
-          </div>}
+                </div>
+              </form>
+              {this.state.error == true && <p style={{ color: "red" }}>Please fill in all the details in the form</p>}
+            </div>}
 
         </div>
       </>
