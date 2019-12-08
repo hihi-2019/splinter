@@ -63,7 +63,8 @@ class ViewTransactions extends React.Component {
                 <th scope='col'>Date</th>
                 <th scope='col'>Transaction Total</th>
                 <th scope='col'>Who Paid</th>
-                <th scope='col'>Delete</th>
+                {selectedGroup.settled == 0 && <th scope='col'>Delete</th>}
+
               </tr>
             </thead>
             <tbody>
@@ -79,7 +80,7 @@ class ViewTransactions extends React.Component {
                         <td>{dateString}</td>
                         <td>$ {transaction.total_contribution / 100}</td>
                         <td>{name}</td>
-                        <td><button onClick={this.handleDelete} id={transaction.transaction_id} className='btn btn-danger'>Delete</button></td>
+                        {selectedGroup.settled == 0 && <td><button onClick={this.handleDelete} id={transaction.transaction_id} className='btn btn-danger'>Delete</button></td>}
                       </tr>
                       {this.state.openTransactions.includes(transaction.transaction_name) &&
                         <TransactionDetails name={transaction.transaction_name} />
