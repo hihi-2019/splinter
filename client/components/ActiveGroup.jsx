@@ -57,6 +57,8 @@ class ActiveGroup extends React.Component {
                   <div className="col-9">
                     <h1 className="activeGroupTitle">{groups.group_name}</h1>
                     <h3 style={{ fontStyle: "italic" }}>{groups.group_description}</h3>
+                    <h3>Total spent to date: $ PLACEHOLDER</h3>
+                    <button className="btn custom-button btn-lg">Settle Debts for {groups.group_name}</button>
 
                     <hr></hr>
                   </div>

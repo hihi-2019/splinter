@@ -9,8 +9,15 @@ class ViewTransactions extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      openTransactions: []
+      openTransactions: [],
+      viewAllTransactions: false
     }
+  }
+
+  viewAllTransactions = (e) => {
+    this.setState({
+      viewAllTransactions: !this.state.viewAllTransactions
+    })
   }
 
   toggleTransaction = (e) => {
@@ -51,8 +58,8 @@ class ViewTransactions extends React.Component {
 
     return (
       <>
-        <h2 className="subTitle" onClick={this.toggleTransaction}>View All Transactions <i className="dashHeader fas fa-chevron-circle-down"></i></h2>
-        <div className="animated fadeIn">
+        <h2 className="subTitle" onClick={this.viewAllTransactions}>View All Transactions <i className="dashHeader fas fa-chevron-circle-down"></i></h2>
+        {this.state.viewAllTransactions && <div className="animated fadeIn">
           <table className="table">
             <thead>
               <tr>
@@ -88,7 +95,7 @@ class ViewTransactions extends React.Component {
               }
             </tbody>
           </table>
-        </div>
+        </div>}
       </>
     )
   }
