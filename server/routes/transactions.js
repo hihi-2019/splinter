@@ -23,10 +23,13 @@ router.post('/', (req, res) => {
     .then(id => {
       req.body.group_members.map(member => {
         if(member.groupMember_id == transaction.groupMember_id){
+          let num = req.body.group_members.length
+          let multiplyer = (100 / num) / 100
+          let payerSubtraction = transaction.transaction_total * multiplyer
           let payer = {
             transaction_id: id,
             groupMember_id: member.groupMember_id,
-            total_contribution: transaction.transaction_total * 100
+            total_contribution: (transaction.transaction_total - payerSubtraction) * 100
           }
           return db.addTransactionDetails(payer)
         } else{
