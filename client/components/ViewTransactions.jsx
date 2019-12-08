@@ -3,21 +3,23 @@ import { connect } from 'react-redux'
 import { getTransactions, deleteTransactions } from '../actions/transactions'
 import TransactionDetails from './TransactionDetails'
 import Swal from 'sweetalert2';
-import { deleteTransactionMessage, deleteTransactionConfirmMessage } from '../utils/alertMessages';
+import { deleteTransactionMessage } from '../utils/alertMessages';
 
 class ViewTransactions extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      showTransactions: false,
-      name: "",
+      openTransactions: []
     }
   }
 
   toggleTransaction = (e) => {
-    this.setState({
-      showTransactions: !this.state.showTransactions
-    })
+    if (this.state.openTransactions.includes(e.target.name)) {
+      this.setState({ openTransactions: this.state.openTransactions.filter(t => t !== e.target.name) })
+    }
+    else {
+      this.setState({ openTransactions: [...this.state.openTransactions, e.target.name] })
+    }
   }
 
   componentDidMount() {
@@ -32,77 +34,61 @@ class ViewTransactions extends React.Component {
     })
   }
 
-  handleClick = (e) => {
-    e.preventDefault()
-    if (this.state[e.target.name] === undefined) {
-      this.setState({
-        name: e.target.name,
-        [e.target.name]: true
-      })
-    } else if (this.state[e.target.name] === true) {
-      this.setState({
-        [e.target.name]: false,
-        name: e.target.name,
-      })
-    } else {
-      this.setState({
-        [e.target.name]: true,
-        name: e.target.name,
-      })
-    }
-  }
 
   handleDelete = (e) => {
     let id = e.target.id
-    Swal.fire(deleteTransactionMessage).then((result) =>{
-      if(result.value){
+    Swal.fire(deleteTransactionMessage).then((result) => {
+      if (result.value) {
         this.props.dispatch(deleteTransactions(id, this.props.activeGroup))
       }
     })
-    
+
   }
 
 
   render() {
+    let selectedGroup = this.props.groups.find(group => group.group_id == this.props.activeGroup)
+
     return (
       <>
         <h2 className="subTitle" onClick={this.toggleTransaction}>View All Transactions <i className="dashHeader fas fa-chevron-circle-down"></i></h2>
-        {this.state.showTransactions && <div className="animated fadeIn">
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope='col'>Description</th>
-              <th scope='col'>Date</th>
-              <th scope='col'>Transaction Total</th>
-              <th scope='col'>Who Paid</th>
-              <th scope='col'>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.props.transactions.filter(transaction => transaction.total_contribution > 0).map(payers => {
-              let date = new Date(payers.date * 1000)
-              let dateString = date.toUTCString().slice(5, 22)
-              let name = this.getGroupMember(payers.groupMember_id)
-              return (
-                <>
-                  <tr>
-                    <td><button className='btn custom-button' onClick={this.handleClick} name={payers.transaction_name}>{payers.transaction_name}</button></td>
-                    <td>{dateString}</td>
-                    <td>$ {payers.total_contribution / 100}</td>
-                    <td>{name}</td>
-                    <td><button onClick={this.handleDelete} id={payers.transaction_id} className='btn btn-danger'>Delete</button></td>
-                  </tr>
-                  {this.state[payers.transaction_name] &&
-                    this.state.name == payers.transaction_name &&
-                    <TransactionDetails name={this.state.name} />
-                  }
-                </>
-              )
-            })
-            }
-          </tbody>
-        </table>
-        </div>}
+        <div className="animated fadeIn">
+          <table className="table">
+            <thead>
+              <tr>
+                <th scope='col'>Description</th>
+                <th scope='col'>Date</th>
+                <th scope='col'>Transaction Total</th>
+                <th scope='col'>Who Paid</th>
+                {selectedGroup.settled == 0 && <th scope='col'>Delete</th>}
+
+              </tr>
+            </thead>
+            <tbody>
+              {this.props.transactions.filter(transaction => transaction.total_contribution > 0)
+                .map((transaction, i) => {
+                  let date = new Date(transaction.date * 1000)
+                  let dateString = date.toUTCString().slice(5, 22)
+                  let name = this.getGroupMember(transaction.groupMember_id)
+                  return (
+                    <>
+                      <tr>
+                        <td><button className='btn custom-button' onClick={this.toggleTransaction} name={transaction.transaction_name}>{transaction.transaction_name}</button></td>
+                        <td>{dateString}</td>
+                        <td>$ {transaction.total_contribution / 100}</td>
+                        <td>{name}</td>
+                        {selectedGroup.settled == 0 && <td><button onClick={this.handleDelete} id={transaction.transaction_id} className='btn btn-danger'>Delete</button></td>}
+                      </tr>
+                      {this.state.openTransactions.includes(transaction.transaction_name) &&
+                        <TransactionDetails name={transaction.transaction_name} />
+                      }
+                    </ >
+                  )
+                })
+              }
+            </tbody>
+          </table>
+        </div>
       </>
     )
   }
@@ -110,6 +96,7 @@ class ViewTransactions extends React.Component {
 
 const mapStateToProps = (reduxState) => {
   return {
+    groups: reduxState.groups,
     transactions: reduxState.transactions,
     groupMembers: reduxState.groupMembers,
     activeGroup: reduxState.activeGroup
