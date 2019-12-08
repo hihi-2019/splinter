@@ -76,7 +76,6 @@ class ViewTransactions extends React.Component {
               <th scope='col'>Transaction Total</th>
               <th scope='col'>Who Paid</th>
               <th scope='col'>Delete</th>
-              <th scope='col'>Edit</th>
             </tr>
           </thead>
           <tbody>
@@ -92,7 +91,6 @@ class ViewTransactions extends React.Component {
                     <td>$ {payers.total_contribution / 100}</td>
                     <td>{name}</td>
                     <td><button onClick={this.handleDelete} id={payers.transaction_id} className='btn btn-danger'>Delete</button></td>
-                    <td><button className='btn btn-warning'>Edit</button></td>
                   </tr>
                   {this.state[payers.transaction_name] &&
                     this.state.name == payers.transaction_name &&
