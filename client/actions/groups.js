@@ -27,6 +27,7 @@ export function saveGroupMembers(members) {
 
 export function getGroupMembers(groupId) {
   return dispatch => {
+    dispatch(clearGroupMembers())
     apiGetGroupMembers(groupId)
     .then((groupMembers) => {
       dispatch(saveGroupMembers(groupMembers))
@@ -59,5 +60,11 @@ export function setActiveGroupId(group_id) {
   return{
     type: 'SET_ACTIVE_GROUP_ID',
     group_id
+  }
+}
+
+export function clearGroupMembers(){
+  return{
+    type: "CLEAR_MEMBERS",
   }
 }
