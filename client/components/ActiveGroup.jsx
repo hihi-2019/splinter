@@ -19,14 +19,26 @@ class ActiveGroup extends React.Component {
     }
   }
 
+ 
   calculateTotals = () => {
     let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
     let transactions = this.props.transactions.filter(transaction => transaction.group_id == this.props.activeGroup)
     let arr = []
+    let arrMoney = []
+    
     members.map(member => {
       arr.push(transactions.filter(transaction => transaction.groupMember_id == member.groupMember_id))
     })
-    console.log(arr)
+    
+    arr.map(memberArr => {
+      let total = 0
+      memberArr.map(memberTransaction => {
+        return total += memberTransaction.total_contribution/100
+      })
+      arrMoney.push(total)
+    })
+   
+    return arrMoney
   }
 
   toggleGroupMembers = (e) => {
@@ -79,10 +91,12 @@ class ActiveGroup extends React.Component {
                   <h2 onClick={this.toggleGroupMembers} className="subTitle">Group Members <i className="dashHeader fas fa-chevron-circle-down"></i></h2>
                   {this.state.showGroupMembers &&
                     <ul className="animated fadeIn">
-                      {members.map(member => {
-                        this.calculateTotals()
+                      
+                      {members.map((member, i )=> {
+                        let moneyArr = this.calculateTotals()
+                        console.log(moneyArr)
                         return (
-                          <li className="memberList">{member.member_name}</li>
+                          <li className="memberList">{member.member_name} $ {moneyArr[i]}</li>
                         )
                       })}
                     </ul>}
