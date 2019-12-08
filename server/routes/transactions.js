@@ -6,16 +6,20 @@ router.get('/:id', (req, res) => {
     .then(transactions => {
       res.json(transactions)
     })
+})
 
+router.get('/total/:id', (req, res) => {
   db.getTransactionTotal(req.params.id)
     .then(totals => {
       let initialValue = 0
       let sum = totals.reduce(function (accumulator, currentValue) {
         return accumulator + currentValue.transaction_total
       }, initialValue)
-      console.log(sum)
+      // res.send(sum)
+      res.json({ totalSpent: sum })
     })
 })
+
 
 module.exports = router
 router.post('/', (req, res) => {
@@ -23,7 +27,7 @@ router.post('/', (req, res) => {
   let transaction = {
     group_id: t.group_id,
     groupMember_id: t.groupMemberId,
-    transaction_total: t.transactionTotal*100,
+    transaction_total: t.transactionTotal * 100,
     transaction_name: t.transactionName,
     date: Date.now() / 1000
   }

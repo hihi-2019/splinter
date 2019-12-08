@@ -4,6 +4,7 @@ import groups from './groups'
 import groupMembers from './groupMembers'
 import activeGroup from './activeGroup'
 import transactions from './transactions'
+import transactionTotal from './transactionTotal'
 
 export default combineReducers({
 
@@ -11,6 +12,6 @@ export default combineReducers({
   groups,
   groupMembers,
   activeGroup,
-  transactions
-
+  transactions,
+  transactionTotal
 })
