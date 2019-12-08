@@ -1,19 +1,59 @@
+/*general styling*/
+
 body {
     background-color: rgb(245, 248, 255);
     color: rgb(49, 49, 49);
     font-family: 'Noto Sans', sans-serif;
 }
 
-.splinterLogo {
-font-family: 'Ubuntu', sans-serif;
-font-size: 3.8rem;
-color: white;
-}
-
 a:hover {
     color:white;
     text-decoration: none;
     transform:scale(1.02)
+}
+
+.subTitle {
+    font-size: 2.5rem;
+}
+
+.form-control {
+    background-color: #fafafa;
+}
+
+.form {
+    padding: 4rem;
+    width: 30rem;
+    background-color: rgba(255, 255, 255, 0.959);
+    border: .1rem solid darkgray;
+    border-radius: .3rem;
+    /* box-shadow: .1rem .1rem; */
+}
+
+.formTitle {
+    padding-bottom: 1rem;
+}
+
+.custom-button{
+    color: rgb(49, 49, 49);
+    border: 1px solid #37517E
+}
+
+.custom-button:hover{
+    color:white;
+    background-color: #37517E ;
+}
+
+.form-control {
+    margin-bottom: 2rem;
+}
+
+
+/*nav bar*/
+
+.splinterLogo {
+font-family: 'Ubuntu', sans-serif;
+font-size: 3.8rem;
+color: white;
 }
 
 .navbar {
@@ -34,20 +74,23 @@ a:hover {
     color: white;
 }
 
-.titleText h1 {
+.logo {
+    transform:rotate(-90deg);
+    border-radius: 50%;
+    -webkit-transition: -webkit-transform .8s ease-in-out;
+            transition:         transform .8s ease-in-out;
+}
+
+.logo:hover {
+    -webkit-transform: rotate(270deg);
+            transform: rotate(270deg);
+}
+
+
+/*landing page*/
+
+.landingPageTitle h1 {
     font-size: 4rem;
-}
-
-.activeGroupTitle {
-    font-size: 4rem;
-}
-
-.subTitle {
-    font-size: 2.5rem;
-}
-
-.inputLabel {
-    font-size: 1.5rem;
 }
 
 .landingPage {
@@ -64,42 +107,8 @@ a:hover {
     margin-right:1%;
 }
 
-.loginContainer {
-    align-content: center;
-    margin-top:5rem;
-    text-align: -webkit-center;
-}
 
-.registerContainer {
-    margin-top:5rem;
-    text-align: -webkit-center;
-}
-
-.form-control {
-    background-color: #fafafa;
-}
-
-.form {
-    padding: 4rem;
-    width: 30rem;
-    background-color: rgba(255, 255, 255, 0.959);
-    border: .1rem solid darkgray;
-    border-radius: .3rem;
-    /* box-shadow: .1rem .1rem; */
-}
-
-.signUpMessage a {
-    color: rgb(49, 49, 49);
-    text-decoration: underline;
-}
-
-.signUpMessage {
-    padding-bottom: .5rem;
-}
-
-.formTitle {
-    padding-bottom: 1rem;
-}
+/*dashboard*/
 
 .dashContent {
     padding: 2% 7%;
@@ -107,18 +116,6 @@ a:hover {
     min-height:80vh
 }
 
-.logo {
-    transform:rotate(-90deg);
-    border-radius: 50%;
-    -webkit-transition: -webkit-transform .8s ease-in-out;
-            transition:         transform .8s ease-in-out;
-}
-
-.logo:hover {
-    -webkit-transform: rotate(270deg);
-            transform: rotate(270deg);
-}
-  
 .dashNavGroups {
     list-style:none;
     align-items: left;
@@ -147,7 +144,7 @@ a:hover {
     filter: brightness(80%)
 }
 
-.dashboardNav{
+.dashboardNav {
     text-align: center;
     background-color: #37517E;
     height:90vh;
@@ -159,25 +156,56 @@ a:hover {
     
 }
 
-.custom-button{
-    color: rgb(49, 49, 49);
-    border: 1px solid #37517E
-}
 
-.custom-button:hover{
-    color:white;
-    background-color: #37517E ;
-}
+/*active group*/
 
-.form-control {
-    margin-bottom: 2rem;
-}
-
-.groupForm {
-
+.activeGroupTitle {
+    font-size: 4rem;
 }
 
 .memberList {
     list-style-image: url('icons/bear.png');
     font-size: 2rem;
 }
+
+
+/*add transaction*/
+
+.inputLabel {
+    font-size: 1.5rem;
+}
+
+
+/*log in*/
+
+.loginContainer {
+    align-content: center;
+    margin-top:5rem;
+    text-align: -webkit-center;
+}
+
+
+/*sign up*/
+
+.registerContainer {
+    margin-top:5rem;
+    text-align: -webkit-center;
+}
+
+.signUpMessage a {
+    color: rgb(49, 49, 49);
+    text-decoration: underline;
+}
+
+.signUpMessage {
+    padding-bottom: .5rem;
+}
+
+
+/*create group*/
+
+.groupForm {
+    margin-top: 2rem;
+    max-width: 40rem;
+}
+
