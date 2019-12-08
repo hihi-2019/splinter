@@ -3,6 +3,15 @@ import { connect } from 'react-redux'
 
 
 class TransactionDetails extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      display: []
+    }
+  }
+
+
+  
 
   getGroupMember = (id) => {
     return this.props.groupMembers.map(person => {
@@ -11,21 +20,18 @@ class TransactionDetails extends React.Component {
       }
     })
   }
-  componentDidMount(){
-    console.log('trans detail')
-  }
-  
+
+
 
   render() {
-    console.log(this.props.name)
     return (
 
       <>
-        {this.props.transactions.filter(transaction => transaction.transaction_name == this.props.name).map(debtors => {
+        {this.props.transactions.filter(transaction => transaction.transaction_name == this.props.name).map((debtors, i) => {
           if (debtors.total_contribution < 0) {
             return (
               <ul>
-                <li>{this.getGroupMember(debtors.groupMember_id)} owes {name}  $ {(debtors.total_contribution / 100) * -1}</li>
+                <li key={i}>{this.getGroupMember(debtors.groupMember_id)} owes {name}  $ {(debtors.total_contribution / 100) * -1}</li>
               </ul>
             )
           }
