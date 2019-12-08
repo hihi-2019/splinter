@@ -73,7 +73,6 @@ class ActiveGroup extends React.Component {
                     this.props.transactions.filter(transaction => transaction.groupMember_id == member.groupMember_id).map(memberSpent => {
                       if(member.groupMember_id == memberSpent.groupMember_id){
                         if(memberSpent.total_contribution > 0){
-                          console.log(member)
                           let numPeople = members.length
                           let percentage = (100 / numPeople) / 100
                           let payerDeduction = (memberSpent.total_contribution * percentage) / 100

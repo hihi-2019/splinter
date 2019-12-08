@@ -64,6 +64,10 @@ class ViewTransactions extends React.Component {
 
 
   render() {
+    let selectedGroup = this.props.groups.find(group => group.group_id == this.props.activeGroup) 
+    console.log(selectedGroup.settled)
+
+
     return (
       <>
         <h2 className="subTitle" onClick={this.toggleTransaction}>View All Transactions <i className="dashHeader fas fa-chevron-circle-down"></i></h2>
@@ -75,7 +79,8 @@ class ViewTransactions extends React.Component {
               <th scope='col'>Date</th>
               <th scope='col'>Transaction Total</th>
               <th scope='col'>Who Paid</th>
-              <th scope='col'>Delete</th>
+              {selectedGroup.settled == 0 && <th scope='col'>Delete</th>}
+              
             </tr>
           </thead>
           <tbody>
@@ -90,7 +95,8 @@ class ViewTransactions extends React.Component {
                     <td>{dateString}</td>
                     <td>$ {payers.total_contribution / 100}</td>
                     <td>{name}</td>
-                    <td><button onClick={this.handleDelete} id={payers.transaction_id} className='btn btn-danger'>Delete</button></td>
+                    {selectedGroup.settled == 0 && <td><button onClick={this.handleDelete} id={payers.transaction_id} className='btn btn-danger'>Delete</button></td>}
+                    
                   </tr>
                   {this.state[payers.transaction_name] &&
                     this.state.name == payers.transaction_name &&
@@ -110,6 +116,7 @@ class ViewTransactions extends React.Component {
 
 const mapStateToProps = (reduxState) => {
   return {
+    groups: reduxState.groups,
     transactions: reduxState.transactions,
     groupMembers: reduxState.groupMembers,
     activeGroup: reduxState.activeGroup
