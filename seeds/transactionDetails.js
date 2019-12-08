@@ -86,19 +86,19 @@ exports.seed = function (knex) {
             transactionDetails_id: 14,
             transaction_id: 4,
             groupMember_id: 2,
-            total_contribution: -20000,
+            total_contribution: -10000,
           },
           {
             transactionDetails_id: 15,
             transaction_id: 4,
             groupMember_id: 3,
-            total_contribution: -20000,
+            total_contribution: -10000,
           },
           {
             transactionDetails_id: 16,
             transaction_id: 4,
             groupMember_id: 4,
-            total_contribution: 40000,
+            total_contribution: 30000,
           },
         ])
       })

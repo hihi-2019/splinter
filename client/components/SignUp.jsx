@@ -36,7 +36,7 @@ class SignUp extends React.Component {
   render() {
     const { auth } = this.props
     return (
-      <div className="registerContainer">
+      <div className="registerContainer animated fadeIn">
         <div className="col-6 col-md-4">
           <form className="login-register-form" onSubmit={this.submit}>
             <h1 className='registerTitle'>Signup</h1>

@@ -1,13 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { newTransaction } from '../actions/transactions'
+import { newTransaction, deleteTransactions } from '../actions/transactions'
 
 class AddTransaction extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       transaction: {},
-      group_members: []
+      group_members: [],
+      showTransactionForm: false
     }
   }
 
@@ -26,46 +27,57 @@ class AddTransaction extends React.Component {
     })
   }
 
+  toggleTransaction = (e) => {
+    this.setState({
+      showTransactionForm: !this.state.showTransactionForm
+    })
+  }
+
   submit = (e) => {
     e.preventDefault()
     this.props.dispatch(newTransaction(this.state))
   }
 
+ 
   render() {
 
     let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
 
     return (
       <>
-        <h3>Add new transaction</h3>
+        <div className="form-content">
+          <h2 className="subTitle" onClick={this.toggleTransaction}>Add New Transaction <i className="dashHeader fas fa-chevron-circle-down"></i></h2> 
+          {this.state.showTransactionForm && 
+          <div className="animated fadeIn">
+            <form onSubmit={this.submit}>
+              <label className="inputLabel">Description</label>
+              <input className='form-control' type='text' name='transactionName' placeholder='eg. Breakfast at Tiffanys' onChange={this.updateDetails}></input>
+              <label className="inputLabel">Paid by</label>
+              <select className='form-control' name='groupMemberId' onChange={this.updateDetails}>
+                <option></option>
+                {members.map((member, i) => {
+                  return <option value={member.groupMember_id} key={i}>{member.member_name}</option>
+                })}
+              </select>
+              <label className="inputLabel">Amount $</label>
+              <input className='form-control' type='number' name='transactionTotal' placeholder='0.00' onChange={this.updateDetails}></input>
+              <div>
+                <label className="inputLabel">Split by all members?</label>
+                <input type='checkbox' name='membersOwing' defaultChecked></input>
+              </div>
+              <div>
+                <label className="inputLabel">Split cost evenly?</label>
+                <input type='checkbox' name='amountMembersOwing' defaultChecked></input>
+              </div>
+              <div>
+                <button className="btn custom-button btn-lg" type="submit" onClick={this.submit}>
+                  Add Transaction
+              </button>
+              </div>
+            </form>
+          </div>}
 
-        <form onSubmit={this.submit}>
-
-          <label>Description</label>
-          <input type='text' name='transactionName' placeholder='eg. dinner' onChange={this.updateDetails}></input>
-
-          <label>Paid by</label>
-          <select name='groupMemberId' onChange={this.updateDetails}>
-            <option></option>
-            {members.map((member, i) => {
-              return <option value={member.groupMember_id} key={i}>{member.member_name}</option>
-            })}
-          </select>
-
-          <label>Amount $</label>
-          <input type='number' name='transactionTotal' placeholder='0.00' onChange={this.updateDetails}></input>
-
-          <label>Split by all members?</label>
-          <input type='checkbox' name='membersOwing' defaultChecked></input>
-
-          <label>Split cost evenly?</label>
-          <input type='checkbox' name='amountMembersOwing' defaultChecked></input>
-
-          <button className="btn custom-button"type="submit" onClick={this.submit}>
-            Add Transaction
-          </button>
-
-        </form>
+        </div>
       </>
     )
   }
