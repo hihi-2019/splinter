@@ -48,4 +48,9 @@ router.delete('/:id', (req, res) => {
         console.log(data)))
 })
 
+router.put('/:id', (req,res) => {
+  db.settleGroup(req.params.id)
+  .then(data => res.sendStatus(200))
+})
+
 module.exports = router

@@ -26,11 +26,17 @@ function deleteMembers(groupId, db = connection){
   .then(res=>(res))
 }
 
+function settleGroup(groupId, db = connection){
+  return db('groups').where('group_id', groupId).update({settled:true})
+  .then(res=>res)
+}
+
 module.exports = {
   getGroupsByUserId,
   createNewGroup,
   getMembersByGroupId,
   createNewMember,
   deleteGroup,
-  deleteMembers
+  deleteMembers,
+  settleGroup
 }
