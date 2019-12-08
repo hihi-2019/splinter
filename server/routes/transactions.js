@@ -3,9 +3,18 @@ const db = require('../db/transactions')
 
 router.get('/:id', (req, res) => {
   db.getTransactions(req.params.id)
-  .then(transactions => {
-    res.json(transactions)
-  })
+    .then(transactions => {
+      res.json(transactions)
+    })
+
+  db.getTransactionTotal(req.params.id)
+    .then(totals => {
+      let initialValue = 0
+      let sum = totals.reduce(function (accumulator, currentValue) {
+        return accumulator + currentValue.transaction_total
+      }, initialValue)
+      console.log(sum)
+    })
 })
 
 module.exports = router
@@ -16,20 +25,20 @@ router.post('/', (req, res) => {
     groupMember_id: t.groupMemberId,
     transaction_total: t.transactionTotal,
     transaction_name: t.transactionName,
-    date: Date.now()/1000
+    date: Date.now() / 1000
   }
-  
+
   db.addTransaction(transaction)
     .then(id => {
       req.body.group_members.map(member => {
-        if(member.groupMember_id == transaction.groupMember_id){
+        if (member.groupMember_id == transaction.groupMember_id) {
           let payer = {
             transaction_id: id,
             groupMember_id: member.groupMember_id,
             total_contribution: transaction.transaction_total * 100
           }
           return db.addTransactionDetails(payer)
-        } else{
+        } else {
           let payee = {
             transaction_id: id,
             groupMember_id: member.groupMember_id,
@@ -37,10 +46,10 @@ router.post('/', (req, res) => {
           }
           return db.addTransactionDetails(payee)
         }
-        
+
       })
 
-      
+
     })
     .then(() => {
       res.send(200)
@@ -53,6 +62,8 @@ router.delete('/:id', (req, res) => {
     res.send(200)
   })
 })
+
+
 
 module.exports = router
 

@@ -32,7 +32,7 @@ exports.seed = function (knex) {
             transaction_id: 4,
             group_id: 1,
             groupMember_id: 4,
-            transaction_total: 40000,
+            transaction_total: 30000,
             transaction_name: 'Bungy jump off harbour bridge',
             date: "1575436900"
           },
@@ -40,7 +40,7 @@ exports.seed = function (knex) {
             transaction_id: 5,
             group_id: 2,
             groupMember_id: 5,
-            transaction_total: 99000,
+            transaction_total: 9900,
             transaction_name: 'Brunch at Olive',
             date: "1575436900"
           },
