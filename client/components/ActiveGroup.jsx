@@ -4,6 +4,7 @@ import Swal from 'sweetalert2'
 import { apiDeleteGroup } from '../api/groups'
 import { getGroupsByUser, setActiveGroupId } from '../actions/groups'
 
+
 import { deleteAlertMessage, deleteConfirmMessage } from '../utils/alertMessages'
 
 import AddTransaction from '../components/AddTransaction'
@@ -14,16 +15,18 @@ class ActiveGroup extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      showGroupMembers:true
+      showGroupMembers: true
     }
   }
+
+  
 
   toggleGroupMembers = (e) => {
     this.setState({
       showGroupMembers: !this.state.showGroupMembers
     })
   }
-  
+
 
   deleteGroup = (event) => {
     let group_id = event.target.id
@@ -64,31 +67,31 @@ class ActiveGroup extends React.Component {
                   </div>
                 </div>
                 <div >
-                  
-                <h2 onClick={this.toggleGroupMembers} className="subTitle">Group Members <i className="dashHeader fas fa-chevron-circle-down"></i></h2>
-                {this.state.showGroupMembers &&
-                <ul className="animated fadeIn">
-                  {members.map(member => {
-                    let total = 0
-                    this.props.transactions.filter(transaction => transaction.groupMember_id == member.groupMember_id).map(memberSpent => {
-                      if(member.groupMember_id == memberSpent.groupMember_id){
-                        if(memberSpent.total_contribution > 0){
-                          console.log(member)
-                          let numPeople = members.length
-                          let percentage = (100 / numPeople) / 100
-                          let payerDeduction = (memberSpent.total_contribution * percentage) / 100
-                          return total += (memberSpent.total_contribution/100) - payerDeduction
-                        }
-                        return total += (memberSpent.total_contribution/100)
-                      }
-                    })
-                    
-                    return (
-                      <li className="memberList">{member.member_name} ${total}</li>
-                    )
-                  })}
-                </ul>}
-                <hr></hr>
+
+                  <h2 onClick={this.toggleGroupMembers} className="subTitle">Group Members <i className="dashHeader fas fa-chevron-circle-down"></i></h2>
+                  {this.state.showGroupMembers &&
+                    <ul className="animated fadeIn">
+                      {members.map(member => {
+                        let total = 0
+                        this.props.transactions.filter(transaction => transaction.groupMember_id == member.groupMember_id).map(memberSpent => {
+                          if (member.groupMember_id == memberSpent.groupMember_id) {
+                            if (memberSpent.total_contribution > 0) {
+                              console.log(member)
+                              let numPeople = members.length
+                              let percentage = (100 / numPeople) / 100
+                              let payerDeduction = (memberSpent.total_contribution * percentage) / 100
+                              return total += (memberSpent.total_contribution / 100) - payerDeduction
+                            }
+                            return total += (memberSpent.total_contribution / 100)
+                          }
+                        })
+
+                        return (
+                          <li className="memberList">{member.member_name} ${total}</li>
+                        )
+                      })}
+                    </ul>}
+                  <hr></hr>
                 </div>
 
                 {!groups.settled ? <div>< AddTransaction />  <hr></hr></div> : <div></div>}

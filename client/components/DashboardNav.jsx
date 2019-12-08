@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { setActiveGroupId } from '../actions/groups'
-import {getTransactions} from '../actions/transactions'
+import { getTransactions } from '../actions/transactions'
 
 class DashboardNav extends React.Component {
     constructor(props) {

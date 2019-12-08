@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { createNewGroupThunk } from '../actions/groups'
+import { getTransactions } from '../actions/transactions';
 
 class CreateGroup extends React.Component {
   constructor(props) {
@@ -39,6 +40,8 @@ class CreateGroup extends React.Component {
   submit = (e) => {
     e.preventDefault()
     this.props.dispatch(createNewGroupThunk(this.state))
+    // this.props.dispatch(getTransactions(this.props.activeGroup))
+
   }
 
   deleteMember = (e) => {
@@ -61,17 +64,17 @@ class CreateGroup extends React.Component {
             <input className='form-control' required type='text' name='group_description' placeholder='eg. Great Mates Drinking Crates To Celebrate Our Old Mates Birthdate. Mate.' onChange={this.updateDetails}></input>
 
 
-          <label>Add Group Member</label>
-          <input className='form-control' required type='text' name='new_member_name' placeholder='eg. Joe' onChange={this.updateMembers} value={this.state.new_member_name}></input>
-          <div>
-          <button className="btn custom-button btn-sm" onClick={this.addMember}>Add member</button>
-          </div>
-          <ul> {this.state.members_names.map(member => {
-          return <li>{member} <button className="btn btn-dark btn-sm"name={member} onClick={this.deleteMember}>x</button></li> 
-          })}
-          </ul>
-          <button className="btn custom-button btn-lg" onClick={this.submit}>
-            Create Group
+            <label>Add Group Member</label>
+            <input className='form-control' required type='text' name='new_member_name' placeholder='eg. Joe' onChange={this.updateMembers} value={this.state.new_member_name}></input>
+            <div>
+              <button className="btn custom-button btn-sm" onClick={this.addMember}>Add member</button>
+            </div>
+            <ul> {this.state.members_names.map(member => {
+              return <li>{member} <button className="btn btn-dark btn-sm" name={member} onClick={this.deleteMember}>x</button></li>
+            })}
+            </ul>
+            <button className="btn custom-button btn-lg" onClick={this.submit}>
+              Create Group
           </button>
           </form>
         </div>
@@ -84,7 +87,8 @@ const mapStateToProps = (reduxState) => {
   return {
     auth: reduxState.auth,
     groups: reduxState.groups,
-    groupMembers: reduxState.groupMembers
+    groupMembers: reduxState.groupMembers,
+    activeGroup: reduxState.activeGroup
   }
 }
 
