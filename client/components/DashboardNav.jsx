@@ -17,7 +17,7 @@ class DashboardNav extends React.Component {
     render() {
         return (
             <>
-                <div className="dashboardNav animated fadeIn">
+                <div className="dashboardNav">
                     <div className="dashNavHeader">
                         <h4>Your Active Groups</h4>
                         <ul className="dashNavGroups">

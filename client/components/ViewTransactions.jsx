@@ -80,7 +80,7 @@ class ViewTransactions extends React.Component {
                   return (
                     <>
                       <tr>
-                        <td><button className='btn custom-button' onClick={this.toggleTransaction} name={transaction.transaction_name}>{transaction.transaction_name}</button></td>
+                        <td><button className='btn custom-button btn-block' onClick={this.toggleTransaction} name={transaction.transaction_name}>{transaction.transaction_name}</button></td>
                         <td>{dateString}</td>
                         <td>$ {transaction.total_contribution / 100}</td>
                         <td>{name}</td>
