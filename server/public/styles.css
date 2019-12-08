@@ -177,14 +177,14 @@ a:hover {
     margin-bottom: 2rem;
 }
 
-.form-content {
+/* .form-content { */
     /* padding: 2%; */
     /* border: 1px solid #37517E; */
     /* border-radius: 2rem; */
     /* -webkit-box-shadow: 9px 9px 3px 0px rgba(0,0,0,0.13);
     -moz-box-shadow: 9px 9px 3px 0px rgba(0,0,0,0.13);
     box-shadow: 9px 9px 3px 0px rgba(0,0,0,0.13); */
-}
+/* } */
 
 .memberList {
     list-style-image: url('icons/bear.png');
