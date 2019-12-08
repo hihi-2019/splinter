@@ -48,6 +48,10 @@ class ViewTransactions extends React.Component {
 
 
   render() {
+    let selectedGroup = this.props.groups.find(group => group.group_id == this.props.activeGroup)
+    console.log(selectedGroup.settled)
+
+
     return (
       <>
         <h2 className="subTitle" onClick={this.toggleTransaction}>View All Transactions <i className="dashHeader fas fa-chevron-circle-down"></i></h2>
@@ -94,6 +98,7 @@ class ViewTransactions extends React.Component {
 
 const mapStateToProps = (reduxState) => {
   return {
+    groups: reduxState.groups,
     transactions: reduxState.transactions,
     groupMembers: reduxState.groupMembers,
     activeGroup: reduxState.activeGroup
