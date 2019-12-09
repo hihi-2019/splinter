@@ -122,14 +122,23 @@ padding-left:20%
     min-height:80vh
 }
 
+
 .dashNavList {
     list-style: none;
-    align-items: left;
     list-style-type:none;
+    text-align: center;
     margin: 0;
-    padding: 2% 0 0 10%   
+    padding: 2% 0 0 0  ;
 }
 
+@media screen and (min-width:426px){
+    .dashNavList {
+        align-items: left;
+        list-style-type:none;
+        margin: 0;
+        padding: 2% 0 0 0   
+    }
+}
 .dashNavListItem:hover {
     color: white;
     transform: scale(1.02);
@@ -139,16 +148,39 @@ padding-left:20%
 
 .dashNavListItem {
     color: white;
-    padding: 4% 0 2% 0;
-    text-align: left;
+    padding: 1% 0 1% 0;
+    padding-left: 0;
     font-size: 1.15rem;
+    text-align: center;
+}
+
+@media screen and (min-width:426px){
+    .dashNavListItem {
+        color: white;
+        padding: 4% 2% 2% 10%;
+        text-align: left;
+        font-size: 1.15rem;
+       
+        
+    }
 }
 
 .dashNavHeader {
     font-size: 1.5rem;
-    padding-top: 10%;
-    padding-bottom:2%;
+    padding-top: 5%;
     color: white;
+    text-align: center;
+}
+
+@media screen and (min-width:426px){
+    .dashNavHeader {
+        font-size: 1.5rem;
+        padding-bottom:2%;
+        padding-top: 10%;
+        color: white;
+        text-align: left;
+
+    }
 }
 
 .dashNavHeader:hover {
@@ -165,12 +197,20 @@ padding-left:20%
 .dashboardNav {
     text-align: left;
     background-color: #325592;
-    padding: 2% 2% 2% 18%;
-     /* -webkit-box-shadow: 9px 9px 3px 3px rgba(0,0,0,0.13);
-    -moz-box-shadow: 9px 9px 3px 0px rgba(0,0,0,0.13);
-    box-shadow: 9px 9px 3px 3px rgba(0,0,0,0.13); */
-    height: 90vh;
+    padding: 1% 0 1% 0;
+    min-height: 100%;
 }
+
+@media screen and (min-width:426px){
+    .dashboardNav {
+        text-align: left;
+        background-color: #325592;
+        padding: 2% 2% 2% 18%;
+        min-height: 90vh
+    } 
+}
+
+
 
 
 /*active group*/
