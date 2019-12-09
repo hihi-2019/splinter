@@ -5,28 +5,28 @@ const database = require('knex')(config)
 const db = require('../../../server/db/users')
 
 
+test('getUserByEmail finds existing user', () => {
+  let expected = 'Alice'
 
-test('getUserByEmail returns the user email', () => {
-  const expected = "alsford"
-
-  return db.getUserByEmail("aliceiscool@yahoo.com")
+  return db.getUserByEmail('aliceiscool@yahoo.com')
     .then(user => {
       console.log(user)
-      const actual = user.email
+      let actual = user.first_name
 
-      expect(actual).toMatch("aliceiscool@yahoo.com")
+      expect(actual).toEqual(expected)
     })
 })
 
 
-test('userExists checks to see if the user is already in the db', () => {
-  const expected = true
 
-  return db.userExists("aliceiscool@yahoo.com")
-    .then(user => {
-      console.log(user)
-      const actual = user
-      expect(actual).toBe(expected)
+test('userExists finds existing user', () => {
+  let expected = true
+
+  return db.userExists('aliceiscool@yahoo.com')
+    .then(result => {
+      
+      let actual = result
+
+      expect(actual).toEqual(expected)
     })
-
 })
