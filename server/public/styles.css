@@ -124,7 +124,7 @@ color: white;
     padding: 2% 0 0 10%   
 }
 
-.dashLink:hover {
+.dashNavListItem:hover {
     color: white;
     transform: scale(1.02);
     filter: brightness(80%);
