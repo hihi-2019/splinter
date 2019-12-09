@@ -1,7 +1,8 @@
-const config = require('../../knexfile').test
+const config = require('../../../knexfile').test
 const database = require('knex')(config)
 
-const db = require('../../server/db/groups')
+const db = require('../../../server/db/groups')
+
 
 beforeAll(()=> {
   return database.migrate.latest()
@@ -80,19 +81,21 @@ test('deleteGroup deletes the group and returns id of deleted group', () => {
 
   return db.deleteGroup(3, database)
     .then(group => {
-      const actual = group.length
+      const actual = group
 
       expect(actual).toEqual(expected)
     })
 })
 
 test('deleteMembers deletes the member and returns id of deleted member', () => {
-  const expected = 1
+  const expected = 4
 
-  return db.deleteMembers(10, database)
+  return db.deleteMembers(3, database)
     .then(member => {
-      const actual = member.length
+      const actual = member
       
       expect(actual).toEqual(expected)
     })
 })
+
+

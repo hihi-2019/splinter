@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { newTransaction, deleteTransactions } from '../actions/transactions'
-import { thisTypeAnnotation } from '@babel/types'
 
 class AddTransaction extends React.Component {
   constructor(props) {
@@ -36,15 +35,14 @@ class AddTransaction extends React.Component {
   }
 
   submit = (e) => {
+    console.log(this.state)
     e.preventDefault()
    
-
     if (this.state.transaction.transactionName == "" || !this.state.transaction.groupMemberId ) {
       this.setState({
         error: true
       })
     } else {
-      console.log(this.state)
       this.props.dispatch(newTransaction(this.state))
       this.setState({
         error: false
