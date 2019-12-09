@@ -1,17 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { setActiveGroupId } from '../actions/groups'
-import { getTransactions } from '../actions/transactions'
+import {getTransactions, getTransactionTotal} from '../actions/transactions'
 
 class DashboardNav extends React.Component {
     constructor(props) {
         super(props)
-
     }
 
     changeGroup = (event) => {
         this.props.dispatch(setActiveGroupId(event.target.id))
         this.props.dispatch(getTransactions(event.target.id))
+        this.props.dispatch(getTransactionTotal(event.target.id))
     }
 
     render() {
@@ -54,7 +54,8 @@ const mapStateToProps = (reduxState) => {
 
         groups: reduxState.groups,
         activeGroup: reduxState.activeGroup,
-        transactions: reduxState.transactions
+        transactions: reduxState.transactions,
+        transactionTotal: reduxState.tra
     }
 }
 

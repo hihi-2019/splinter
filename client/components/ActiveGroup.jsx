@@ -2,10 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Swal from 'sweetalert2'
 import { apiDeleteGroup } from '../api/groups'
-import { getGroupsByUser, setActiveGroupId } from '../actions/groups'
+import { getGroupsByUser, setActiveGroupId, settleGroupThunk } from '../actions/groups'
+import {getTransactionTotal} from '../actions/transactions'
 
-
-import { deleteAlertMessage, deleteConfirmMessage } from '../utils/alertMessages'
+import { deleteAlertMessage, deleteConfirmMessage, settleGroupMessage, settleConfirmMessage } from '../utils/alertMessages'
 
 import AddTransaction from '../components/AddTransaction'
 import ViewTransactions from '../components/ViewTransactions'
@@ -63,7 +63,14 @@ class ActiveGroup extends React.Component {
 
   settleDebt = (event) => {
     let group_id = event.target.name
+    Swal.fire(settleGroupMessage).then((result) => {
+      if (result.value) {
+        this.props.dispatch(settleGroupThunk(group_id, this.props.auth.user.user_id))
+        Swal.fire(settleConfirmMessage)
+      }
+    })
   }
+
 
 
   render() {
@@ -76,15 +83,15 @@ class ActiveGroup extends React.Component {
             <div className="">
               {groups && <>
                 <div className="row">
-                  <div className="col-9">
+                  <div className="col-lg-9 col-sm-12">
                     <h1 className="activeGroupTitle">{groups.group_name}</h1>
                     <h3 style={{ fontStyle: "italic" }}>{groups.group_description}</h3>
-                    <h3>Total spent to date: $ PLACEHOLDER</h3>
-                    <button className="btn custom-button btn-lg">Settle Debts for {groups.group_name}</button>
+                    <h3>Total spent to date: $ {this.props.transactionTotal.totalSpent / 100} </h3>
+                    {!groups.settled && <button name={groups.group_id} onClick={this.settleDebt} className="btn custom-button btn-lg">Settle Debts for {groups.group_name}</button>}
 
                     <hr></hr>
                   </div>
-                  <div className="col-3">
+                  <div className="col-lg-3 col-sm-12">
                     <button id={groups.group_id} name={groups.group_name} className="btn btn-danger" onClick={this.deleteGroup}>Delete {groups.group_name}</button>
                   </div>
                 </div>
@@ -122,7 +129,8 @@ const mapStateToProps = (reduxState) => {
     activeGroup: reduxState.activeGroup,
     groupMembers: reduxState.groupMembers,
     auth: reduxState.auth,
-    transactions: reduxState.transactions
+    transactions: reduxState.transactions,
+    transactionTotal: reduxState.transactionTotal
   }
 }
 

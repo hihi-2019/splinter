@@ -26,10 +26,15 @@ function deleteTransactionDetails(id, db=database){
   return db('transactionDetails').where('transaction_id', id).delete()
 }
 
+function getTransactionTotal(groupId, db = database){
+  return db('transactions').where('group_id', groupId).select('transaction_total')
+}
+
 module.exports = {
   addTransaction,
   getTransactions,
   addTransactionDetails,
   deleteTransactions,
-  deleteTransactionDetails
+  deleteTransactionDetails,
+  getTransactionTotal
 }
