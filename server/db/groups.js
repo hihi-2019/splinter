@@ -18,12 +18,12 @@ function createNewMember(memberDetails, db = connection) {
 }
 
 function deleteGroup(groupId, db = connection){
-  return db('groups').where('group_id', groupId).del().then(res=>(res))
+  return db('groups').where('group_id', groupId).del()
 }
 
 function deleteMembers(groupId, db = connection){
   return db('groupMembers').where('group_id', groupId).del()
-  .then(res=>(res))
+  
 }
 
 function settleGroup(groupId, db = connection){
