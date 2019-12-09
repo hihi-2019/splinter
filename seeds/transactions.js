@@ -32,7 +32,7 @@ exports.seed = function (knex) {
             transaction_id: 4,
             group_id: 1,
             groupMember_id: 4,
-            transaction_total: 30000,
+            transaction_total: 40000,
             transaction_name: 'Bungy jump off harbour bridge',
             date: "1575436900"
           },
