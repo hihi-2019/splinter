@@ -37,13 +37,14 @@ class AddTransaction extends React.Component {
 
   submit = (e) => {
     e.preventDefault()
-    console.log(this.state.transaction)
+   
 
-    if (this.state.transaction.transactionName == "") {
+    if (this.state.transaction.transactionName == "" || !this.state.transaction.groupMemberId ) {
       this.setState({
         error: true
       })
     } else {
+      console.log(this.state)
       this.props.dispatch(newTransaction(this.state))
       this.setState({
         error: false
