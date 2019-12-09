@@ -17,6 +17,8 @@ export function saveTransactions(transactions) {
 }
 
 export function getTransactions(group_id) {
+  console.log("group id", group_id)
+ 
   return dispatch => {
     ApiGetTransactions(group_id)
       .then(transactions => {

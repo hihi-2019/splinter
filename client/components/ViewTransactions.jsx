@@ -29,9 +29,10 @@ class ViewTransactions extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.props.dispatch(getTransactions(Number(this.props.activeGroup[0])))
-  }
+  // componentDidMount() {
+  //   console.log("number", Number(this.props.activeGroup[0]))
+  //   this.props.dispatch(getTransactions(Number(this.props.activeGroup[0])))
+  // }
 
   getGroupMember = (id) => {
     return this.props.groupMembers.map(person => {
