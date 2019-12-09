@@ -7,7 +7,7 @@ exports.seed = function (knex) {
         {
           group_id: 1,
           group_name: 'Auckland Trip',
-          group_description: 'Family trip away to Auckland for Cousin Jennys Wedding',
+          group_description: "Family trip away to Auckland for Cousin Jenny's Wedding",
           user_id: 1,
           settled: false
         },
