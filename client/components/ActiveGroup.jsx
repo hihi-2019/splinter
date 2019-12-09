@@ -66,7 +66,7 @@ class ActiveGroup extends React.Component {
                   <div className="col-lg-9 col-sm-12">
                     <h1 className="activeGroupTitle">{groups.group_name}</h1>
                     <h3 style={{ fontStyle: "italic" }}>{groups.group_description}</h3>
-                    <h3>Total spent to date: $ {this.props.transactionTotal.totalSpent / 100} </h3>
+                    <h3>Total spent to date: $ {this.props.transactionTotal.totalSpent ? this.props.transactionTotal.totalSpent / 100 : 0} </h3>
                     {!groups.settled && <button name={groups.group_id} onClick={this.settleDebt} className="btn custom-button btn-lg">Settle Debts for {groups.group_name}</button>}
 
                     <hr></hr>
