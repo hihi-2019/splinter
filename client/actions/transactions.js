@@ -1,4 +1,4 @@
-import { createNewTransaction, ApiGetTransactions, ApiDeleteTransactions } from '../api/transactions'
+import { createNewTransaction, ApiGetTransactions, ApiDeleteTransactions, ApiTransactionTotal } from '../api/transactions'
 
 export function newTransaction(transactionData) {
   return dispatch => {
@@ -31,5 +31,22 @@ export function deleteTransactions(id, groupId) {
       .then(() => {
         dispatch(getTransactions(groupId))
       })
+  }
+}
+
+export function getTransactionTotal(group_id) {
+  return dispatch => {
+    ApiTransactionTotal(group_id)
+    .then((total) => {
+      // console.log(total)
+      dispatch(saveTransactionTotal(total))
+    })
+  }
+}
+
+export function saveTransactionTotal(total) {
+  return {
+    type: 'SAVE_TRANSACTION_TOTAL',
+    total
   }
 }

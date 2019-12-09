@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Swal from 'sweetalert2'
 import { apiDeleteGroup } from '../api/groups'
 import { getGroupsByUser, setActiveGroupId, settleGroupThunk } from '../actions/groups'
+import {getTransactionTotal} from '../actions/transactions'
 
 import { deleteAlertMessage, deleteConfirmMessage, settleGroupMessage, settleConfirmMessage } from '../utils/alertMessages'
 
@@ -17,6 +18,8 @@ class ActiveGroup extends React.Component {
       showGroupMembers: true
     }
   }
+
+  
 
   toggleGroupMembers = (e) => {
     this.setState({
@@ -63,8 +66,8 @@ class ActiveGroup extends React.Component {
                   <div className="col-lg-9 col-sm-12">
                     <h1 className="activeGroupTitle">{groups.group_name}</h1>
                     <h3 style={{ fontStyle: "italic" }}>{groups.group_description}</h3>
-                    <h3>Total spent to date: $ PLACEHOLDER</h3>
-                    {!groups.settled && <button name={groups.group_id} onClick={this.settleDebt} className="btn btn-outline-success btn-md">Settle debts for {groups.group_name}</button>}
+                    <h3>Total spent to date: $ {this.props.transactionTotal.totalSpent / 100} </h3>
+                    {!groups.settled && <button name={groups.group_id} onClick={this.settleDebt} className="btn btn-outline-success btn-md">Settle Debts for {groups.group_name}</button>}
 
                     <hr></hr>
                   </div>
@@ -118,7 +121,8 @@ const mapStateToProps = (reduxState) => {
     activeGroup: reduxState.activeGroup,
     groupMembers: reduxState.groupMembers,
     auth: reduxState.auth,
-    transactions: reduxState.transactions
+    transactions: reduxState.transactions,
+    transactionTotal: reduxState.transactionTotal
   }
 }
 

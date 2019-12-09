@@ -40,7 +40,7 @@ exports.seed = function (knex) {
             transaction_id: 5,
             group_id: 2,
             groupMember_id: 5,
-            transaction_total: 99000,
+            transaction_total: 9900,
             transaction_name: 'Brunch at Olive',
             date: "1575436900"
           },
