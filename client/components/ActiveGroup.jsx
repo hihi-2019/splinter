@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Swal from 'sweetalert2'
 import { apiDeleteGroup } from '../api/groups'
 import { getGroupsByUser, setActiveGroupId, settleGroupThunk } from '../actions/groups'
-import {getTransactionTotal} from '../actions/transactions'
+import { getTransactionTotal } from '../actions/transactions'
 
 import { deleteAlertMessage, deleteConfirmMessage, settleGroupMessage, settleConfirmMessage } from '../utils/alertMessages'
 
@@ -82,23 +82,21 @@ class ActiveGroup extends React.Component {
           {this.props.activeGroup ?
             <div className="">
               {groups && <>
-                <div className="row">
-                  <div className="col-lg-9 col-sm-12">
-                    <h1 className="activeGroupTitle">{groups.group_name}</h1>
 
-                    <h3 className="activeGroupSubtitle" style={{ fontStyle: "italic" }}>{groups.group_description}</h3>
-                    <h3>Your total spent to date for this trip is $ {this.props.transactionTotal.totalSpent ? this.props.transactionTotal.totalSpent / 100 : 0} </h3>
-                    {!groups.settled && <button name={groups.group_id} onClick={this.settleDebt} className="settleGroup btn btn-outline-success btn-md">Settle Debts for {groups.group_name}</button>}
+                <div className="">
+                  <h1 className="activeGroupTitle">{groups.group_name}</h1>
 
+                  <h3 className="activeGroupSubtitle" style={{ fontStyle: "italic" }}>{groups.group_description}</h3>
+                  <h3>Total spend is ${this.props.transactionTotal.totalSpent ? this.props.transactionTotal.totalSpent / 100 : 0} </h3>
 
-                    <hr></hr>
-                  </div>
-                  <div className="col-lg-3 col-sm-12">
-                    <button id={groups.group_id} name={groups.group_name} className="deleteGroup btn btn-outline-danger btn-md" onClick={this.deleteGroup}>Delete {groups.group_name}</button>
-                  </div>
                 </div>
+                
+                    {!groups.settled && <button name={groups.group_id} onClick={this.settleDebt} className="settleGroup btn btn-outline-success btn-md">Settle Debts</button>}
+                    <button id={groups.group_id} name={groups.group_name} className="settleGroup btn btn-outline-danger btn-md" onClick={this.deleteGroup}>Delete Group</button>
+                 
+                  
                 <div >
-
+                  <hr></hr>
                   <h2 onClick={this.toggleGroupMembers} className="subTitle">Group Members <i className="dashHeader fas fa-chevron-circle-down"></i></h2>
                   {this.state.showGroupMembers &&
                     <ul className="animated fadeIn">

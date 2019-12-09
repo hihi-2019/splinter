@@ -16,15 +16,15 @@ router.post('/', (req, res) => {
     group_description: req.body.group_description,
     settled: req.body.settled
   }
+  let newGroupId
   db.createNewGroup(newGroup)
     .then(groupId => {
-      req.body.members_names.map(member => {
+      newGroupId = groupId
+      return Promise.all(req.body.members_names.map(member => {
         return db.createNewMember({ group_id: groupId[0], member_name: member })
-          .then(memberId => {
-            res.sendStatus(200)
-          })
-      })
-      res.json(groupId)
+      }))
+    }).then(() => {
+      res.json(newGroupId)
     })
 
 })

@@ -21,7 +21,6 @@ router.get('/total/:id', (req, res) => {
 })
 
 
-module.exports = router
 router.post('/', (req, res) => {
   let t = req.body.transaction
   console.log(req.body)
@@ -30,7 +29,7 @@ router.post('/', (req, res) => {
     groupMember_id: t.groupMemberId,
     transaction_total: t.transactionTotal * 100,
     transaction_name: t.transactionName,
-    date: Date.now() / 1000
+    date: Math.floor(Date.now() / 1000)
   }
 
   db.addTransaction(transaction)
@@ -54,13 +53,14 @@ router.post('/', (req, res) => {
           }
           return db.addTransactionDetails(payee)
         }
-
       })
-
-
     })
     .then(() => {
       res.send(200)
+    })
+    .catch((err) => {
+      console.log(err)
+      res.send(500)
     })
 })
 

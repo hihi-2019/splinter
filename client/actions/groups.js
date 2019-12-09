@@ -1,4 +1,5 @@
 import { apiGetGroupMembers, apiCreateNewGroup, apiGetGroupsByUser, apiSettleGroup } from '../api/groups'
+import { getTransactions } from './transactions'
 
 export function saveGroupsByUser(groups) {
   return {
@@ -45,11 +46,14 @@ export function createNewGroupThunk(groupDetails) {
   return dispatch => {
     apiCreateNewGroup(groupDetails)
     .then((res) => {
+      
       dispatch(getGroupsByUser(groupDetails.user_id))
       return res
     })
     .then(res => {
       let group_id = JSON.stringify(res[0])
+      console.log(group_id)
+      dispatch(getTransactions(group_id))
       dispatch(setActiveGroupId(group_id))
     } )
   }
