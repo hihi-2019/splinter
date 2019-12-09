@@ -95,7 +95,6 @@ class ActiveGroup extends React.Component {
                     <ul className="animated fadeIn">
                       {members.map((member, i )=> {
                         let moneyArr = this.calculateTotals()
-                        console.log(moneyArr)
                         return (
                           <li className="memberList">{member.member_name} $ {moneyArr[i]}</li>
                           )

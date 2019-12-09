@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getTransactions } from '../actions/transactions';
-import { createNewGroupThunk, clearGroupMembers } from '../actions/groups'
+import { createNewGroupThunk } from '../actions/groups'
 
 class CreateGroup extends React.Component {
   constructor(props) {

@@ -1,7 +1,7 @@
 import { createNewTransaction, ApiGetTransactions, ApiDeleteTransactions } from '../api/transactions'
 
 export function newTransaction(transactionData) {
-  console.log(transactionData.transaction.group_id)
+  console.log(transactionData)
   return dispatch => {
     createNewTransaction(transactionData)
       .then(() => {

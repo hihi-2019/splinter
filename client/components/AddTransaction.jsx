@@ -1,32 +1,73 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { newTransaction, deleteTransactions } from '../actions/transactions'
-import { thisTypeAnnotation } from '@babel/types'
+
 
 class AddTransaction extends React.Component {
   constructor(props) {
     super(props)
+    let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
     this.state = {
       transaction: {},
-      group_members: [],
+      group_members: members,
       showTransactionForm: false,
-      error: false
+      error: false,
+      checked: true,
+      selectedMember: []
     }
   }
 
-  updateDetails = (e) => {
+  handleCheck = () => {
+    if(this.state.checked){
+      this.setState({
+        checked: false,
+        group_members: this.state.selectedMember
+      })
+    } else{
+      this.setState({
+        checked: true,
+        group_members: this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
+      })
+    }
+}
+  handlePayerChange = (e) => {
+    let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
+    let selectedMem = members.filter(member => member.groupMember_id == e.target.value)
     this.setState({
-      group_members: this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
+      selectedMember: selectedMem
     })
+    selectedMem.map(selMember => {
+      let count = 0
+      this.state.group_members.map(member => {
+        if(selMember.groupMember_id == member.groupMember_id){
+          return count ++
+        }
+      })
+      if(count ==0){
+        this.state.group_members.push(selectedMember[0])
+      }
+    })
+    console.log(this.state)
+  }
 
+  updateDetails = (e) => {
     this.setState({
       transaction: {
         ...this.state.transaction,
         [e.target.name]: e.target.value,
         group_id: this.props.activeGroup,
+      },
+      
 
-      }
     })
+  }
+
+  handlePayees = (e) => {
+    let selectedMember = this.props.groupMembers.filter(member => member.group_id == this.props.activeGroup && member.member_name == e.target.value)
+    this.setState({
+      group_members: [...this.state.group_members, selectedMember[0]]
+    })
+    console.log(this.state)
   }
 
   toggleTransaction = (e) => {
@@ -37,8 +78,6 @@ class AddTransaction extends React.Component {
 
   submit = (e) => {
     e.preventDefault()
-    console.log(this.state.transaction)
-
     if (this.state.transaction.transactionName == "") {
       this.setState({
         error: true
@@ -56,9 +95,7 @@ class AddTransaction extends React.Component {
 
 
   render() {
-
     let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
-
     return (
       <>
         <div className="form-content">
@@ -69,9 +106,10 @@ class AddTransaction extends React.Component {
                 <label className="inputLabel" >Description</label>
                 <input className='form-control' type='text' name='transactionName' placeholder='eg. Breakfast at Tiffanys' onChange={this.updateDetails}></input>
                 <label className="inputLabel">Paid by</label>
-                <select className='form-control' name='groupMemberId' onChange={this.updateDetails}>
-                  <option></option>
+                <select className='form-control' name='groupMemberId' onChange={this.updateDetails} onClick={this.handlePayerChange}>
+                <option>Select Member</option>
                   {members.map((member, i) => {
+                     
                     return <option value={member.groupMember_id} key={i}>{member.member_name}</option>
                   })}
                 </select>
@@ -79,7 +117,24 @@ class AddTransaction extends React.Component {
                 <input className='form-control' type='number' name='transactionTotal' placeholder='0.00' onChange={this.updateDetails} ></input>
                 <div>
                   <label className="inputLabel">Split by all members?</label>
-                  <input type='checkbox' name='membersOwing' defaultChecked></input>
+                  <input type='checkbox' name='membersOwing' checked={this.state.checked} onChange={this.handleCheck}></input>
+                  {!this.state.checked &&
+                  <>
+                    <select onChange={this.handlePayees} >
+                    <option>Select Member</option>
+                      {members.map(member => {
+                        return <option value={member.member_name}>{member.member_name}</option>
+                      })}
+                    </select>
+                    {this.state.group_members.map((member, i) => {
+                      if(i !== 0){
+                        return <p>{member.member_name}</p>
+                      }
+                      
+                    })}
+                    
+                    </>
+                  }
                 </div>
                 <div>
                   <label className="inputLabel">Split cost evenly?</label>
