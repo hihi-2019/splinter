@@ -20,7 +20,7 @@ class Nav extends React.Component {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ml-auto" style={{ 'paddingRight': 50 + 'px' }}>
 
-                            <li className="nav-item navListItems"><Link to='/about' className="nav-link">About</Link></li>
+                            {/* <li className="nav-item navListItems"><Link to='/about' className="nav-link">About</Link></li> */}
                             {this.props.auth.isAuthenticated ?
                                 <li className="nav-item navListItems"><Link to='/' className="nav-link" onClick={() => [this.props.logout(),location.reload(true)]}>Logout</Link></li> :
                                 [<li className="nav-item navListItems" ><Link className="nav-link" to='/signup'>Signup</Link></li>,
