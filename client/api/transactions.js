@@ -21,3 +21,9 @@ export function ApiDeleteTransactions(id) {
     then(() => { }
     )
 }
+
+export function ApiTransactionTotal(groupId) {
+  return request
+  .get(url + '/total/' + groupId)
+  .then(res => res.body)
+}

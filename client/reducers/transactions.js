@@ -12,3 +12,4 @@ export default function createNewTransaction (state = initialState, action) {
         return state
   }
 }
+
