@@ -6,7 +6,7 @@ function getGroupsByUserId(id, db = connection) {
 }
 
 function createNewGroup(groupDetails, db = connection) {
-  return db('groups').insert(groupDetails)
+  return db('groups').insert(groupDetails, "group_id")
 }
 
 function getMembersByGroupId(groupId, db = connection) {
@@ -18,12 +18,17 @@ function createNewMember(memberDetails, db = connection) {
 }
 
 function deleteGroup(groupId, db = connection){
-  return db('groups').where('group_id', groupId).del().then(res=>(res))
+  return db('groups').where('group_id', groupId).del()
 }
 
 function deleteMembers(groupId, db = connection){
   return db('groupMembers').where('group_id', groupId).del()
-  .then(res=>(res))
+  
+}
+
+function settleGroup(groupId, db = connection){
+  return db('groups').where('group_id', groupId).update({settled:true})
+  .then(res=>res)
 }
 
 module.exports = {
@@ -32,5 +37,6 @@ module.exports = {
   getMembersByGroupId,
   createNewMember,
   deleteGroup,
-  deleteMembers
+  deleteMembers,
+  settleGroup
 }

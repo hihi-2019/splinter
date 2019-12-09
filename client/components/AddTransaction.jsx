@@ -8,7 +8,8 @@ class AddTransaction extends React.Component {
     this.state = {
       transaction: {},
       group_members: [],
-      showTransactionForm: false
+      showTransactionForm: false,
+      error: false
     }
   }
 
@@ -34,11 +35,25 @@ class AddTransaction extends React.Component {
   }
 
   submit = (e) => {
+    console.log(this.state)
     e.preventDefault()
-    this.props.dispatch(newTransaction(this.state))
+   
+    if (this.state.transaction.transactionName == "" || !this.state.transaction.groupMemberId ) {
+      this.setState({
+        error: true
+      })
+    } else {
+      this.props.dispatch(newTransaction(this.state))
+      this.setState({
+        error: false
+      })
+    }
+
+
+
   }
 
- 
+
   render() {
 
     let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
@@ -49,9 +64,9 @@ class AddTransaction extends React.Component {
           <h2 className="subTitle" onClick={this.toggleTransaction}>Add New Transaction <i className="dashHeader fas fa-chevron-circle-down"></i></h2> 
           {this.state.showTransactionForm && 
           <div className="animated fadeIn">
-            <form onSubmit={this.submit}>
+            <form className="" onSubmit={this.submit}>
               <label className="inputLabel">Description</label>
-              <input className='form-control' type='text' name='transactionName' placeholder='eg. Breakfast at Tiffanys' onChange={this.updateDetails}></input>
+              <input className='form-control' type='text' name='transactionName' placeholder="eg. Breakfast at Tiffany's" onChange={this.updateDetails}></input>
               <label className="inputLabel">Paid by</label>
               <select className='form-control' name='groupMemberId' onChange={this.updateDetails}>
                 <option></option>
@@ -73,9 +88,10 @@ class AddTransaction extends React.Component {
                 <button className="btn custom-button btn-lg" type="submit" onClick={this.submit}>
                   Add Transaction
               </button>
-              </div>
-            </form>
-          </div>}
+                </div>
+              </form>
+              {this.state.error == true && <p style={{ color: "red" }}>Please fill in all the details in the form</p>}
+            </div>}
 
         </div>
       </>

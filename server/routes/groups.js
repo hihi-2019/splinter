@@ -16,15 +16,15 @@ router.post('/', (req, res) => {
     group_description: req.body.group_description,
     settled: req.body.settled
   }
+  let newGroupId
   db.createNewGroup(newGroup)
     .then(groupId => {
-      req.body.members_names.map(member => {
+      newGroupId = groupId
+      return Promise.all(req.body.members_names.map(member => {
         return db.createNewMember({ group_id: groupId[0], member_name: member })
-          .then(memberId => {
-            console.log(memberId)
-          })
-      })
-      res.json(groupId)
+      }))
+    }).then(() => {
+      res.json(newGroupId)
     })
 
 })
@@ -37,15 +37,20 @@ router.get('/members/:id', (req, res) => {
 
 router.delete('/members/:id', (req, res) => {
   db.deleteMembers(req.params.id)
-    .then(data => console.log(data))
+    .then(data => res.sendStatus(200))
 })
 
 router.delete('/:id', (req, res) => {
   db.deleteGroup(req.params.id)
     .then(db.deleteMembers(req.params.id))
-    .then(
+    .then
       (data =>
-        console.log(data)))
+        res.sendStatus(200))
+})
+
+router.put('/:id', (req,res) => {
+  db.settleGroup(req.params.id)
+  .then(data => res.sendStatus(200))
 })
 
 module.exports = router

@@ -2,9 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Swal from 'sweetalert2'
 import { apiDeleteGroup } from '../api/groups'
-import { getGroupsByUser, setActiveGroupId } from '../actions/groups'
+import { getGroupsByUser, setActiveGroupId, settleGroupThunk } from '../actions/groups'
+import { getTransactionTotal, saveTransactionTotal } from '../actions/transactions'
 
-import { deleteAlertMessage, deleteConfirmMessage } from '../utils/alertMessages'
+import { deleteAlertMessage, deleteConfirmMessage, settleGroupMessage, settleConfirmMessage } from '../utils/alertMessages'
 
 import AddTransaction from '../components/AddTransaction'
 import ViewTransactions from '../components/ViewTransactions'
@@ -17,6 +18,8 @@ class ActiveGroup extends React.Component {
       showGroupMembers: true
     }
   }
+
+
 
   toggleGroupMembers = (e) => {
     this.setState({
@@ -34,14 +37,20 @@ class ActiveGroup extends React.Component {
             Swal.fire(deleteConfirmMessage))
         this.props.dispatch(getGroupsByUser(this.props.auth.user.user_id))
         this.props.dispatch(setActiveGroupId(''))
-
       }
     })
   }
 
   settleDebt = (event) => {
     let group_id = event.target.name
+    Swal.fire(settleGroupMessage).then((result) => {
+      if (result.value) {
+        this.props.dispatch(settleGroupThunk(group_id, this.props.auth.user.user_id))
+        Swal.fire(settleConfirmMessage)
+      }
+    })
   }
+
 
 
   render() {
@@ -53,22 +62,24 @@ class ActiveGroup extends React.Component {
           {this.props.activeGroup ?
             <div className="">
               {groups && <>
-                <div className="row">
-                  <div className="col-9">
-                    <h1 className="activeGroupTitle">{groups.group_name}</h1>
-                    <h3 style={{ fontStyle: "italic" }}>{groups.group_description}</h3>
 
-                    <hr></hr>
-                  </div>
-                  <div className="col-3">
-                    <button id={groups.group_id} name={groups.group_name} className="btn btn-danger" onClick={this.deleteGroup}>Delete {groups.group_name}</button>
-                  </div>
+                <div className="">
+                  <h1 className="activeGroupTitle">{groups.group_name}</h1>
+
+                  <h3 className="activeGroupSubtitle" style={{ fontStyle: "italic" }}>{groups.group_description}</h3>
+                  <h3>Total spend is ${this.props.transactionTotal.totalSpent ? this.props.transactionTotal.totalSpent / 100 : 0} </h3>
+
                 </div>
+                
+                    {!groups.settled && <button name={groups.group_id} onClick={this.settleDebt} className="settleGroup btn btn-outline-success btn-md">Settle Debts</button>}
+                    <button id={groups.group_id} name={groups.group_name} className="settleGroup btn btn-outline-danger btn-md" onClick={this.deleteGroup}>Delete Group</button>
+                 
+                  
                 <div >
-
+                  <hr></hr>
                   <h2 onClick={this.toggleGroupMembers} className="subTitle">Group Members <i className="dashHeader fas fa-chevron-circle-down"></i></h2>
                   {this.state.showGroupMembers &&
-                    <ul className="animated fadeIn">
+                    <ul className="membersList animated fadeIn">
                       {members.map(member => {
                         let total = 0
                         this.props.transactions.filter(transaction => transaction.groupMember_id == member.groupMember_id).map(memberSpent => {
@@ -84,7 +95,7 @@ class ActiveGroup extends React.Component {
                         })
 
                         return (
-                          <li className="memberList">{member.member_name} ${total}</li>
+                          <li className="membersListItem"><p>{member.member_name}</p><p className="memberbalance">${total}</p></li>
                         )
                       })}
                     </ul>}
@@ -110,7 +121,8 @@ const mapStateToProps = (reduxState) => {
     activeGroup: reduxState.activeGroup,
     groupMembers: reduxState.groupMembers,
     auth: reduxState.auth,
-    transactions: reduxState.transactions
+    transactions: reduxState.transactions,
+    transactionTotal: reduxState.transactionTotal
   }
 }
 

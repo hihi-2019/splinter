@@ -3,14 +3,21 @@ import { connect } from 'react-redux'
 import { getTransactions, deleteTransactions } from '../actions/transactions'
 import TransactionDetails from './TransactionDetails'
 import Swal from 'sweetalert2';
-import { deleteTransactionMessage, deleteTransactionConfirmMessage } from '../utils/alertMessages';
+import { deleteTransactionMessage } from '../utils/alertMessages';
 
 class ViewTransactions extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      openTransactions: []
+      openTransactions: [],
+      viewAllTransactions: false
     }
+  }
+
+  viewAllTransactions = (e) => {
+    this.setState({
+      viewAllTransactions: !this.state.viewAllTransactions
+    })
   }
 
   toggleTransaction = (e) => {
@@ -22,9 +29,10 @@ class ViewTransactions extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.props.dispatch(getTransactions(Number(this.props.activeGroup[0])))
-  }
+  // componentDidMount() {
+  //   console.log("number", Number(this.props.activeGroup[0]))
+  //   this.props.dispatch(getTransactions(Number(this.props.activeGroup[0])))
+  // }
 
   getGroupMember = (id) => {
     return this.props.groupMembers.map(person => {
@@ -49,11 +57,10 @@ class ViewTransactions extends React.Component {
   render() {
     let selectedGroup = this.props.groups.find(group => group.group_id == this.props.activeGroup)
 
-
     return (
       <>
-        <h2 className="subTitle" onClick={this.toggleTransaction}>View All Transactions <i className="dashHeader fas fa-chevron-circle-down"></i></h2>
-        <div className="animated fadeIn">
+        <h2 className="subTitle" onClick={this.viewAllTransactions}>View All Transactions <i className="dashHeader fas fa-chevron-circle-down"></i></h2>
+        {this.state.viewAllTransactions && <div className="animated fadeIn">
           <table className="table">
             <thead>
               <tr>
@@ -74,7 +81,7 @@ class ViewTransactions extends React.Component {
                   return (
                     <>
                       <tr>
-                        <td><button className='btn custom-button' onClick={this.toggleTransaction} name={transaction.transaction_name}>{transaction.transaction_name}</button></td>
+                        <td><button className='btn custom-button btn-block' onClick={this.toggleTransaction} name={transaction.transaction_name}>{transaction.transaction_name}</button></td>
                         <td>{dateString}</td>
                         <td>$ {transaction.total_contribution / 100}</td>
                         <td>{name}</td>
@@ -89,7 +96,7 @@ class ViewTransactions extends React.Component {
               }
             </tbody>
           </table>
-        </div>
+        </div>}
       </>
     )
   }

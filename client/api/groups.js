@@ -28,3 +28,10 @@ export function apiDeleteGroup(group_Id){
   .del(`api/groups/${group_Id}`)
   .then(res => res.body)
 }
+
+export function apiSettleGroup(group_Id){
+  return request
+  .put(`api/groups/${group_Id}`)
+  .then(res => res.body)
+}
+

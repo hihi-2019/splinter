@@ -8,7 +8,7 @@ export default function groups (state = initialState, action) {
       case 'CREATE_NEW_GROUP':
         return action.groupDetails
 
-       
+
       default:
         return state
   }
