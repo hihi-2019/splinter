@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Swal from 'sweetalert2'
 import { apiDeleteGroup } from '../api/groups'
 import { getGroupsByUser, setActiveGroupId, settleGroupThunk } from '../actions/groups'
-import { getTransactionTotal } from '../actions/transactions'
+
 
 import { deleteAlertMessage, deleteConfirmMessage, settleGroupMessage, settleConfirmMessage } from '../utils/alertMessages'
 
