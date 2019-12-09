@@ -6,7 +6,7 @@ function getGroupsByUserId(id, db = connection) {
 }
 
 function createNewGroup(groupDetails, db = connection) {
-  return db('groups').insert(groupDetails)
+  return db('groups').insert(groupDetails, "id")
 }
 
 function getMembersByGroupId(groupId, db = connection) {
@@ -14,7 +14,7 @@ function getMembersByGroupId(groupId, db = connection) {
 }
 
 function createNewMember(memberDetails, db = connection) {
-  return db('groupMembers').insert(memberDetails)
+  return db('groupMembers').insert(memberDetails, "id")
 }
 
 function deleteGroup(groupId, db = connection){
