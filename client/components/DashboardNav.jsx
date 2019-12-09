@@ -6,7 +6,24 @@ import {getTransactions, getTransactionTotal} from '../actions/transactions'
 class DashboardNav extends React.Component {
     constructor(props) {
         super(props)
+
+        this.state={
+            toggleActiveGroups:true,
+            toggleSettledGroups:true
+        }
     }
+
+    toggleActive = (e) => {
+        this.setState({
+          toggleActiveGroups: !this.state.toggleActiveGroups
+        })
+      }
+
+      toggleSettled = (e) => {
+        this.setState({
+          toggleSettledGroups: !this.state.toggleSettledGroups
+        })
+      }
 
     changeGroup = (event) => {
         this.props.dispatch(setActiveGroupId(event.target.id))
@@ -18,29 +35,29 @@ class DashboardNav extends React.Component {
         return (
             <>
                 <div className="dashboardNav">
-                    <div className="dashNavHeader">
-                        <h4>Active Groups</h4>
-                        <ul className="dashNavList">
+                    <div >
+                        <h4 className="dashNavHeader" onClick={this.toggleActive}>Active Groups <i className="fas fa-chevron-circle-down"></i></h4>
+                        {this.state.toggleActiveGroups && <ul className="dashNavList animated fadeIn">
                             {this.props.groups.map((group, i) => {
                                 if (!group.settled) {
                                     return <li className="dashNavListItem" key={i} id={group.group_id} onClick={this.changeGroup}>{group.group_name}</li>
                                 }
                             })}
-                        </ul>
+                        </ul>}
                     </div>
-                    <div className="dashNavHeader">
-                        <h4>Settled Groups</h4>
-                        <ul className="dashNavList">
+                    <div >
+                        <h4 className="dashNavHeader" onClick={this.toggleSettled}>Settled Groups <i className="fas fa-chevron-circle-down"></i></h4>
+                        {this.state.toggleSettledGroups && <ul className="dashNavList animated fadeIn">
                             {this.props.groups.map((group, i) => {
                                 if (group.settled) {
                                     return <li className="dashNavListItem" key={i} id={group.group_id} onClick={this.changeGroup}>{group.group_name}</li>
                                 }
                             })}
-                        </ul>
+                        </ul>}
                     </div>
-                    <div className="dashNavHeader">
+                    <div >
                         <div className="dashNavListItem" id='' onClick={this.changeGroup}>
-                            <h4 >New group +</h4>
+                            <h4 className="dashNavHeader" >New Group <i class="fas fa-plus-circle"></i></h4>
                         </div>
                     </div>
                 </div>

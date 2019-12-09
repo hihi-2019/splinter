@@ -139,10 +139,17 @@ color: white;
 }
 
 .dashNavHeader {
-    font-size: 2.3rem;
-    padding-top: 4%;
-    padding-bottom:8%;
+    font-size: 1.5rem;
+    padding-top: 10%;
+    padding-bottom:2%;
     color: white;
+}
+
+.dashNavHeader:hover {
+    color: white;
+    transform: scale(1.02);
+    filter: brightness(80%);
+    cursor: pointer;
 }
 
 .dashHeader:hover {
@@ -152,12 +159,11 @@ color: white;
 .dashboardNav {
     text-align: left;
     background-color: #325592;
-    height:90vh;
     padding: 2% 2% 2% 18%;
      /* -webkit-box-shadow: 9px 9px 3px 3px rgba(0,0,0,0.13);
     -moz-box-shadow: 9px 9px 3px 0px rgba(0,0,0,0.13);
     box-shadow: 9px 9px 3px 3px rgba(0,0,0,0.13); */
-    
+    height: 90vh;
 }
 
 
