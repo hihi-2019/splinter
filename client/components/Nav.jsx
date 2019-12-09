@@ -22,9 +22,9 @@ class Nav extends React.Component {
 
                             <li className="nav-item navListItems"><Link to='/about' className="nav-link">About</Link></li>
                             {this.props.auth.isAuthenticated ?
-                                <li className="nav-item navListItems"><Link to='/' className="nav-link" onClick={() => this.props.logout()}>Log Out</Link></li> :
-                                [<li className="nav-item navListItems" ><Link className="nav-link" to='/signup'>Sign Up</Link></li>,
-                                <li className="nav-item navListItems" ><Link className="nav-link" to='/login'>Log In</Link></li>]
+                                <li className="nav-item navListItems"><Link to='/' className="nav-link" onClick={() => [this.props.logout(),location.reload(true)]}>Logout</Link></li> :
+                                [<li className="nav-item navListItems" ><Link className="nav-link" to='/signup'>Signup</Link></li>,
+                                <li className="nav-item navListItems" ><Link className="nav-link" to='/login'>Login</Link></li>]
                             }
 
                         </ul>
@@ -40,6 +40,7 @@ class Nav extends React.Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         logout: () => dispatch(logoutUser())
+        
     }
 }
 
