@@ -53,6 +53,7 @@ export function createNewGroupThunk(groupDetails) {
     .then(res => {
       let group_id = JSON.stringify(res[0])
       console.log(group_id)
+      dispatch(getTransactions(group_id))
       dispatch(setActiveGroupId(group_id))
     } )
   }
