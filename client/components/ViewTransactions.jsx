@@ -75,7 +75,7 @@ class ViewTransactions extends React.Component {
               {this.props.transactions.filter(transaction => transaction.total_contribution > 0)
                 .map((transaction, i) => {
                   let date = new Date(transaction.date * 1000)
-                  let dateString = date.toUTCString().slice(5, 22)
+                  let dateString = date.toString().slice(4, 15)
                   let name = this.getGroupMember(transaction.groupMember_id)
                   return (
                     <>

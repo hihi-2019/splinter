@@ -24,10 +24,14 @@ class CreateGroup extends React.Component {
 
   addMember = (e) => {
     e.preventDefault()
-    this.state.members_names.push(this.state.new_member_name)
-    this.setState({
-      new_member_name: ''
-    })
+    if (this.state.new_member_name == "") {
+
+    } else {
+      this.state.members_names.push(this.state.new_member_name)
+      this.setState({
+        new_member_name: ''
+      })
+    }
   }
 
   updateDetails = (e) => {
