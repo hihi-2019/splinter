@@ -55,7 +55,7 @@ a:hover {
 font-family: 'Ubuntu', sans-serif;
 font-size: 2.5rem;
 color: white;
-padding-left:5%
+padding-left:3%
 }
 
 @media screen and (min-width:426px){
@@ -86,11 +86,18 @@ padding-left:5%
 }
 
 .logo {
+    padding-left: 2%;
+    width:100px;
     justify-content: center;
     transform:rotate(-90deg);
     border-radius: 50%;
     -webkit-transition: -webkit-transform .8s ease-in-out;
             transition:         transform .8s ease-in-out;
+}
+@media screen and (min-width:426px){
+    .logo {
+        width:150px;
+    }
 }
 
 .logo:hover {
