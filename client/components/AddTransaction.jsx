@@ -12,7 +12,8 @@ class AddTransaction extends React.Component {
       showTransactionForm: false,
       error: false,
       checked: true,
-      selectedMember: []
+      selectedPayer: [],
+      selectedPayee: []
     }
   }
 
@@ -20,7 +21,7 @@ class AddTransaction extends React.Component {
     if(this.state.checked){
       this.setState({
         checked: false,
-        group_members: this.state.selectedMember
+        group_members: this.state.selectedPayer
       })
     } else{
       this.setState({
@@ -33,7 +34,7 @@ class AddTransaction extends React.Component {
     let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
     let selectedMem = members.filter(member => member.groupMember_id == e.target.value)
     this.setState({
-      selectedMember: selectedMem
+      selectedPayer: selectedMem
     })
     selectedMem.map(selMember => {
       let count = 0
@@ -43,10 +44,9 @@ class AddTransaction extends React.Component {
         }
       })
       if(count ==0){
-        this.state.group_members.push(selectedMember[0])
+        this.state.group_members.push(selectedPayer[0])
       }
     })
-    console.log(this.state)
   }
 
   updateDetails = (e) => {
@@ -62,9 +62,9 @@ class AddTransaction extends React.Component {
   }
 
   handlePayees = (e) => {
-    let selectedMember = this.props.groupMembers.filter(member => member.group_id == this.props.activeGroup && member.member_name == e.target.value)
+    let selectedPayer = this.props.groupMembers.filter(member => member.group_id == this.props.activeGroup && member.member_name == e.target.value)
     this.setState({
-      group_members: [...this.state.group_members, selectedMember[0]]
+      group_members: [...this.state.group_members, selectedPayer[0]]
     })
     console.log(this.state)
   }
@@ -123,12 +123,20 @@ class AddTransaction extends React.Component {
                   <>
                     <select onChange={this.handlePayees} >
                     <option>Select Member</option>
-                      {members.map(member => {
-                        return <option value={member.member_name}>{member.member_name}</option>
+                      {members.map((member, i) => {
+                        // let arr = []
+                        // return this.state.group_members.map(groupMember => {
+                        //   if(member.member_name !== groupMember.member_name){
+                        //     console.log(member.member_name)
+                        //     return <option value={member.member_name}>{member.member_name}</option>
+                        //   }
+                        })
+                        
                       })}
                     </select>
                     {this.state.group_members.map((member, i) => {
                       if(i !== 0){
+                        
                         return <p>{member.member_name}</p>
                       }
                       

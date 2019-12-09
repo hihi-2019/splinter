@@ -199,7 +199,7 @@ color: white;
 
 .deleteGroup {
     margin: 3rem 0 0 0;
-}
+}.Select-option.is-selected { display: none; }
 
 .settleGroup {
     margin: 1rem;
@@ -264,4 +264,4 @@ color: white;
     margin-bottom: 10px;
 }
 
-
+.Select-option.is-selected { display: none; }
