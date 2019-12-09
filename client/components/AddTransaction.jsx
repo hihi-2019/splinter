@@ -62,11 +62,12 @@ class AddTransaction extends React.Component {
   }
 
   handlePayees = (e) => {
-    let selectedPayer = this.props.groupMembers.filter(member => member.group_id == this.props.activeGroup && member.member_name == e.target.value)
+    console.log('hello')
+    let selectedPayee = this.props.groupMembers.filter(member => member.group_id == this.props.activeGroup && member.member_name == e.target.value)
+    console.log(selectedPayee)
     this.setState({
-      group_members: [...this.state.group_members, selectedPayer[0]]
+      group_members: [...this.state.group_members, selectedPayee[0]]
     })
-    console.log(this.state)
   }
 
   toggleTransaction = (e) => {
@@ -76,7 +77,6 @@ class AddTransaction extends React.Component {
   }
 
   submit = (e) => {
-    console.log(this.state)
     e.preventDefault()
    
     if (this.state.transaction.transactionName == "" || !this.state.transaction.groupMemberId ) {
@@ -96,7 +96,8 @@ class AddTransaction extends React.Component {
 
 
   render() {
-    let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
+    let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup) 
+   let splitMembers = members.filter(member => !this.state.group_members.includes(member))
     return (
       <>
         <div className="form-content">
@@ -122,23 +123,22 @@ class AddTransaction extends React.Component {
                   {!this.state.checked &&
                   <>
                     <select onChange={this.handlePayees} >
-                    <option>Select Member</option>
-                      {members.map((member, i) => {
-                        // let arr = []
-                        // return this.state.group_members.map(groupMember => {
-                        //   if(member.member_name !== groupMember.member_name){
-                        //     console.log(member.member_name)
-                        //     return <option value={member.member_name}>{member.member_name}</option>
-                        //   }
-                        })
+                    <option selected='selected'>Select Member</option>
+                      {splitMembers.map((member, i) => {
+                          
+                          return <option key={member.member_name} value={member.member_name}>{member.member_name}</option>
+                        
                         
                       })}
+                      
                     </select>
+                    {/* <button onClick={this.handlePayees}>Add member</button> */}
                     {this.state.group_members.map((member, i) => {
-                      if(i !== 0){
+                     
+                  
                         
                         return <p>{member.member_name}</p>
-                      }
+                      
                       
                     })}
                     
