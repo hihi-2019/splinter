@@ -64,12 +64,12 @@ class ActiveGroup extends React.Component {
                     <h1 className="activeGroupTitle">{groups.group_name}</h1>
                     <h3 style={{ fontStyle: "italic" }}>{groups.group_description}</h3>
                     <h3>Total spent to date: $ PLACEHOLDER</h3>
-                    {!groups.settled && <button name={groups.group_id} onClick={this.settleDebt} className="btn custom-button btn-lg">Settle Debts for {groups.group_name}</button>}
+                    {!groups.settled && <button name={groups.group_id} onClick={this.settleDebt} className="btn btn-outline-success btn-md">Settle debts for {groups.group_name}</button>}
 
                     <hr></hr>
                   </div>
                   <div className="col-lg-3 col-sm-12">
-                    <button id={groups.group_id} name={groups.group_name} className="btn btn-danger" onClick={this.deleteGroup}>Delete {groups.group_name}</button>
+                    <button id={groups.group_id} name={groups.group_name} className="btn btn-outline-danger btn-md" onClick={this.deleteGroup}>Delete {groups.group_name}</button>
                   </div>
                 </div>
                 <div >

@@ -160,7 +160,7 @@ color: white;
 /*active group*/
 
 .activeGroupTitle {
-    font-size: 4rem;
+    font-size: 3.5rem;
 }
 
 .memberList {
@@ -203,6 +203,8 @@ color: white;
 
 
 /*create group*/
+
+
 
 .groupForm {
     margin-top: 2rem;
