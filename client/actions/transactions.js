@@ -39,7 +39,6 @@ export function getTransactionTotal(group_id) {
   return dispatch => {
     ApiTransactionTotal(group_id)
     .then((total) => {
-      // console.log(total)
       dispatch(saveTransactionTotal(total))
     })
   }
