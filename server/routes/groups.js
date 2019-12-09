@@ -21,10 +21,10 @@ router.post('/', (req, res) => {
       req.body.members_names.map(member => {
         return db.createNewMember({ group_id: groupId[0], member_name: member })
           .then(memberId => {
-            res.sendStatus(200)
+            res.json(groupId)
           })
       })
-      res.json(groupId)
+      
     })
 
 })
