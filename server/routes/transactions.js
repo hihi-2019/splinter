@@ -24,6 +24,7 @@ router.get('/total/:id', (req, res) => {
 module.exports = router
 router.post('/', (req, res) => {
   let t = req.body.transaction
+  console.log(req.body)
   let transaction = {
     group_id: t.group_id,
     groupMember_id: t.groupMemberId,
@@ -42,7 +43,7 @@ router.post('/', (req, res) => {
           let payer = {
             transaction_id: id,
             groupMember_id: member.groupMember_id,
-            total_contribution: (transaction.transaction_total - payerSubtraction) * 100
+            total_contribution: (transaction.transaction_total - payerSubtraction) 
           }
           return db.addTransactionDetails(payer)
         } else {

@@ -85,14 +85,16 @@ class ActiveGroup extends React.Component {
                 <div className="row">
                   <div className="col-lg-9 col-sm-12">
                     <h1 className="activeGroupTitle">{groups.group_name}</h1>
-                    <h3 style={{ fontStyle: "italic" }}>{groups.group_description}</h3>
-                    <h3>Total spent to date: $ {this.props.transactionTotal.totalSpent / 100} </h3>
-                    {!groups.settled && <button name={groups.group_id} onClick={this.settleDebt} className="btn custom-button btn-lg">Settle Debts for {groups.group_name}</button>}
+
+                    <h3 className="activeGroupSubtitle" style={{ fontStyle: "italic" }}>{groups.group_description}</h3>
+                    <h3>Your total spent to date for this trip is $ {this.props.transactionTotal.totalSpent ? this.props.transactionTotal.totalSpent / 100 : 0} </h3>
+                    {!groups.settled && <button name={groups.group_id} onClick={this.settleDebt} className="settleGroup btn btn-outline-success btn-md">Settle Debts for {groups.group_name}</button>}
+
 
                     <hr></hr>
                   </div>
                   <div className="col-lg-3 col-sm-12">
-                    <button id={groups.group_id} name={groups.group_name} className="btn btn-danger" onClick={this.deleteGroup}>Delete {groups.group_name}</button>
+                    <button id={groups.group_id} name={groups.group_name} className="deleteGroup btn btn-outline-danger btn-md" onClick={this.deleteGroup}>Delete {groups.group_name}</button>
                   </div>
                 </div>
                 <div >
