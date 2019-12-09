@@ -5,6 +5,7 @@ import LandingPage from '../components/LandingPage'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import Dashboard from '../components/Dashboard'
+import {initialiseThunk} from '../actions/groups'
 import { getGroupsByUser } from '../actions/groups'
 // import {apiGetGroupsByUser} from '../api/groups'
 import { getGroupMembers } from '../actions/groups'
@@ -18,15 +19,15 @@ class App extends React.Component {
 
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.dispatch(getGroupsByUser(this.props.auth.user.user_id))
+      getGroupsByUser(this.props.auth.user.user_id)
     }
   }
 
-  componentDidUpdate() {
-    this.props.groups.map(group => {
-      return this.props.dispatch(getGroupMembers(group.group_id))
-    })
-  }
+  // componentDidUpdate() {
+  //   this.props.groups.map(group => {
+  //     return this.props.dispatch(getGroupMembers(group.group_id))
+  //   })
+  // }
 
   render() {
     return (

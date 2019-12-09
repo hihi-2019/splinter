@@ -161,3 +161,9 @@ a:hover {
     list-style-image: url('icons/bear.png');
     font-size: 2rem;
 }
+
+i{
+    -webkit-transition: -webkit-transform .8s ease-in-out;
+            transition:         transform .8s ease-in-out;
+  }
+

@@ -4,6 +4,7 @@ const url = "/api/groups"
 
 
 export function apiGetGroupsByUser(user_id){
+  console.log('api get groups by user got called')
   return request
   .get(`api/groups/${user_id}`)
   .then(res=> res.body
