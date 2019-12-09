@@ -24,7 +24,7 @@ class CreateGroup extends React.Component {
 
   addMember = (e) => {
     e.preventDefault()
-    if (e.target.value == "") {
+    if (this.state.new_member_name == "") {
 
     } else {
       this.state.members_names.push(this.state.new_member_name)
