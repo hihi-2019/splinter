@@ -160,7 +160,13 @@ color: white;
 /*active group*/
 
 .activeGroupTitle {
+    margin: 2rem 0 0 0;
     font-size: 3.5rem;
+}
+
+.activeGroupSubtitle {
+    font-size: 1.3rem;
+    padding: 1rem 0 1rem 0;
 }
 
 .memberList {
@@ -168,6 +174,13 @@ color: white;
     font-size: 2rem;
 }
 
+.deleteGroup {
+    margin: 3rem 0 0 0;
+}
+
+.settleGroup {
+    margin: 1rem;
+}
 
 /*add transaction*/
 
