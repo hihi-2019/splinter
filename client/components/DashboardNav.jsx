@@ -17,30 +17,30 @@ class DashboardNav extends React.Component {
     render() {
         return (
             <>
-                <div className="dashboardNav animated fadeIn">
+                <div className="dashboardNav">
                     <div className="dashNavHeader">
-                        <h4>Your Active Groups</h4>
-                        <ul className="dashNavGroups">
+                        <h4>Active Groups</h4>
+                        <ul className="dashNavList">
                             {this.props.groups.map((group, i) => {
                                 if (!group.settled) {
-                                    return <li className="dashLink" key={i} id={group.group_id} onClick={this.changeGroup}>{group.group_name}</li>
+                                    return <li className="dashNavListItem" key={i} id={group.group_id} onClick={this.changeGroup}>{group.group_name}</li>
                                 }
                             })}
                         </ul>
                     </div>
                     <div className="dashNavHeader">
-                        <h4>Your Settled Groups</h4>
-                        <ul className="dashNavGroups">
+                        <h4>Settled Groups</h4>
+                        <ul className="dashNavList">
                             {this.props.groups.map((group, i) => {
                                 if (group.settled) {
-                                    return <li className="dashLink" key={i} id={group.group_id} onClick={this.changeGroup}>{group.group_name}</li>
+                                    return <li className="dashNavListItem" key={i} id={group.group_id} onClick={this.changeGroup}>{group.group_name}</li>
                                 }
                             })}
                         </ul>
                     </div>
                     <div className="dashNavHeader">
-                        <div className="dashLink" id='' onClick={this.changeGroup}>
-                            <h4 >Create New Group +</h4>
+                        <div className="dashNavListItem" id='' onClick={this.changeGroup}>
+                            <h4 >New group +</h4>
                         </div>
                     </div>
                 </div>

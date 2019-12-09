@@ -15,10 +15,10 @@ class Dashboard extends React.Component {
             <>
                 <div className="content">
                     <div className="row">
-                        <div className="col-lg-2 col-md-3 col-sm-12">
+                        <div className="col-lg-2 col-md-4 col-sm-12">
                            <DashboardNav />
                         </div>
-                        <div className="col-lg-10 col-md-9 col-sm-12 dashContent">
+                        <div className="col-lg-10 col-md-8 col-sm-12 dashContent">
                             {this.props.activeGroup.length == 0 && <CreateGroup/>}
                             {this.props.activeGroup.length > 0 && <ActiveGroup/>}
                             

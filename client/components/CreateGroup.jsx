@@ -64,8 +64,8 @@ class CreateGroup extends React.Component {
     return (
       <>
         <div className="form-content animated fadeIn">
-          <h1 className="activeGroupTitle">Create New Group</h1>
-          <form >
+          <form className="groupForm">
+          <h2 className="formTitle">Create a new group</h2>
             <label>Group Name</label>
             <input className='form-control' required type='text' name='group_name' placeholder='eg. Kates Birthday' onChange={this.updateDetails}></input>
 
@@ -76,10 +76,10 @@ class CreateGroup extends React.Component {
             <label>Add Group Member</label>
             <input className='form-control' required type='text' name='new_member_name' placeholder='eg. Joe' onChange={this.updateMembers} value={this.state.new_member_name}></input>
             <div>
-              <button className="btn custom-button btn-sm" onClick={this.addMember}>Add member</button>
+              <button className="addMemberButton btn custom-button btn-sm" onClick={this.addMember}>Add member</button>
             </div>
-            <ul> {this.state.members_names.map(member => {
-              return <li>{member} <button className="btn btn-dark btn-sm" name={member} onClick={this.deleteMember}>x</button></li>
+            <ul className="formMembersList"> {this.state.members_names.map(member => {
+              return <li className="formMembersListItem">{member} <button className="btn btn-outline-danger btn-sm" name={member} onClick={this.deleteMember}>Remove</button></li>
             })}
             </ul>
             <button className="btn custom-button btn-lg" onClick={this.submit}>
