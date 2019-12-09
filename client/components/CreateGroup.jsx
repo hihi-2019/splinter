@@ -23,10 +23,14 @@ class CreateGroup extends React.Component {
 
   addMember = (e) => {
     e.preventDefault()
-    this.state.members_names.push(this.state.new_member_name)
-    this.setState({
-      new_member_name: ''
-    })
+    if (e.target.value == "") {
+
+    } else {
+      this.state.members_names.push(this.state.new_member_name)
+      this.setState({
+        new_member_name: ''
+      })
+    }
   }
 
   updateDetails = (e) => {
@@ -61,17 +65,17 @@ class CreateGroup extends React.Component {
             <input className='form-control' required type='text' name='group_description' placeholder='eg. Great Mates Drinking Crates To Celebrate Our Old Mates Birthdate. Mate.' onChange={this.updateDetails}></input>
 
 
-          <label>Add Group Member</label>
-          <input className='form-control' required type='text' name='new_member_name' placeholder='eg. Joe' onChange={this.updateMembers} value={this.state.new_member_name}></input>
-          <div>
-          <button className="btn custom-button btn-sm" onClick={this.addMember}>Add member</button>
-          </div>
-          <ul> {this.state.members_names.map(member => {
-          return <li>{member} <button className="btn btn-dark btn-sm"name={member} onClick={this.deleteMember}>x</button></li> 
-          })}
-          </ul>
-          <button className="btn custom-button btn-lg" onClick={this.submit}>
-            Create Group
+            <label>Add Group Member</label>
+            <input className='form-control' required type='text' name='new_member_name' placeholder='eg. Joe' onChange={this.updateMembers} value={this.state.new_member_name}></input>
+            <div>
+              <button className="btn custom-button btn-sm" onClick={this.addMember}>Add member</button>
+            </div>
+            <ul> {this.state.members_names.map(member => {
+              return <li>{member} <button className="btn btn-dark btn-sm" name={member} onClick={this.deleteMember}>x</button></li>
+            })}
+            </ul>
+            <button className="btn custom-button btn-lg" onClick={this.submit}>
+              Create Group
           </button>
           </form>
         </div>

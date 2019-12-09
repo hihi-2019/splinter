@@ -4,7 +4,6 @@ import { getTransactions, deleteTransactions } from '../actions/transactions'
 import TransactionDetails from './TransactionDetails'
 import Swal from 'sweetalert2';
 import { deleteTransactionMessage, deleteTransactionConfirmMessage } from '../utils/alertMessages';
-import { buildFailureTestResult } from '@jest/test-result';
 
 class ViewTransactions extends React.Component {
   constructor(props) {
@@ -49,7 +48,6 @@ class ViewTransactions extends React.Component {
 
   render() {
     let selectedGroup = this.props.groups.find(group => group.group_id == this.props.activeGroup)
-    console.log(selectedGroup.settled)
 
 
     return (
