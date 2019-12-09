@@ -79,7 +79,7 @@ class ActiveGroup extends React.Component {
 
                   <h2 onClick={this.toggleGroupMembers} className="subTitle">Group Members <i className="dashHeader fas fa-chevron-circle-down"></i></h2>
                   {this.state.showGroupMembers &&
-                    <ul className="animated fadeIn">
+                    <ul className="membersList animated fadeIn">
                       {members.map(member => {
                         let total = 0
                         this.props.transactions.filter(transaction => transaction.groupMember_id == member.groupMember_id).map(memberSpent => {
@@ -95,7 +95,7 @@ class ActiveGroup extends React.Component {
                         })
 
                         return (
-                          <li className="memberList">{member.member_name} ${total}</li>
+                          <li className="membersListItem"><p>{member.member_name}</p><p className="memberbalance">${total}</p></li>
                         )
                       })}
                     </ul>}
