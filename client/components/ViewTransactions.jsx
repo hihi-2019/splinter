@@ -80,11 +80,11 @@ class ViewTransactions extends React.Component {
                   return (
                     <>
                       <tr>
-                        <td><button className='btn custom-button btn-block' onClick={this.toggleTransaction} name={transaction.transaction_name}>{transaction.transaction_name}</button></td>
+                        <td><button className='btn transactionsButton btn-block' onClick={this.toggleTransaction} name={transaction.transaction_name}>{transaction.transaction_name}</button></td>
                         <td>{dateString}</td>
                         <td>$ {transaction.total_contribution / 100}</td>
                         <td>{name}</td>
-                        {selectedGroup.settled == 0 && <td><button onClick={this.handleDelete} id={transaction.transaction_id} className='btn btn-danger'>Delete</button></td>}
+                        {selectedGroup.settled == 0 && <td><button onClick={this.handleDelete} id={transaction.transaction_id} className='btn btn-outline-danger'>Delete</button></td>}
                       </tr>
                       {this.state.openTransactions.includes(transaction.transaction_name) &&
                         <TransactionDetails name={transaction.transaction_name} />
