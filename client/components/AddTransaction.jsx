@@ -62,9 +62,7 @@ class AddTransaction extends React.Component {
   }
 
   handlePayees = (e) => {
-    console.log('hello')
     let selectedPayee = this.props.groupMembers.filter(member => member.group_id == this.props.activeGroup && member.member_name == e.target.value)
-    console.log(selectedPayee)
     this.setState({
       group_members: [...this.state.group_members, selectedPayee[0]]
     })
@@ -89,15 +87,19 @@ class AddTransaction extends React.Component {
         error: false
       })
     }
+  }
 
-
-
+  deleteMember = (e) => {
+    e.preventDefault()
+    this.setState({
+      group_members: this.state.group_members.filter(member => member.member_name !== e.target.name)
+    })
   }
 
 
   render() {
-    let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup) 
-   let splitMembers = members.filter(member => !this.state.group_members.includes(member))
+    let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
+    let splitMembers = members.filter(member => !this.state.group_members.includes(member))
     return (
       <>
         <div className="form-content">
@@ -125,24 +127,14 @@ class AddTransaction extends React.Component {
                     <select onChange={this.handlePayees} >
                     <option selected='selected'>Select Member</option>
                       {splitMembers.map((member, i) => {
-                          
-                          return <option key={member.member_name} value={member.member_name}>{member.member_name}</option>
-                        
-                        
+                        return <option key={member.member_name} value={member.member_name}>{member.member_name}</option>
                       })}
-                      
                     </select>
-                    {/* <button onClick={this.handlePayees}>Add member</button> */}
+                
                     {this.state.group_members.map((member, i) => {
-                     
-                  
-                        
-                        return <p>{member.member_name}</p>
-                      
-                      
+                     return <ul><li className="formMembersListItem">{member.member_name} <button className="btn btn-outline-danger btn-sm" name={member.member_name} onClick={this.deleteMember}>Remove</button></li></ul>
                     })}
-                    
-                    </>
+                  </>
                   }
                 </div>
                 <div>
