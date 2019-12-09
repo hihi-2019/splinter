@@ -268,10 +268,40 @@ padding-left:3%
     margin: 1rem;
 }
 
+
 /*add transaction*/
 
+.transactionForm {
+    margin: 2rem 0 0 0;
+}
+
 .inputLabel {
-    font-size: 1.5rem;
+    font-size: 1.15rem;
+}
+
+.addTransactionButton {
+    margin: 1rem 0 1rem 0;
+}
+
+.transactionAmountWrapper {
+    position: relative;
+}
+
+.transactionAmountInput {
+    position: absolute;
+    left: 28px;
+    bottom: 39px;
+}
+
+.transactionAmountInput::before {
+    content: "$";
+    display: inline;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.transactionAmountWrapper input {
+    padding-left: 1.4rem;
 }
 
 
