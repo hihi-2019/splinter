@@ -97,7 +97,7 @@ class ActiveGroup extends React.Component {
                       {members.map((member, i )=> {
                         let moneyArr = this.calculateTotals()
                         return (
-                          <li key={i} className="memberList">{member.member_name} $ {moneyArr[i]}</li>
+                          <li key={i} className="memberList">{member.member_name} $ {moneyArr[i].toFixed(2)}</li>
                           )
                       })}
                     </ul>}
