@@ -27,7 +27,7 @@ router.post('/', (req, res) => {
   let transaction = {
     group_id: t.group_id,
     groupMember_id: t.groupMemberId,
-    transaction_total: t.transactionTotal * 100,
+    transaction_total: (t.transactionTotal * 100).toFixed(2),
     transaction_name: t.transactionName,
     date: Math.floor(Date.now() / 1000)
   }
@@ -44,14 +44,14 @@ router.post('/', (req, res) => {
           let payer = {
             transaction_id: id,
             groupMember_id: member.groupMember_id,
-            total_contribution: (transaction.transaction_total - payerSubtraction) 
+            total_contribution: (transaction.transaction_total - payerSubtraction).toFixed(2) 
           }
           return db.addTransactionDetails(payer)
         } else {
           let payee = {
             transaction_id: id,
             groupMember_id: member.groupMember_id,
-            total_contribution: ((transaction.transaction_total) / req.body.group_members.length) * -1
+            total_contribution: (((transaction.transaction_total) / req.body.group_members.length) * -1).toFixed(2)
           }
           return db.addTransactionDetails(payee)
         }
