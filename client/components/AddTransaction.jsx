@@ -74,8 +74,8 @@ class AddTransaction extends React.Component {
 
   submit = (e) => {
     e.preventDefault()
-   
-    if (this.state.transaction.transactionName == "" || !this.state.transaction.groupMemberId ) {
+
+    if (this.state.transaction.transactionName == "" || !this.state.transaction.groupMemberId) {
       this.setState({
         error: true
       })
@@ -114,9 +114,14 @@ class AddTransaction extends React.Component {
           <h2 className="subTitle" onClick={this.toggleTransaction}>Add New Transaction <i className="dashHeader fas fa-chevron-circle-down"></i></h2>
           {this.state.showTransactionForm &&
             <div className="animated fadeIn">
-              <form onSubmit={this.submit}>
+              <form className="transactionForm" onSubmit={this.submit}>
+              <div className="row">
+              <div className="col-lg-4 col-sm-12">
+
                 <label className="inputLabel" >Description</label>
                 <input className='form-control' type='text' name='transactionName' placeholder="eg. Breakfast at Tiffany's" onChange={this.updateDetails}></input>
+                      </div>
+                  <div className="col-lg-3 col-sm-12">
                 <label className="inputLabel">Paid by</label>
                 <select className='form-control' name='groupMemberId' onChange={this.updateDetails} onClick={this.handlePayerChange}>
                 <option>Select Member</option>
@@ -125,8 +130,14 @@ class AddTransaction extends React.Component {
                     return <option value={member.groupMember_id} key={i}>{member.member_name}</option>
                   })}
                 </select>
+                </div>
+                <div className="col-lg-2 col-sm-12 transactionAmountWrapper">
+
                 <label className="inputLabel">Amount $</label>
                 <input className='form-control' type='number' name='transactionTotal' placeholder='0.00' onChange={this.updateDetails} ></input>
+                </div>
+
+                </div>
                 <div>
                   <label className="inputLabel">Split by all members?</label>
                   <input type='checkbox' name='membersOwing' checked={this.state.checked} onChange={this.handleCheck}></input>
@@ -150,14 +161,13 @@ class AddTransaction extends React.Component {
                   <input type='checkbox' name='amountMembersOwing' defaultChecked></input>
                 </div>
                 <div>
-                  <button className="btn custom-button btn-lg" type="submit" onClick={this.submit}>
+                  <button className="btn addTransactionButton btn-lg" type="submit" onClick={this.submit}>
                     Add Transaction
               </button>
                 </div>
               </form>
               {this.state.error == true && <p style={{ color: "red" }}>Please fill in all the details in the form</p>}
             </div>}
-
         </div>
       </>
     )

@@ -15,6 +15,15 @@ a:hover {
 .subTitle {
     font-size: 1.75rem;
     cursor: pointer;
+    text-align: center;
+}
+
+@media screen and (min-width:426px){
+    .subTitle {
+        font-size: 1.75rem;
+        cursor: pointer;
+        text-align: left;
+    }
 }
 
 .form-control {
@@ -32,6 +41,14 @@ a:hover {
 
 .formTitle {
     padding-bottom: 1rem;
+    text-align: center;
+}
+
+@media screen and (min-width:426px){
+    .formTitle {
+        padding-bottom: 1rem;
+        text-align: left;
+    }
 }
 
 .custom-button{
@@ -53,13 +70,22 @@ a:hover {
 
 .splinterLogo {
 font-family: 'Ubuntu', sans-serif;
-font-size: 3.8rem;
+font-size: 2.5rem;
 color: white;
-padding-left:20%
+padding-left:3%
+}
+
+@media screen and (min-width:426px){
+    .splinterLogo {
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 3.8rem;
+        color: white;
+        padding-left:20%
+        }
 }
 
 .navbar {
-   background-color: #325592;
+   background-color: #2453a3;
    color:white;
    padding: 2% 2% 2% 5%;
    -webkit-box-shadow: 9px 9px 3px 3px rgba(0,0,0,0.07);
@@ -77,10 +103,18 @@ padding-left:20%
 }
 
 .logo {
+    padding-left: 2%;
+    width:100px;
+    justify-content: center;
     transform:rotate(-90deg);
     border-radius: 50%;
     -webkit-transition: -webkit-transform .8s ease-in-out;
             transition:         transform .8s ease-in-out;
+}
+@media screen and (min-width:426px){
+    .logo {
+        width:150px;
+    }
 }
 
 .logo:hover {
@@ -122,14 +156,23 @@ padding-left:20%
     min-height:80vh
 }
 
+
 .dashNavList {
     list-style: none;
-    align-items: left;
     list-style-type:none;
+    text-align: center;
     margin: 0;
-    padding: 2% 0 0 10%   
+    padding: 2% 0 0 0  ;
 }
 
+@media screen and (min-width:426px){
+    .dashNavList {
+        align-items: left;
+        list-style-type:none;
+        margin: 0;
+        padding: 2% 0 0 0   
+    }
+}
 .dashNavListItem:hover {
     color: white;
     transform: scale(1.02);
@@ -139,16 +182,39 @@ padding-left:20%
 
 .dashNavListItem {
     color: white;
-    padding: 4% 0 2% 0;
-    text-align: left;
+    padding: 1% 0 1% 0;
+    padding-left: 0;
     font-size: 1.15rem;
+    text-align: center;
+}
+
+@media screen and (min-width:426px){
+    .dashNavListItem {
+        color: white;
+        padding: 4% 2% 2% 10%;
+        text-align: left;
+        font-size: 1.15rem;
+       
+        
+    }
 }
 
 .dashNavHeader {
     font-size: 1.5rem;
-    padding-top: 10%;
-    padding-bottom:2%;
+    padding-top: 5%;
     color: white;
+    text-align: center;
+}
+
+@media screen and (min-width:426px){
+    .dashNavHeader {
+        font-size: 1.5rem;
+        padding-bottom:2%;
+        padding-top: 10%;
+        color: white;
+        text-align: left;
+
+    }
 }
 
 .dashNavHeader:hover {
@@ -164,25 +230,65 @@ padding-left:20%
 
 .dashboardNav {
     text-align: left;
-    background-color: #325592;
-    padding: 2% 2% 2% 18%;
-     /* -webkit-box-shadow: 9px 9px 3px 3px rgba(0,0,0,0.13);
-    -moz-box-shadow: 9px 9px 3px 0px rgba(0,0,0,0.13);
-    box-shadow: 9px 9px 3px 3px rgba(0,0,0,0.13); */
-    height: 90vh;
+    background-color: #2453a3;
+    padding: 1% 0 1% 0;
+    min-height: 100%;
 }
+
+@media screen and (min-width:426px){
+    .dashboardNav {
+        text-align: left;
+        background-color: #2453a3;
+        padding: 2% 2% 2% 18%;
+    } 
+}
+
 
 
 /*active group*/
 
 .activeGroupTitle {
-    margin: 2rem 0 0 0;
-    font-size: 3.5rem;
+    margin: 1rem 0 0 0;
+    font-size: 2rem;
+    text-align: center;
+}
+
+@media screen and (min-width:426px){
+    .activeGroupTitle {
+        margin: 2rem 0 0 0;
+        font-size: 3.5rem;
+        text-align: left;
+    }
 }
 
 .activeGroupSubtitle {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     padding: 1rem 0 1rem 0;
+    text-align: center;
+}
+
+@media screen and (min-width:426px){
+    .activeGroupSubtitle {
+        font-size: 1.3rem;
+        padding: 1rem 0 1rem 1rem;
+        text-align: left;
+    }
+}
+
+.totalSpend {
+    text-align: center;
+    font-size: 1.3rem;
+    padding: .5rem 0 .5rem 1.1rem;
+
+}
+
+@media screen and (min-width:426px){
+    .totalSpend {
+        text-align: left;
+        padding: .5rem 0 .5rem 1.3rem;
+        font-size: 1.3rem;
+
+    }
 }
 
 .membersList {
@@ -203,6 +309,12 @@ padding-left:20%
     text-align: left;
 }
 
+.memberbalancered {
+    text-align: left;
+    color: rgb(235, 77, 77);
+}
+
+
 .deleteGroup {
     margin: 3rem 0 0 0;
 }.Select-option.is-selected { display: none; }
@@ -211,10 +323,40 @@ padding-left:20%
     margin: 1rem;
 }
 
+
 /*add transaction*/
 
+.transactionForm {
+    margin: 2rem 0 0 0;
+}
+
 .inputLabel {
-    font-size: 1.5rem;
+    font-size: 1.15rem;
+}
+
+.addTransactionButton {
+    margin: 1rem 0 1rem 0;
+}
+
+.transactionAmountWrapper {
+    position: relative;
+}
+
+.transactionAmountInput {
+    position: absolute;
+    left: 28px;
+    bottom: 39px;
+}
+
+.transactionAmountInput::before {
+    content: "$";
+    display: inline;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.transactionAmountWrapper input {
+    padding-left: 1.4rem;
 }
 
 
@@ -270,4 +412,15 @@ padding-left:20%
     margin-bottom: 10px;
 }
 
+/*view transactions*/
+
+.transactionsButton{
+    color: rgb(49, 49, 49);
+    text-align: left;
+}
+
+.transactionsButton:hover{
+    color:white;
+    background-color: #37517E ;
+}
 .Select-option.is-selected { display: none; }
