@@ -175,10 +175,10 @@ class AddTransaction extends React.Component {
                     </>
                   }
                 </div>
-                <div>
+                {/* <div>
                   <label className="inputLabel">Split cost evenly?</label>
                   <input type='checkbox' name='amountMembersOwing' defaultChecked></input>
-                </div>
+                </div> */}
                 <div>
                 {this.state.errorPeopleAmount == true && <p style={{ color: "red" }}>Please select more than one member</p>}
                   <button className="btn addTransactionButton btn-lg" type="submit" onClick={this.submit}>
