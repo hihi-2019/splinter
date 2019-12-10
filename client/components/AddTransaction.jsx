@@ -103,11 +103,11 @@ class AddTransaction extends React.Component {
         error: true
       })
     } else {
-      console.log("this state", this.state)
       this.props.dispatch(newTransaction(this.state))
       this.setState({
         error: false,
         errorPeopleAmount: false,
+        checked: true,
         transaction: {transactionName: "", transactionTotal: 0.00, groupMemberId: 'Select Member'}
       })
     }}
