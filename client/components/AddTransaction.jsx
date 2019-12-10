@@ -97,7 +97,7 @@ class AddTransaction extends React.Component {
       this.setState({
         errorPeopleAmount: true
       })
-    }
+    } else {
     if (this.state.transaction.transactionName == undefined || !this.state.transaction.groupMemberId) {
       this.setState({
         error: true
@@ -110,7 +110,7 @@ class AddTransaction extends React.Component {
         errorPeopleAmount: false,
         transaction: {transactionName: "", transactionTotal: 0.00, groupMemberId: 'Select Member'}
       })
-    }
+    }}
   }
 
   deleteMember = (e) => {
