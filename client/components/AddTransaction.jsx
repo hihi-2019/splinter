@@ -13,7 +13,8 @@ class AddTransaction extends React.Component {
       error: false,
       checked: true,
       selectedPayer: [],
-      errorPayer: false
+      errorPayer: false,
+      errorPeopleAmount: false
     }
   }
 
@@ -84,14 +85,21 @@ class AddTransaction extends React.Component {
 
   submit = (e) => {
     e.preventDefault()
+    if(this.state.group_members.length <= 1){
+      this.setState({
+        errorPeopleAmount: true
+      })
+    }
     if (this.state.transaction.transactionName == undefined || !this.state.transaction.groupMemberId) {
       this.setState({
         error: true
       })
     } else {
+      console.log("this state", this.state)
       this.props.dispatch(newTransaction(this.state))
       this.setState({
-        error: false
+        error: false,
+        errorPeopleAmount: false
       })
     }
   }
@@ -172,7 +180,8 @@ class AddTransaction extends React.Component {
                   <input type='checkbox' name='amountMembersOwing' defaultChecked></input>
                 </div> */}
                 <div>
-                  <button className="btn addTransactionButton custom-button btn-lg" type="submit" onClick={this.submit}>
+                {this.state.errorPeopleAmount == true && <p style={{ color: "red" }}>Please select more than one member</p>}
+                  <button className="btn addTransactionButton btn-lg" type="submit" onClick={this.submit}>
                     Add Transaction
               </button>
                 </div>
