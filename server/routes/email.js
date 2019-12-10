@@ -1,3 +1,4 @@
+const { generateDebtMessages, generateDebtArray } = require('../../client/utils/settleDebts')
 const router = require('express').Router()
 const request = require('superagent') 
 
@@ -9,7 +10,9 @@ router.post('/', (req,res) => {
   const email = req.body.email
   const group = req.body.group
   const total_cost = req.body.totalSpend.totalSpent
-  
+  const groupMembersArray = req.body.members
+  const balanceArray = req.body.membersTotal
+  const messageArray = generateDebtMessages(generateDebtArray(groupMembersArray, balanceArray))
  
 
   const subject = `Splinter - ${group} invoice`
@@ -26,7 +29,9 @@ router.post('/', (req,res) => {
     return total
   })}
 
-  
+  Recommended repayments: ${messageArray.map(message => { 
+    return message
+  })}  
 
   Time to pay up!`
   
