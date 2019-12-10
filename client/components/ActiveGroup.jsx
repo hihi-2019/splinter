@@ -90,8 +90,12 @@ class ActiveGroup extends React.Component {
 
                 </div>
 
-                {!groups.settled && <button name={groups.group_id} onClick={this.settleDebt} className="settleGroup btn btn-outline-success btn-md">Settle Debts</button>}
+                <div>
+                {!groups.settled &&
+
+                  <button name={groups.group_id} onClick={this.settleDebt} className="settleGroup btn btn-outline-success btn-md ">Settle Debts</button>}
                 <button id={groups.group_id} name={groups.group_name} className="settleGroup btn btn-outline-danger btn-md" onClick={this.deleteGroup}>Delete Group</button>
+                </div>
 
 
                 <div >
