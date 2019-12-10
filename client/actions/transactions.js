@@ -5,6 +5,7 @@ export function newTransaction(transactionData) {
     createNewTransaction(transactionData)
       .then(() => {
         dispatch(getTransactions(transactionData.transaction.group_id))
+        dispatch(getTransactionTotal(transactionData.transaction.group_id))
       })
   }
 }
@@ -38,7 +39,6 @@ export function getTransactionTotal(group_id) {
   return dispatch => {
     ApiTransactionTotal(group_id)
     .then((total) => {
-      // console.log(total)
       dispatch(saveTransactionTotal(total))
     })
   }
