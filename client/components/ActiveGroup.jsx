@@ -19,7 +19,27 @@ class ActiveGroup extends React.Component {
     }
   }
 
-
+ 
+  calculateTotals = () => {
+    let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
+    let transactions = this.props.transactions.filter(transaction => transaction.group_id == this.props.activeGroup)
+    let arr = []
+    let arrMoney = []
+    
+    members.map(member => {
+      arr.push(transactions.filter(transaction => transaction.groupMember_id == member.groupMember_id))
+    })
+    
+    arr.map(memberArr => {
+      let total = 0
+      memberArr.map(memberTransaction => {
+        return total += memberTransaction.total_contribution/100
+      })
+      arrMoney.push(total)
+    })
+   
+    return arrMoney
+  }
 
   toggleGroupMembers = (e) => {
     this.setState({
@@ -49,7 +69,10 @@ class ActiveGroup extends React.Component {
   let total = this.props.transactionTotal
   let group_members = this.props.groupMembers.filter(member => member.group_id == this.props.activeGroup)
   
+    
+
   let members_name = group_members.map((member) => {return member.member_name})
+  let members_totals = this.calculateTotals()
 
 
 
@@ -59,7 +82,7 @@ class ActiveGroup extends React.Component {
         Swal.fire(settleConfirmMessage)
         .then((result) => {
           if(result.value != undefined){
-            this.props.dispatch(sendEmail(result.value, groupName, total, members_name))
+            this.props.dispatch(sendEmail(result.value, groupName, total, members_name, members_totals))
           }
         })
       }
@@ -78,41 +101,34 @@ class ActiveGroup extends React.Component {
             <div className="">
               {groups && <>
 
-                <div className="">
+                <div>
                   <h1 className="activeGroupTitle">{groups.group_name}</h1>
-
                   <h3 className="activeGroupSubtitle" style={{ fontStyle: "italic" }}>{groups.group_description}</h3>
-                  <h3>Total spend is ${this.props.transactionTotal.totalSpent ? this.props.transactionTotal.totalSpent / 100 : 0} </h3>
+                  <h3 className="totalSpend">Total spend is ${this.props.transactionTotal.totalSpent ? this.props.transactionTotal.totalSpent / 100 : 0} </h3>
 
                 </div>
-                
-                    {!groups.settled && <button name={groups.group_id} onClick={this.settleDebt} value={groups.group_name} className="settleGroup btn btn-outline-success btn-md">Settle Debts</button>}
-                    <button id={groups.group_id} name={groups.group_name} className="settleGroup btn btn-outline-danger btn-md" onClick={this.deleteGroup}>Delete Group</button>
-                 
-                  
+
+                {!groups.settled && <button name={groups.group_id} onClick={this.settleDebt} className="settleGroup btn btn-outline-success btn-md">Settle Debts</button>}
+                <button id={groups.group_id} name={groups.group_name} className="settleGroup btn btn-outline-danger btn-md" onClick={this.deleteGroup}>Delete Group</button>
+
+
                 <div >
                   <hr></hr>
                   <h2 onClick={this.toggleGroupMembers} className="subTitle">Group Members <i className="dashHeader fas fa-chevron-circle-down"></i></h2>
                   {this.state.showGroupMembers &&
                     <ul className="membersList animated fadeIn">
-                      {members.map(member => {
-                        let total = 0
-                        this.props.transactions.filter(transaction => transaction.groupMember_id == member.groupMember_id).map(memberSpent => {
-                         
-                          if (member.groupMember_id == memberSpent.groupMember_id) {
-                            if (memberSpent.total_contribution > 0) {
-                              let numPeople = members.length
-                              let percentage = (100 / numPeople) / 100
-                              let payerDeduction = (memberSpent.total_contribution * percentage) / 100
-                              return total += (memberSpent.total_contribution / 100) - payerDeduction
-                            }
-                            return  total += (memberSpent.total_contribution / 100)
+                      {members.map((member, i )=> {
+                        let moneyArr = this.calculateTotals()
+                        const totalColor = () => {
+                          if (moneyArr[i] < 0) {
+                            return "red"
+                          } else {
+                            return ""
                           }
-                        })
-
+                        }
                         return (
-                          <li className="membersListItem"><p>{member.member_name}</p><p className="memberbalance" >${total}</p></li>
-                        )
+                          <li className="membersListItem"><p>{member.member_name}</p><p className={`memberbalance${totalColor()}`}>${moneyArr[i]}</p></li>
+                          )
                       })}
                     </ul>}
                   <hr></hr>

@@ -23,6 +23,7 @@ router.get('/total/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   let t = req.body.transaction
+  console.log(req.body)
   let transaction = {
     group_id: t.group_id,
     groupMember_id: t.groupMemberId,
@@ -33,12 +34,16 @@ router.post('/', (req, res) => {
 
   db.addTransaction(transaction)
     .then(id => {
+      console.log("memid", req.body)
       req.body.group_members.map(member => {
-        if (member.groupMember_id == transaction.groupMember_id) {
+        if(member.groupMember_id == transaction.groupMember_id){
+          let num = req.body.group_members.length
+          let multiplyer = (100 / num) / 100
+          let payerSubtraction = transaction.transaction_total * multiplyer
           let payer = {
             transaction_id: id,
             groupMember_id: member.groupMember_id,
-            total_contribution: transaction.transaction_total
+            total_contribution: (transaction.transaction_total - payerSubtraction) 
           }
           return db.addTransactionDetails(payer)
         } else {

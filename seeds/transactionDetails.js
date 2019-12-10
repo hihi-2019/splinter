@@ -20,7 +20,7 @@ exports.seed = function (knex) {
             transactionDetails_id: 3,
             transaction_id: 1,
             groupMember_id: 3,
-            total_contribution: 100000,
+            total_contribution: 75000,
           },
           {
             transactionDetails_id: 4,
@@ -38,7 +38,7 @@ exports.seed = function (knex) {
             transactionDetails_id: 6,
             transaction_id: 2,
             groupMember_id: 2,
-            total_contribution: 50000,
+            total_contribution: 37500,
           },
           {
             transactionDetails_id: 7,
@@ -56,7 +56,7 @@ exports.seed = function (knex) {
             transactionDetails_id: 9,
             transaction_id: 3,
             groupMember_id: 1,
-            total_contribution: 10000,
+            total_contribution: 7500,
           },
           {
             transactionDetails_id: 10,
@@ -80,31 +80,31 @@ exports.seed = function (knex) {
             transactionDetails_id: 13,
             transaction_id: 4,
             groupMember_id: 1,
-            total_contribution: -10000,
+            total_contribution: -7500,
           },
           {
             transactionDetails_id: 14,
             transaction_id: 4,
             groupMember_id: 2,
-            total_contribution: -10000,
+            total_contribution: -7500,
           },
           {
             transactionDetails_id: 15,
             transaction_id: 4,
             groupMember_id: 3,
-            total_contribution: -10000,
+            total_contribution: -7500,
           },
           {
             transactionDetails_id: 16,
             transaction_id: 4,
             groupMember_id: 4,
-            total_contribution: 40000,
+            total_contribution: 22500,
           },
           {
             transactionDetails_id: 17,
             transaction_id: 5,
             groupMember_id: 5,
-            total_contribution: 9900,
+            total_contribution: 6600,
           },
           {
             transactionDetails_id: 18,
@@ -122,7 +122,7 @@ exports.seed = function (knex) {
             transactionDetails_id: 20,
             transaction_id: 6,
             groupMember_id: 5,
-            total_contribution: 9000,
+            total_contribution: 6000,
           },
           {
             transactionDetails_id: 21,
@@ -146,7 +146,7 @@ exports.seed = function (knex) {
             transactionDetails_id: 24,
             transaction_id: 7,
             groupMember_id: 6,
-            total_contribution: 12000,
+            total_contribution: 8000,
           },
           {
             transactionDetails_id: 25,
@@ -164,7 +164,7 @@ exports.seed = function (knex) {
             transactionDetails_id: 27,
             transaction_id: 8,
             groupMember_id: 6,
-            total_contribution: 9000,
+            total_contribution: 6000,
           },
           {
             transactionDetails_id: 28,
@@ -188,7 +188,7 @@ exports.seed = function (knex) {
             transactionDetails_id: 31,
             transaction_id: 9,
             groupMember_id: 7,
-            total_contribution: 15000,
+            total_contribution: 10000,
           },
         ])
       })

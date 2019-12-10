@@ -9,9 +9,8 @@ router.post('/', (req,res) => {
   const email = req.body.email
   const group = req.body.group
   const total_cost = req.body.totalSpend.totalSpent
-  const group_members = 0
+  
  
-
 
   const subject = `Splinter - ${group} invoice`
 
@@ -22,6 +21,11 @@ router.post('/', (req,res) => {
   ${req.body.members.map(member => {
     return member
   })}
+
+  Total:  ${req.body.membersTotal.map(total => {
+    return total
+  })}
+
   
 
   Time to pay up!`
