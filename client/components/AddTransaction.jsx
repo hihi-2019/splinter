@@ -98,7 +98,7 @@ class AddTransaction extends React.Component {
         errorPeopleAmount: true
       })
     } else {
-    if (this.state.transaction.transactionName == undefined || !this.state.transaction.groupMemberId) {
+    if (this.state.transaction.transactionName == undefined || this.state.transaction.transactionName == "" || !this.state.transaction.groupMemberId) {
       this.setState({
         error: true
       })
