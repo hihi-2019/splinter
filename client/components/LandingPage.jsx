@@ -9,7 +9,7 @@ class LandingPage extends React.Component {
   render() {
     return (
       <>
-        <div className="landingPage animated fadeIn">
+        <div className="landingPage col-12 animated fadeIn">
           <img src="money.png"></img>
           <h1 className="landingPageTitle">Sick of not getting paid back?</h1>
           <h3>Sign up for Splinter to keep track of who spent what.</h3>
