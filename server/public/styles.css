@@ -31,23 +31,36 @@ a:hover {
 }
 
 .form {
-    padding: 4rem;
-    width: 30rem;
+    padding: 2.75rem;
+    width: 20rem;
     background-color: rgba(255, 255, 255, 0.959);
     border: .1rem solid darkgray;
     border-radius: .3rem;
     /* box-shadow: .1rem .1rem; */
 }
 
+@media screen and (min-width:426px){
+    .form {
+        padding: 4rem;
+        width: 30rem;
+        background-color: rgba(255, 255, 255, 0.959);
+        border: .1rem solid darkgray;
+        border-radius: .3rem;
+        /* box-shadow: .1rem .1rem; */
+    }
+}
+
 .formTitle {
-    padding-bottom: 1rem;
+    padding-bottom: .5rem;
     text-align: center;
+    font-size: 2rem;
 }
 
 @media screen and (min-width:426px){
     .formTitle {
         padding-bottom: 1rem;
-        text-align: left;
+        text-align: center;
+        font-size: 2.5rem;
     }
 }
 
@@ -399,7 +412,7 @@ padding-left:3%
 
 .loginContainer {
     align-content: center;
-    margin-top:5rem;
+    margin-top: 5rem;
     text-align: -webkit-center;
 }
 
@@ -407,8 +420,11 @@ padding-left:3%
 /*sign up*/
 
 .registerContainer {
+    width:100%;
+    align-content: center;
     margin-top:5rem;
     text-align: -webkit-center;
+    margin-bottom: 10%
 }
 
 .signUpMessage a {
@@ -418,6 +434,14 @@ padding-left:3%
 
 .signUpMessage {
     padding-bottom: .5rem;
+    font-size: 1.1rem;
+}
+
+@media screen and (min-width:426px){
+    .signUpMessage {
+        padding-bottom: 1rem;
+        font-size: 1.25rem;
+    }
 }
 
 

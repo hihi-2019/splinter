@@ -167,10 +167,10 @@ class AddTransaction extends React.Component {
                     </>
                   }
                 </div>
-                <div>
+                {/* <div>
                   <label className="inputLabel">Split cost evenly?</label>
                   <input type='checkbox' name='amountMembersOwing' defaultChecked></input>
-                </div>
+                </div> */}
                 <div>
                   <button className="btn addTransactionButton custom-button btn-lg" type="submit" onClick={this.submit}>
                     Add Transaction
