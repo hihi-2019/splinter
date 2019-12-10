@@ -74,7 +74,11 @@ class AddTransaction extends React.Component {
 
   submit = (e) => {
     e.preventDefault()
-
+    if(this.state.checked == true){
+      this.setState({
+        group_members: this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
+      })
+    }
     if (this.state.transaction.transactionName == "" || !this.state.transaction.groupMemberId) {
       this.setState({
         error: true
@@ -108,6 +112,7 @@ class AddTransaction extends React.Component {
   render() {
    let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup) 
    let splitMembers = members.filter(member => !this.state.group_members.includes(member))
+   console.log(this.state)
     return (
       <>
         <div className="form-content">
