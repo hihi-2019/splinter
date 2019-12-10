@@ -5,10 +5,9 @@ import { newTransaction, deleteTransactions } from '../actions/transactions'
 class AddTransaction extends React.Component {
   constructor(props) {
     super(props)
-    let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
     this.state = {
       transaction: {},
-      group_members: members,
+      group_members: this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup),
       showTransactionForm: false,
       error: false,
       checked: true,
@@ -18,11 +17,22 @@ class AddTransaction extends React.Component {
     }
   }
 
+  UNSAFE_componentWillReceiveProps(){
+    this.setState({
+      transaction: {},
+      group_members: this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup),
+      showTransactionForm: false,
+      error: false,
+      checked: true,
+      selectedPayer: [],
+      errorPayer: false,
+      errorPeopleAmount: false
+    })
+  }
 
   handleCheck = () => {
     
     if(this.state.selectedPayer.length !== 0){
-      console.log('hello')
       if(this.state.checked){
         this.setState({
           checked: false,
@@ -64,9 +74,7 @@ class AddTransaction extends React.Component {
         ...this.state.transaction,
         [e.target.name]: e.target.value,
         group_id: this.props.activeGroup,
-      },
-
-
+      }
     })
   }
 
@@ -99,7 +107,8 @@ class AddTransaction extends React.Component {
       this.props.dispatch(newTransaction(this.state))
       this.setState({
         error: false,
-        errorPeopleAmount: false
+        errorPeopleAmount: false,
+        transaction: {transactionName: "", transactionTotal: 0.00, groupMemberId: 'Select Member'}
       })
     }
   }
@@ -122,7 +131,7 @@ class AddTransaction extends React.Component {
 
 
   render() {
-    
+    console.log(this.state)
    let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup) 
    let splitMembers = members.filter(member => !this.state.group_members.includes(member))
    console.log(this.state)
@@ -137,11 +146,11 @@ class AddTransaction extends React.Component {
                   <div className="col-lg-4 col-sm-12">
 
                     <label className="inputLabel" >Description</label>
-                    <input className='form-control' type='text' name='transactionName' placeholder="eg. Breakfast at Tiffany's" onChange={this.updateDetails}></input>
+                    <input value={this.state.transaction.transactionName}className='form-control' type='text' name='transactionName' placeholder="eg. Breakfast at Tiffany's" onChange={this.updateDetails}></input>
                   </div>
                   <div className="col-lg-3 col-sm-12">
                     <label className="inputLabel">Paid by</label>
-                    <select className='form-control' name='groupMemberId' onChange={this.updateDetails} onClick={this.handlePayerChange}>
+                    <select value={this.state.transaction.groupMemberId} className='form-control' name='groupMemberId' onChange={this.updateDetails} onClick={this.handlePayerChange}>
                       <option>Select Member</option>
                       {members.map((member, i) => {
 
@@ -152,7 +161,7 @@ class AddTransaction extends React.Component {
                   <div className="col-lg-2 col-sm-12 transactionAmountWrapper">
                     <label className="inputLabel">Amount $</label>
                     <span className='transactionAmountInput'></span>
-                    <input className='form-control' type='number' name='transactionTotal' placeholder='0.00' onChange={this.updateDetails} ></input>
+                    <input value={this.state.transaction.transactionTotal}  className='form-control' type='number' name='transactionTotal' placeholder='0.00' onChange={this.updateDetails} ></input>
                   </div>
                 </div>
                 <div>
