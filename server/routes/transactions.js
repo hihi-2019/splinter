@@ -37,6 +37,7 @@ router.post('/', (req, res) => {
       console.log("memid", req.body)
       req.body.group_members.map(member => {
         if(member.groupMember_id == transaction.groupMember_id){
+          console.log('hello')
           let num = req.body.group_members.length
           let multiplyer = (100 / num) / 100
           let payerSubtraction = transaction.transaction_total * multiplyer
