@@ -96,10 +96,11 @@ padding-left:3%
 .nav-item {
     padding-right:3rem;
     font-size: 1.6rem;
+    color:white
 }
 
 .navListItems a {
-    color: white;
+    color: white !important;
 }
 
 .logo {
@@ -292,17 +293,17 @@ padding-left:3%
 }
 
 .membersList {
-    margin: 25px 0 20px 0;
+    margin: 15px 0 20px 0;
+
 }
 
 .membersListItem {
-    list-style-image: url('icons/bear.png');
     list-style: none;
     font-size: 1.2rem;
     display: flex;
     justify-content: space-between;
-    margin: 10px;
-    max-width: 45%;
+    margin: 10px 0;
+    max-width: 30%;
 }
 
 .memberbalance {
@@ -320,7 +321,17 @@ padding-left:3%
 }.Select-option.is-selected { display: none; }
 
 .settleGroup {
-    margin: 1rem;
+    width: 100%;
+    margin-bottom: 3%
+    
+}
+
+@media screen and (min-width:426px){
+    .settleGroup {
+        margin: 1rem;
+        width: auto;
+        
+    }
 }
 
 
@@ -357,6 +368,30 @@ padding-left:3%
 
 .transactionAmountWrapper input {
     padding-left: 1.4rem;
+}
+
+.transactionSelectMember {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.transactionFormMembersListItem {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 0 0 0 5%;
+    max-width: 85%;
+}
+
+@media screen and (min-width:426px){
+    .transactionFormMembersListItem {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding: 0 0 0 5%;
+        max-width: 50%;
+    }
 }
 
 
@@ -396,16 +431,26 @@ padding-left:3%
 }
 
 .formMembersList {
-    max-width: 55%;
+    max-width: 85%;
     list-style: none;
     padding: 0;
     margin: 0 0 20px 0; 
+}
+
+@media screen and (min-width:426px){
+    .formMembersList {
+        max-width: 55%;
+        list-style: none;
+        padding: 0;
+        margin: 0 0 20px 0; 
+    }
 }
 
 .formMembersListItem {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
+    padding: 0 0 0 5%;
 }
 
 .addMemberButton {
@@ -424,3 +469,13 @@ padding-left:3%
     background-color: #37517E ;
 }
 .Select-option.is-selected { display: none; }
+
+.hiddenOnMobile {
+    display: none;
+}
+
+@media screen and (min-width:426px){
+    .hiddenOnMobile{
+        display: auto;
+    }
+}
