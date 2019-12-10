@@ -109,7 +109,7 @@ class ActiveGroup extends React.Component {
                           }
                         }
                         return (
-                          <li key={i} className="memberList">{member.member_name} $ {moneyArr[i].toFixed(2)}</li>
+                          <li className="membersListItem"><p>{member.member_name}</p><p className={`memberbalance${totalColor()}`}>${moneyArr[i].toFixed(2)}</p></li>
                           )
                       })}
                     </ul>}
