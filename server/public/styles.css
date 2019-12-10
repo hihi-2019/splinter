@@ -370,7 +370,17 @@ padding-left:3%
     justify-content: space-between;
     margin-bottom: 10px;
     padding: 0 0 0 5%;
-    max-width: 50%;
+    max-width: 85%;
+}
+
+@media screen and (min-width:426px){
+    .transactionFormMembersListItem {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding: 0 0 0 5%;
+        max-width: 50%;
+    }
 }
 
 
@@ -410,10 +420,19 @@ padding-left:3%
 }
 
 .formMembersList {
-    max-width: 55%;
+    max-width: 85%;
     list-style: none;
     padding: 0;
     margin: 0 0 20px 0; 
+}
+
+@media screen and (min-width:426px){
+    .formMembersList {
+        max-width: 55%;
+        list-style: none;
+        padding: 0;
+        margin: 0 0 20px 0; 
+    }
 }
 
 .formMembersListItem {

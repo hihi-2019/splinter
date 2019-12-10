@@ -162,7 +162,7 @@ class AddTransaction extends React.Component {
                   <input type='checkbox' name='amountMembersOwing' defaultChecked></input>
                 </div>
                 <div>
-                  <button className="btn addTransactionButton btn-lg" type="submit" onClick={this.submit}>
+                  <button className="btn addTransactionButton custom-button btn-lg" type="submit" onClick={this.submit}>
                     Add Transaction
               </button>
                 </div>
