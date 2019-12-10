@@ -68,12 +68,9 @@ class ActiveGroup extends React.Component {
   let group_id = e.target.name
   let total = this.props.transactionTotal
   let group_members = this.props.groupMembers.filter(member => member.group_id == this.props.activeGroup)
-  
-    
-
+  let user_email = this.props.auth.user.user_email
   let members_name = group_members.map((member) => {return member.member_name})
   let members_totals = this.calculateTotals()
-
 
 
     Swal.fire(settleGroupMessage).then((result) => {
@@ -81,8 +78,8 @@ class ActiveGroup extends React.Component {
         this.props.dispatch(settleGroupThunk(group_id, this.props.auth.user.user_id))
         Swal.fire(settleConfirmMessage)
         .then((result) => {
-          if(result.value != undefined){
-            this.props.dispatch(sendEmail(result.value, groupName, total, members_name, members_totals))
+          if(result.value){
+            this.props.dispatch(sendEmail(user_email, groupName, total, members_name, members_totals))
           }
         })
       }
@@ -111,7 +108,7 @@ class ActiveGroup extends React.Component {
                 <div>
                 {!groups.settled &&
 
-                  <button name={groups.group_id} onClick={this.settleDebt} className="settleGroup btn btn-outline-success btn-md ">Settle Debts</button>}
+                  <button value={groups.group_name}name={groups.group_id} onClick={this.settleDebt} className="settleGroup btn btn-outline-success btn-md ">Settle Debts</button>}
                 <button id={groups.group_id} name={groups.group_name} className="settleGroup btn btn-outline-danger btn-md" onClick={this.deleteGroup}>Delete Group</button>
                 </div>
 

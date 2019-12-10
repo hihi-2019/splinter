@@ -6,7 +6,6 @@ const request = require('superagent')
 
 
 router.post('/', (req,res) => {
-  console.log(req.body)
   const email = req.body.email
   const group = req.body.group
   const total_cost = req.body.totalSpend.totalSpent
@@ -18,15 +17,11 @@ router.post('/', (req,res) => {
   const subject = `Splinter - ${group} invoice`
 
   const message = `This is your invoice for ${group} 
-  Total Cost: $${total_cost/100}
+  Total Spend: $${total_cost/100}
   
   Group Members:
   ${req.body.members.map(member => {
     return member
-  })}
-
-  Total:  ${req.body.membersTotal.map(total => {
-    return total
   })}
 
   Recommended repayments: ${messageArray.map(message => { 
@@ -34,7 +29,27 @@ router.post('/', (req,res) => {
   })}  
 
   Time to pay up!`
+
+
   
+  const htmlMessage = `
+  <h1>This is your invoice for ${group}</h1>
+  <h4>Total Spend: $${total_cost/100}</h4>
+  
+  <h4>Group Members:</h4>
+  
+  <h5>${req.body.members.map(member => {
+    return  member
+  })}</h5>
+
+ 
+
+  <h5>Recommended repayments: ${messageArray.map(message => { 
+    return message
+  })}  </h5>
+
+  <h4>Time to pay up!</h4>
+  `
 
   request.post('https://api.sendgrid.com/v3/mail/send')
   .set("Authorization", "Bearer " + process.env.SENDGRID_API_KEY)
@@ -57,6 +72,10 @@ router.post('/', (req,res) => {
           {
             "type": "text/plain",
             "value": message
+          },
+          {
+            "type": "text/html",
+            "value": htmlMessage
           }
         ]
       }
