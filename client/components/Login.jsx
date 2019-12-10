@@ -36,7 +36,7 @@ class Login extends React.Component {
     const { auth } = this.props
     return (
       <div className="loginContainer animated fadeIn">
-        <div className="col-6 col-md-4 col-sm-12">
+        <div className="col-12">
           <form className="form" onSubmit={this.handleSubmit}>
             <h1 className='formTitle'>Log In</h1>
             {auth.errorMessage && (
