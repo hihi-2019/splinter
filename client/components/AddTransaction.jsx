@@ -13,30 +13,40 @@ class AddTransaction extends React.Component {
       error: false,
       checked: true,
       selectedPayer: [],
-      selectedPayee: []
+      errorPayer: false
     }
   }
 
+
   handleCheck = () => {
-    if (this.state.selectedPayer.length !== 0) {
-      if (this.state.checked) {
+    
+    if(this.state.selectedPayer.length !== 0){
+      console.log('hello')
+      if(this.state.checked){
         this.setState({
           checked: false,
-          group_members: this.state.selectedPayer
+          group_members: this.state.selectedPayer,
+          errorPayer: false
         })
       } else {
         this.setState({
           checked: true,
-          group_members: this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
+          group_members: this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup),
+          errorPayer: false
         })
       }
-    } else {
-      alert("please select 'paid by'")
+    } else{
+      this.setState({
+        errorPayer: true
+      })
     }
 
   }
   handlePayerChange = (e) => {
-    if (this.state.checked == false) {
+    this.setState({
+      group_members: this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
+    })
+    if(this.state.checked == false){
       this.handleCheck()
     }
     let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
@@ -74,8 +84,7 @@ class AddTransaction extends React.Component {
 
   submit = (e) => {
     e.preventDefault()
-
-    if (this.state.transaction.transactionName == "" || !this.state.transaction.groupMemberId) {
+    if (this.state.transaction.transactionName == undefined || !this.state.transaction.groupMemberId) {
       this.setState({
         error: true
       })
@@ -88,8 +97,7 @@ class AddTransaction extends React.Component {
   }
 
   deleteMember = (e) => {
-    if (this.state.selectedPayer[0].member_name == e.target.name) {
-      console.log(this.state.selectedPayer)
+    if(this.state.selectedPayer[0].member_name == e.target.name){
       this.handleCheck()
       return this.setState({
         group_members: this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
@@ -106,8 +114,10 @@ class AddTransaction extends React.Component {
 
 
   render() {
-    let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
-    let splitMembers = members.filter(member => !this.state.group_members.includes(member))
+    
+   let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup) 
+   let splitMembers = members.filter(member => !this.state.group_members.includes(member))
+   console.log(this.state)
     return (
       <>
         <div className="form-content">
@@ -138,6 +148,7 @@ class AddTransaction extends React.Component {
                   </div>
                 </div>
                 <div>
+                {this.state.errorPayer == true && <p style={{ color: "red" }}>Please select a payer</p>}
                   <label className="inputLabel">Split by all members?</label>
                   <input type='checkbox' name='membersOwing' checked={this.state.checked} onChange={this.handleCheck}></input>
                   {!this.state.checked &&
