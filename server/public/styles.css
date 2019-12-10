@@ -317,7 +317,7 @@ padding-left:3%
 
 .deleteGroup {
     margin: 3rem 0 0 0;
-}
+}.Select-option.is-selected { display: none; }
 
 .settleGroup {
     margin: 1rem;
@@ -423,3 +423,4 @@ padding-left:3%
     color:white;
     background-color: #37517E ;
 }
+.Select-option.is-selected { display: none; }

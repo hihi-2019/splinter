@@ -30,7 +30,6 @@ class ViewTransactions extends React.Component {
   }
 
   // componentDidMount() {
-  //   console.log("number", Number(this.props.activeGroup[0]))
   //   this.props.dispatch(getTransactions(Number(this.props.activeGroup[0])))
   // }
 
@@ -83,7 +82,7 @@ class ViewTransactions extends React.Component {
                       <tr>
                         <td><button className='btn transactionsButton btn-block' onClick={this.toggleTransaction} name={transaction.transaction_name}>{transaction.transaction_name}</button></td>
                         <td>{dateString}</td>
-                        <td>${transaction.total_contribution / 100}</td>
+                        <td>$ {transaction.transaction_total / 100}</td>
                         <td>{name}</td>
                         {selectedGroup.settled == 0 && <td><button onClick={this.handleDelete} id={transaction.transaction_id} className='btn btn-outline-danger'>Delete</button></td>}
                       </tr>
