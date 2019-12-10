@@ -17,6 +17,7 @@ class AddTransaction extends React.Component {
     }
   }
 
+
   handleCheck = () => {
     
     if(this.state.selectedPayer.length !== 0){
@@ -42,6 +43,9 @@ class AddTransaction extends React.Component {
     
 }
   handlePayerChange = (e) => {
+    this.setState({
+      group_members: this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
+    })
     if(this.state.checked == false){
       this.handleCheck()
     }
