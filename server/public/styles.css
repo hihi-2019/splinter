@@ -359,6 +359,20 @@ padding-left:3%
     padding-left: 1.4rem;
 }
 
+.transactionSelectMember {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.transactionFormMembersListItem {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 0 0 0 5%;
+    max-width: 50%;
+}
+
 
 /*log in*/
 
@@ -406,6 +420,7 @@ padding-left:3%
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
+    padding: 0 0 0 5%;
 }
 
 .addMemberButton {
