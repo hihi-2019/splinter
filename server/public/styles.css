@@ -459,6 +459,11 @@ color: white;
     }
 }
 
+.custom-box {
+    margin-left: 2%;
+    cursor: pointer;
+    font-size: auto;
+}
 
 /*log in*/
 
@@ -466,7 +471,7 @@ color: white;
     align-content: center;
     margin-top: 5rem;
     text-align: -webkit-center;
-    margin-bottom: 10%;
+    margin-bottom: 5rem;
 }
 
 
@@ -475,9 +480,18 @@ color: white;
 .registerContainer {
     width:100%;
     align-content: center;
-    margin-top:5rem;
+    margin-top:3rem;
     text-align: -webkit-center;
-    margin-bottom: 10%;
+    margin-bottom: 3rem;
+}
+@media screen and (min-width:426px){
+    .registerContainer {
+        width:100%;
+        align-content: center;
+        margin-top:5rem;
+        text-align: -webkit-center;
+        margin-bottom: 5rem;
+    }
 }
 
 .signUpMessage a {

@@ -158,7 +158,7 @@ class AddTransaction extends React.Component {
                 <div>
                 {this.state.errorPayer == true && <p style={{ color: "red" }}>Please select a payer</p>}
                   <label className="inputLabel">Split by all members?</label>
-                  <input type='checkbox' name='membersOwing' checked={this.state.checked} onChange={this.handleCheck}></input>
+                  <input className="custom-box" type='checkbox' name='membersOwing' checked={this.state.checked} onChange={this.handleCheck}></input>
                   {!this.state.checked &&
                     <>
                       <div className="col-lg-3 col-sm-12">
@@ -181,7 +181,7 @@ class AddTransaction extends React.Component {
                 </div> */}
                 <div>
                 {this.state.errorPeopleAmount == true && <p style={{ color: "red" }}>Please select more than one member</p>}
-                  <button className="btn addTransactionButton btn-lg" type="submit" onClick={this.submit}>
+                  <button className="btn addTransactionButton custom-button btn-lg" type="submit" onClick={this.submit}>
                     Add Transaction
               </button>
                 </div>
