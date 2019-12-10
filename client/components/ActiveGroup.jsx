@@ -82,20 +82,32 @@ class ActiveGroup extends React.Component {
           {this.props.activeGroup ?
             <div className="">
               {groups && <>
-                <div className="">
+
+                <div>
                   <h1 className="activeGroupTitle">{groups.group_name}</h1>
                   <h3 className="activeGroupSubtitle" style={{ fontStyle: "italic" }}>{groups.group_description}</h3>
-                  <h3>Total spend is ${this.props.transactionTotal.totalSpent ? this.props.transactionTotal.totalSpent / 100 : 0} </h3>
+                  <h3 className="totalSpend">Total spend is ${this.props.transactionTotal.totalSpent ? this.props.transactionTotal.totalSpent / 100 : 0} </h3>
+
                 </div>
-                  {!groups.settled && <button name={groups.group_id} onClick={this.settleDebt} className="settleGroup btn btn-outline-success btn-md">Settle Debts</button>}
-                  <button id={groups.group_id} name={groups.group_name} className="settleGroup btn btn-outline-danger btn-md" onClick={this.deleteGroup}>Delete Group</button>
+
+                {!groups.settled && <button name={groups.group_id} onClick={this.settleDebt} className="settleGroup btn btn-outline-success btn-md">Settle Debts</button>}
+                <button id={groups.group_id} name={groups.group_name} className="settleGroup btn btn-outline-danger btn-md" onClick={this.deleteGroup}>Delete Group</button>
+
+
                 <div >
                   <hr></hr>
                   <h2 onClick={this.toggleGroupMembers} className="subTitle">Group Members <i className="dashHeader fas fa-chevron-circle-down"></i></h2>
                   {this.state.showGroupMembers &&
-                    <ul className="animated fadeIn">
+                    <ul className="membersList animated fadeIn">
                       {members.map((member, i )=> {
                         let moneyArr = this.calculateTotals()
+                        const totalColor = () => {
+                          if (moneyArr[i] < 0) {
+                            return "red"
+                          } else {
+                            return ""
+                          }
+                        }
                         return (
                           <li key={i} className="memberList">{member.member_name} $ {moneyArr[i].toFixed(2)}</li>
                           )

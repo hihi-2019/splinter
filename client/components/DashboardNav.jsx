@@ -56,7 +56,7 @@ class DashboardNav extends React.Component {
                         </ul>}
                     </div>
                     <div >
-                        <div className="dashNavListItem" id='' onClick={this.changeGroup}>
+                        <div className="" id='' onClick={this.changeGroup}>
                             <h4 className="dashNavHeader" >New Group <i className="fas fa-plus-circle"></i></h4>
                         </div>
                     </div>
