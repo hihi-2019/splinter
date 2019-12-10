@@ -83,7 +83,7 @@ class CreateGroup extends React.Component {
               <button className="addMemberButton btn custom-button btn-sm" onClick={this.addMember}>Add member</button>
             </div>
             <ul className="formMembersList"> {this.state.members_names.map(member => {
-              return <li className="formMembersListItem">{member} <button className="btn btn-outline-danger btn-sm" name={member} onClick={this.deleteMember}>Remove</button></li>
+              return <li key={1} className="formMembersListItem">{member} <button className="btn btn-outline-danger btn-sm" name={member} onClick={this.deleteMember}>Remove</button></li>
             })}
             </ul>
             <button className="btn custom-button btn-lg" onClick={this.submit}>

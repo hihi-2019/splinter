@@ -18,35 +18,33 @@ class AddTransaction extends React.Component {
   }
 
   handleCheck = () => {
-    if(this.state.checked){
-      this.setState({
-        checked: false,
-        group_members: this.state.selectedPayer
-      })
+    if(this.state.selectedPayer.length !== 0){
+      if(this.state.checked){
+        this.setState({
+          checked: false,
+          group_members: this.state.selectedPayer
+        })
+      } else{
+        this.setState({
+          checked: true,
+          group_members: this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
+        })
+      }
     } else{
-      this.setState({
-        checked: true,
-        group_members: this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
-      })
+      alert("please select 'paid by'")
     }
+    
 }
   handlePayerChange = (e) => {
+    if(this.state.checked == false){
+      this.handleCheck()
+    }
     let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
     let selectedMem = members.filter(member => member.groupMember_id == e.target.value)
     this.setState({
       selectedPayer: selectedMem
     })
-    selectedMem.map(selMember => {
-      let count = 0
-      this.state.group_members.map(member => {
-        if(selMember.groupMember_id == member.groupMember_id){
-          return count ++
-        }
-      })
-      if(count ==0){
-        this.state.group_members.push(selectedPayer[0])
-      }
-    })
+  
   }
 
   updateDetails = (e) => {
@@ -90,16 +88,26 @@ class AddTransaction extends React.Component {
   }
 
   deleteMember = (e) => {
-    e.preventDefault()
-    this.setState({
+    if(this.state.selectedPayer[0].member_name == e.target.name){
+      console.log(this.state.selectedPayer)
+      this.handleCheck()
+      return this.setState({
+        group_members: this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
+      })
+
+    } else {
+      e.preventDefault()
+      this.setState({
       group_members: this.state.group_members.filter(member => member.member_name !== e.target.name)
     })
+    }
+    
   }
 
 
   render() {
-    let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
-    let splitMembers = members.filter(member => !this.state.group_members.includes(member))
+   let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup) 
+   let splitMembers = members.filter(member => !this.state.group_members.includes(member))
     return (
       <>
         <div className="form-content">
@@ -125,14 +133,14 @@ class AddTransaction extends React.Component {
                   {!this.state.checked &&
                   <>
                     <select onChange={this.handlePayees} >
-                    <option selected='selected'>Select Member</option>
+                    <option>Select Member</option>
                       {splitMembers.map((member, i) => {
                         return <option key={member.member_name} value={member.member_name}>{member.member_name}</option>
                       })}
                     </select>
                 
                     {this.state.group_members.map((member, i) => {
-                     return <ul><li className="formMembersListItem">{member.member_name} <button className="btn btn-outline-danger btn-sm" name={member.member_name} onClick={this.deleteMember}>Remove</button></li></ul>
+                     return <ul> <li key={i+1000} className="formMembersListItem">{member.member_name} <button className="btn btn-outline-danger btn-sm" name={member.member_name} onClick={this.deleteMember}>Remove</button></li></ul>
                     })}
                   </>
                   }
