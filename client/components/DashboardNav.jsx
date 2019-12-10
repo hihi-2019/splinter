@@ -72,7 +72,6 @@ const mapStateToProps = (reduxState) => {
         groups: reduxState.groups,
         activeGroup: reduxState.activeGroup,
         transactions: reduxState.transactions,
-        transactionTotal: reduxState.tra
     }
 }
 
