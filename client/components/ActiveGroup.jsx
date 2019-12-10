@@ -67,7 +67,7 @@ class ActiveGroup extends React.Component {
                   <h1 className="activeGroupTitle">{groups.group_name}</h1>
 
                   <h3 className="activeGroupSubtitle" style={{ fontStyle: "italic" }}>{groups.group_description}</h3>
-                  <h3>Total spend is ${this.props.transactionTotal.totalSpent ? this.props.transactionTotal.totalSpent / 100 : 0} </h3>
+                  <h3 className="totalSpend">Total spend is ${this.props.transactionTotal.totalSpent ? this.props.transactionTotal.totalSpent / 100 : 0} </h3>
 
                 </div>
 
