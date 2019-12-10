@@ -1,3 +1,9 @@
+function generateDebtArray (groupMembersArray, balanceArray ) {
+    let debtArray = []
+    groupMembersArray.forEach((key, i) => debtArray.push({'name': groupMembersArray[i], 'balance' : balanceArray[i]}))
+    console.log(debtArray)
+    return debtArray
+}
 
 function generateDebtMessages(debtArray, messageArray) {
     if (messageArray == undefined) {
@@ -46,6 +52,7 @@ function removeZeroBalances (array) {
 module.exports = {
     sortBalances,
     removeZeroBalances,
-    generateDebtMessages
+    generateDebtMessages,
+    generateDebtArray
 }
 
