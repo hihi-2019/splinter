@@ -37,9 +37,8 @@ class SignUp extends React.Component {
   render() {
     const { auth } = this.props
     return (
-      <div className="registerContainer animated fadeIn">
 
-        <div className="col-6">
+        <div className="registerContainer animated fadeIn col-12">
 
           <form className="form" onSubmit={this.submit}>
 
@@ -74,7 +73,6 @@ class SignUp extends React.Component {
 
           </form>
         </div>
-      </div >
     )
   }
 }
