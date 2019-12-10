@@ -64,9 +64,9 @@ class ViewTransactions extends React.Component {
             <thead>
               <tr>
                 <th scope='col'>Description</th>
-                <th scope='col'>Date</th>
-                <th scope='col'>Transaction Total</th>
-                <th scope='col'>Who Paid</th>
+                <th className='hiddenOnMobile' scope='col'>Date</th>
+                <th scope='col'>Total</th>
+                <th scope='col'>Paid by</th>
                 {selectedGroup.settled == 0 && <th scope='col'>Delete</th>}
 
               </tr>
@@ -81,8 +81,8 @@ class ViewTransactions extends React.Component {
                     <>
                       <tr>
                         <td><button className='btn transactionsButton btn-block' onClick={this.toggleTransaction} name={transaction.transaction_name}>{transaction.transaction_name}</button></td>
-                        <td>{dateString}</td>
-                        <td>$ {transaction.transaction_total / 100}</td>
+                        <td className='hiddenOnMobile'>{dateString}</td>
+                        <td>${transaction.transaction_total / 100}</td>
                         <td>{name}</td>
                         {selectedGroup.settled == 0 && <td><button onClick={this.handleDelete} id={transaction.transaction_id} className='btn btn-outline-danger'>Delete</button></td>}
                       </tr>
@@ -106,7 +106,7 @@ const mapStateToProps = (reduxState) => {
     groups: reduxState.groups,
     transactions: reduxState.transactions,
     groupMembers: reduxState.groupMembers,
-    activeGroup: reduxState.activeGroup
+    activeGroup: reduxState.activeGroup,
   }
 }
 

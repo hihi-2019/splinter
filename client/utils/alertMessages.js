@@ -41,7 +41,15 @@ export let deleteConfirmMessage = {
   }
 
   export let settleConfirmMessage = {
-    title:'Settled!',
+    title:'Enter group members email to send them a copy of the invoice!',
+    input: 'email',
+    inputAttributes: {
+      autocapitalize: 'off'
+    },
+    showCancelButton: true,
     text:'Now tell everyone to pay up!',
     icon:'success'
   }
+
+
+  

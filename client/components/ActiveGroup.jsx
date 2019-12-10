@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Swal from 'sweetalert2'
 import { apiDeleteGroup } from '../api/groups'
 import { getGroupsByUser, setActiveGroupId, settleGroupThunk } from '../actions/groups'
-
+import { sendEmail } from '../actions/email'
 
 import { deleteAlertMessage, deleteConfirmMessage, settleGroupMessage, settleConfirmMessage } from '../utils/alertMessages'
 
@@ -61,12 +61,30 @@ class ActiveGroup extends React.Component {
     })
   }
 
-  settleDebt = (event) => {
-    let group_id = event.target.name
+  
+
+  settleDebt = (e) => {
+  let groupName = e.target.value
+  let group_id = e.target.name
+  let total = this.props.transactionTotal
+  let group_members = this.props.groupMembers.filter(member => member.group_id == this.props.activeGroup)
+  
+    
+
+  let members_name = group_members.map((member) => {return member.member_name})
+  let members_totals = this.calculateTotals()
+
+
+
     Swal.fire(settleGroupMessage).then((result) => {
       if (result.value) {
         this.props.dispatch(settleGroupThunk(group_id, this.props.auth.user.user_id))
         Swal.fire(settleConfirmMessage)
+        .then((result) => {
+          if(result.value != undefined){
+            this.props.dispatch(sendEmail(result.value, groupName, total, members_name, members_totals))
+          }
+        })
       }
     })
   }
@@ -90,8 +108,12 @@ class ActiveGroup extends React.Component {
 
                 </div>
 
-                {!groups.settled && <button name={groups.group_id} onClick={this.settleDebt} className="settleGroup btn btn-outline-success btn-md">Settle Debts</button>}
+                <div>
+                {!groups.settled &&
+
+                  <button name={groups.group_id} onClick={this.settleDebt} className="settleGroup btn btn-outline-success btn-md ">Settle Debts</button>}
                 <button id={groups.group_id} name={groups.group_name} className="settleGroup btn btn-outline-danger btn-md" onClick={this.deleteGroup}>Delete Group</button>
+                </div>
 
 
                 <div >
@@ -141,3 +163,25 @@ const mapStateToProps = (reduxState) => {
 }
 
 export default connect(mapStateToProps)(ActiveGroup)
+
+
+// let id = group_members.map(member => {return member.groupMember_id})
+
+//     console.log("this one", id)
+
+//    let trans =  id.map(i => this.props.transactions.filter(trans => trans.groupMember_id == i))
+   
+//    console.log("this one trans", trans)
+
+    // let total = 0
+    // this.props.transactions.filter(transaction => transaction.groupMember_id == member.groupMember_id).map(memberSpent => {
+     
+    //   if (member.groupMember_id == memberSpent.groupMember_id) {
+    //     if (memberSpent.total_contribution > 0) {
+    //       let numPeople = members.length
+    //       let percentage = (100 / numPeople) / 100
+    //       let payerDeduction = (memberSpent.total_contribution * percentage) / 100
+    //       return total += (memberSpent.total_contribution / 100) - payerDeduction
+    //     }
+    //     return  total += (memberSpent.total_contribution / 100)
+    //   }

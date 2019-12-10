@@ -1,0 +1,43 @@
+SELECT setval('transactions_transaction_id_seq', (SELECT max(transaction_id) from transactions)+1);
+
+SELECT setval("transactionDetails_transactionDetails_id_seq", (SELECT max("transactionDetails_id") from "transactionDetails")+1);
+
+
+SELECT c.relname FROM pg_class c WHERE c.relkind = 'S';
+
+transactionDetails_transactionDetails_id_seq
+
+
+SELECT getval("transactionDetails_transactionDetails_id_seq")
+
+
+SELECT * FROM pg_class c WHERE c.relkind = 'S';
+
+transactionDetails_transactionDetails_id_seq
+
+
+SELECT pg_get_serial_sequence("transactionDetails", "transactionDetails_id")
+
+
+
+SELECT max("transactionDetails_id") from "transactionDetails";
+SELECT max("groupMember_id") from "groupMembers";
+SELECT max("group_id") from "groups";
+SELECT max("user_id") from "users";
+
+ALTER SEQUENCE "transactionDetails_transactionDetails_id_seq" RESTART WITH 32;
+ALTER SEQUENCE "groupMembers_groupMember_id_seq" RESTART WITH 47;
+ALTER SEQUENCE "groups_group_id_seq" RESTART WITH 29;
+ALTER SEQUENCE "users_user_id_seq" RESTART WITH 5;
+
+
+
+SELECT max("groupMember_id") from "groupMembers";
+SELECT max("group_id") from "groups";
+SELECT max("user_id") from "users";
+
+
+ heroku psql     
+
+
+ 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

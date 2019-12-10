@@ -34,6 +34,7 @@ router.post('/', (req, res) => {
 
   db.addTransaction(transaction)
     .then(id => {
+      console.log("memid", req.body)
       req.body.group_members.map(member => {
         if(member.groupMember_id == transaction.groupMember_id){
           console.log('hello')
