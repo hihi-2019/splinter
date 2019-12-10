@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Swal from 'sweetalert2'
 import { apiDeleteGroup } from '../api/groups'
 import { getGroupsByUser, setActiveGroupId, settleGroupThunk } from '../actions/groups'
-
+import { sendEmail } from '../actions/email'
 
 import { deleteAlertMessage, deleteConfirmMessage, settleGroupMessage, settleConfirmMessage } from '../utils/alertMessages'
 
@@ -47,6 +47,9 @@ class ActiveGroup extends React.Component {
       if (result.value) {
         this.props.dispatch(settleGroupThunk(group_id, this.props.auth.user.user_id))
         Swal.fire(settleConfirmMessage)
+        .then((result) => {
+          this.props.dispatch(sendEmail(result.value))
+        })
       }
     })
   }
