@@ -31,7 +31,7 @@ class TransactionDetails extends React.Component {
           if (debtors.total_contribution < 0) {
             return (
               <ul>
-                <li key={i}>{this.getGroupMember(debtors.groupMember_id)} owes {name}  $ {(debtors.total_contribution / 100) * -1}</li>
+                <li key={i}>{this.getGroupMember(debtors.groupMember_id)} owes {name}  $ {(debtors.total_contribution / 100).toFixed(2) * -1}</li>
               </ul>
             )
           }
