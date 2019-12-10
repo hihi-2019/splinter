@@ -132,11 +132,10 @@ class AddTransaction extends React.Component {
                     </select>
                   </div>
                   <div className="col-lg-2 col-sm-12 transactionAmountWrapper">
-
                     <label className="inputLabel">Amount $</label>
+                    <span className='transactionAmountInput'></span>
                     <input className='form-control' type='number' name='transactionTotal' placeholder='0.00' onChange={this.updateDetails} ></input>
                   </div>
-
                 </div>
                 <div>
                   <label className="inputLabel">Split by all members?</label>
