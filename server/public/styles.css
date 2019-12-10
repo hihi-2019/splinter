@@ -260,6 +260,12 @@ padding-left:3%
     text-align: left;
 }
 
+.memberbalancered {
+    text-align: left;
+    color: red;
+}
+
+
 .deleteGroup {
     margin: 3rem 0 0 0;
 }

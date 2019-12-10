@@ -70,11 +70,11 @@ class ActiveGroup extends React.Component {
                   <h3>Total spend is ${this.props.transactionTotal.totalSpent ? this.props.transactionTotal.totalSpent / 100 : 0} </h3>
 
                 </div>
-                
-                    {!groups.settled && <button name={groups.group_id} onClick={this.settleDebt} className="settleGroup btn btn-outline-success btn-md">Settle Debts</button>}
-                    <button id={groups.group_id} name={groups.group_name} className="settleGroup btn btn-outline-danger btn-md" onClick={this.deleteGroup}>Delete Group</button>
-                 
-                  
+
+                {!groups.settled && <button name={groups.group_id} onClick={this.settleDebt} className="settleGroup btn btn-outline-success btn-md">Settle Debts</button>}
+                <button id={groups.group_id} name={groups.group_name} className="settleGroup btn btn-outline-danger btn-md" onClick={this.deleteGroup}>Delete Group</button>
+
+
                 <div >
                   <hr></hr>
                   <h2 onClick={this.toggleGroupMembers} className="subTitle">Group Members <i className="dashHeader fas fa-chevron-circle-down"></i></h2>
@@ -93,9 +93,15 @@ class ActiveGroup extends React.Component {
                             return total += (memberSpent.total_contribution / 100)
                           }
                         })
-
+                        const totalColor = () => {
+                          if (total < 0) {
+                            return "red"
+                          } else {
+                            return ""
+                          }
+                        }
                         return (
-                          <li className="membersListItem"><p>{member.member_name}</p><p className="memberbalance">${total}</p></li>
+                          <li className="membersListItem"><p>{member.member_name}</p><p className={`memberbalance${totalColor()}`}>${total}</p></li>
                         )
                       })}
                     </ul>}
