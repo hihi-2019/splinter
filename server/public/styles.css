@@ -85,7 +85,7 @@ a:hover {
 font-family: 'Ubuntu', sans-serif;
 font-size: 2.5rem;
 color: white;
-padding-left:3%
+
 }
 
 @media screen and (min-width:426px){
@@ -95,6 +95,10 @@ padding-left:3%
         color: white;
         padding-left:20%
         }
+}
+
+.navbar-brand {
+    margin-right: 0;
 }
 
 .navbar {
@@ -172,7 +176,7 @@ padding-left:3%
     .landingPage img {
         vertical-align: middle;
         border-style: none;
-        max-width: 40%;
+        max-width: 17.5%;
         padding: 0;
     }
 }
@@ -496,7 +500,19 @@ padding-left:3%
 
 /*create group*/
 
+.groupFormTitle {
+    padding-bottom: .5rem;
+    text-align: center;
+    font-size: 2rem;
+}
 
+@media screen and (min-width:426px){
+    .groupFormTitle {
+        padding-bottom: .5rem;
+        text-align: left;
+        font-size: 2rem;
+    }
+}
 
 .groupForm {
     margin-top: 2rem;
