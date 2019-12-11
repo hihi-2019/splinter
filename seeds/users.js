@@ -9,7 +9,7 @@ exports.seed = function (knex) {
       return knex('users').insert([
         {
           user_id: 1,
-          email: 'aliceiscool@yahoo.com',
+          email: 'alice.alsford@gmail.com',
           first_name: 'Alice',
           last_name: 'Alsford',
           hash: hashSync('123', saltRounds),

@@ -35,6 +35,7 @@ function generateDebtMessages(debtArray, messageArray) {
         generateDebtMessages(debtArray, messageArray)
 
     }
+    
     console.log(messageArray)
     return messageArray
 }
