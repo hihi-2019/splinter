@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { HashRouter as Router, Route, Link, Redirect } from 'react-router-dom'
 import LandingPage from '../components/LandingPage'
 import Nav from '../components/Nav'
-import Footer from '../components/Footer'
 import Dashboard from '../components/Dashboard'
 import { getGroupsByUser } from '../actions/groups'
 // import {apiGetGroupsByUser} from '../api/groups'
@@ -11,7 +10,7 @@ import { getGroupMembers } from '../actions/groups'
 import Login from '../components/Login'
 import SignUp from '../components/SignUp'
 
-class App extends React.Component {
+export class App extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -39,7 +38,6 @@ class App extends React.Component {
           {!this.props.auth.isAuthenticated && <Route exact path='/login' component={Login} />}
           {!this.props.auth.isAuthenticated && <Route path='/signup' component={SignUp} />}
         </div>
-        <Footer />
       </Router>
 
     )

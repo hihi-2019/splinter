@@ -358,17 +358,28 @@ color: white;
 }
 
 .membersList {
-    margin: 15px 0 20px 0;
+    margin: 15px 20px 20px 0;
+    box-sizing: border-box;
 
 }
+
 
 .membersListItem {
     list-style: none;
     font-size: 1.2rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin: 10px 0;
-    max-width: 30%;
+}
+@media screen and (min-width:426px){
+    .membersListItem {
+        list-style: none;
+        font-size: 1.2rem;
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
+        max-width: 30%;
+    }
 }
 
 .memberbalance {

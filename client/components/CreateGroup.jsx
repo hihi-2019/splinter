@@ -43,7 +43,7 @@ class CreateGroup extends React.Component {
 
   submit = (e) => {
     e.preventDefault()
-    if (this.state.group_name == '' || this.state.group_description == '' || this.state.members_names.length < 1) {
+    if (this.state.group_name == '' || this.state.group_description == '' || this.state.members_names.length < 2) {
       this.setState({
         error: true
       })
