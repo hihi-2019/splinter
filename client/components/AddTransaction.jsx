@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { newTransaction, deleteTransactions } from '../actions/transactions'
 
-class AddTransaction extends React.Component {
+export class AddTransaction extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -31,7 +31,6 @@ class AddTransaction extends React.Component {
   }
 
   handleCheck = () => {
-    
     if(this.state.selectedPayer.length !== 0){
       if(this.state.checked){
         this.setState({
@@ -51,8 +50,8 @@ class AddTransaction extends React.Component {
         errorPayer: true
       })
     }
-
   }
+  
   handlePayerChange = (e) => {
     this.setState({
       group_members: this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup)
@@ -131,10 +130,10 @@ class AddTransaction extends React.Component {
 
 
   render() {
-    console.log(this.state)
+    // console.log(this.state)
    let members = this.props.groupMembers.filter(({ group_id }) => group_id == this.props.activeGroup) 
    let splitMembers = members.filter(member => !this.state.group_members.includes(member))
-   console.log(this.state)
+  //  console.log(this.state)
     return (
       <>
         <div className="form-content">

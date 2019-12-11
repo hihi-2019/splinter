@@ -11,7 +11,7 @@ import { getGroupMembers } from '../actions/groups'
 import Login from '../components/Login'
 import SignUp from '../components/SignUp'
 
-class App extends React.Component {
+export class App extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -23,9 +23,9 @@ class App extends React.Component {
   }
 
   componentDidUpdate() {
-    this.props.groups.map(group => {
-      return this.props.dispatch(getGroupMembers(group.group_id))
-    })
+    // this.props.groups.map(group => {
+    //   return this.props.dispatch(getGroupMembers(group.group_id))
+    // })
   }
 
   render() {

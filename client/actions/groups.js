@@ -13,6 +13,10 @@ export function getGroupsByUser(user_id) {
     apiGetGroupsByUser(user_id)
     .then((groups) => {
       dispatch(saveGroupsByUser(groups))
+
+      groups.forEach(group => {
+        dispatch(getGroupMembers(group.group_id))
+      })
     })
     }
 }
