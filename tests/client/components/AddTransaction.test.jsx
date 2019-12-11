@@ -17,7 +17,8 @@ const defaultProps = {
       { groupMember_id: 14, group_id: 5, member_name: "Jenny" },
       { groupMember_id: 17, group_id: 6, member_name: "Not Phil" },
   ],
-  activeGroup: 5
+  activeGroup: 5,
+  
 }
 
 
@@ -45,3 +46,56 @@ test('handleCheck sets an error for selected payer', () => {
 
     expect(actual).toBeTruthy()
 }) 
+
+test('handleCheck sets state.checked to false when unTicked', () => {
+    const wrapper = shallow(<AddTransaction {...defaultProps}/>)
+    debugLog(wrapper.debug())
+
+    wrapper.setState({selectedPayer: [{ groupMember_id: 14, group_id: 5, member_name: "Jenny" }], checked: true})
+    
+    wrapper.instance().handleCheck()
+
+    const actual = wrapper.state().checked
+
+    expect(actual).toBeFalsy()
+}) 
+
+test('handleCheck sets state.checked to true when ticked', () => {
+    const wrapper = shallow(<AddTransaction {...defaultProps}/>)
+    debugLog(wrapper.debug())
+
+    wrapper.setState({selectedPayer: [{ groupMember_id: 14, group_id: 5, member_name: "Jenny" }], checked: false})
+    
+    wrapper.instance().handleCheck()
+
+    const actual = wrapper.state().checked
+
+    expect(actual).toBeTruthy()
+}) 
+
+test('splitMembers.map returns the correct number of names', () => {
+    const wrapper = shallow(<AddTransaction {...defaultProps}/>)
+    debugLog(wrapper.debug())
+    console.log(defaultProps.groupMembers)
+    const splitMembers = defaultProps.groupMembers.filter(member => !defaultProps.groupMembers.includes(member))
+
+    wrapper.setState({selectedPayer: [{ groupMember_id: 14, group_id: 5, member_name: "Jenny" }], checked: false})
+    
+    wrapper.instance().handleCheck()
+
+    const actual = splitMembers.length
+
+    expect(actual).toEqual(0)
+}) 
+
+// test('submit sends error if there is 1 or less people in groupMembers', () => {
+//     const wrapper = shallow(<AddTransaction {...defaultProps}/>)
+//     debugLog(wrapper.debug())
+//     wrapper.setState( {group_members: [{ groupMember_id: 14, group_id: 5, member_name: "Jenny" }], checked: false, errorPeopleAmount: false})
+    
+//     wrapper.instance().submit(e)
+
+//     const actual = wrapper.state().errorPeopleAmount
+
+//     expect(actual).toBeTruthy()
+// }) 
