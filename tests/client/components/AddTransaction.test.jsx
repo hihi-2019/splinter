@@ -88,14 +88,14 @@ test('splitMembers.map returns the correct number of names', () => {
     expect(actual).toEqual(0)
 }) 
 
-// test('submit sends error if there is 1 or less people in groupMembers', () => {
-//     const wrapper = shallow(<AddTransaction {...defaultProps}/>)
-//     debugLog(wrapper.debug())
-//     wrapper.setState( {group_members: [{ groupMember_id: 14, group_id: 5, member_name: "Jenny" }], checked: false, errorPeopleAmount: false})
+test('submit sends error if there is 1 or less people in groupMembers', () => {
+    const wrapper = shallow(<AddTransaction {...defaultProps}/>)
+    debugLog(wrapper.debug())
+    wrapper.setState( {group_members: [{ groupMember_id: 14, group_id: 5, member_name: "Jenny" }], checked: false, errorPeopleAmount: false})
     
-//     wrapper.instance().submit(e)
+    wrapper.instance().submit({preventDefault : () => {}})
 
-//     const actual = wrapper.state().errorPeopleAmount
+    const actual = wrapper.state().errorPeopleAmount
 
-//     expect(actual).toBeTruthy()
-// }) 
+    expect(actual).toBeTruthy()
+}) 
