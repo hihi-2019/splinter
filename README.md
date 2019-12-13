@@ -1,10 +1,14 @@
 # Splinter
 
-## Final Group Project
-
 Keeping track of group expenditures can be tough and awkward. 
 
 This is an app that helps to track spending and divide and settle the bills.
+
+## Final Group Project - Presented at Graduation on 13 December 2019 
+
+Product Owner: Bas Suckling
+
+Dev Team: Tosca Wilson, Alice Alsford, Robert Cummins
 
 ## The Tech
 
@@ -14,7 +18,7 @@ The tech that this project will use is the following:
 * [Redux](https://redux.js.org/)
 * [Express](https://expressjs.com/en/api.html)
 * [Knex.js (SQL)](https://knexjs.org/)
-* [Bootstrap]
+* [Bootstrap](https://getbootstrap.com/)
 * [JWT Auth (Local)](https://jwt.io/)
 
 
@@ -45,13 +49,13 @@ As a user:
   | Login | View for user to enter their login credentials |
   | Register | View for user to sign up for the App |
   | LandingPage | Filler content |
-  | Taskbar | Navbar on the side  |
+  | DashboardNav | Navbar on the side  |
   | CreateGroup | View to create a new group |
   | CreateTransaction | View to add a new transaction to a group |
   | AllTransactions | View to display all transactions for current group |
-  | HistoricalGroups | View to display all past groups and transactions |
+  | SettledGroups | View to display all past groups and transactions |
   | SettleTransactions | View to settle outstanding transactions |
-  | About | View to show what the app is about and who created it |
+  
 
 
 ## Reducers (Client Side)
@@ -94,7 +98,6 @@ As a user:
 | ADD_MEMBER | groups | add member to group |
 | DELETE_MEMBER | groups | delete member from group |
 | UPDATE_MEMBER | groups | update member from group |
-
 
 
 ## API (Client - Server)
@@ -184,78 +187,3 @@ nb: cost recorded in cents
  | group_id | Integer |
 
  ---
-
- ## JSON Setup
-
-  GET request - 
-
-
- Post request - 
-
-
-## Setup
-
-Run the following commands in your terminal:
-
-```sh
-npm install
-npx knex migrate:latest
-npx knex seed:run
-mv .env.example .env
-```
-
-To run in development:
-```sh
-npm run dev
-```
-
-To run in production:
-```sh
-npm start
-```
-
-
-## Heroku!!!
-
-### Creating your app
-
-Create your app with `heroku create [name]`
-
-You can check that this was successful by running `heroku apps` to view a list of your apps
-
-
-### Adding postgres
-
-Add postgresql (hobby dev) to your app at `https://dashboard.heroku.com/apps/[APP NAME HERE]/resources`
-
-Check that pg has been added by running `heroku addons` to ensure the postgresql db is on your app
-
-
-### Deploying!
-
-I have created several npm scripts that will be useful for deploying your app to heroku easily.
-
-To push your local master branch to your heroku app:
-```sh
-npm run h:deploy
-```
-
-Run heroku migrations:
-```sh
-npm run h:migrate
-```
-
-Run heroku seeds:
-```sh
-npm run h:seed
-```
-
-If ever you need to rollback, you can also:
-```sh
-npm run h:rollback
-```
-
-
-### Ta-Da!
-Your app should be deployed!
-
